@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Write to Me - Ganesh Tajane World</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(92,74,50,0.35); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(92,74,50,0.6); }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'Inter', sans-serif;
+      color: #2a2318;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(100,85,60,0.18) 100%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      padding: 20px 50px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(208,199,178,0.97) 0%, transparent 100%);
+      opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards;
+    }
+    .logo { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.15em; color: #2a2318; text-decoration: none; transition: all 0.3s ease; }
+    .logo:hover { color: #8a7355; }
+    .nav-links { display: flex; gap: 16px; }
+    .nav-link { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5c4a32; text-decoration: none; padding: 6px 14px; border: 1px solid rgba(42,35,24,0.2); border-radius: 4px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+    .nav-link:hover { color: #2a2318; border-color: #5c4a32; background: rgba(92,74,50,0.1); }
+    .nav-ham span { display: block; width: 13px; height: 1.5px; background: #5c4a32; margin: 2.5px 0; transition: background 0.3s; }
+    .nav-link:hover .nav-ham span { background: #2a2318; }
+
+    @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes expandLine { from { width: 0; opacity: 0; } to { width: 60px; opacity: 1; } }
+    @keyframes gentlePulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+    .page-content {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 40px 40px;
+      position: relative; z-index: 1;
+    }
+
+    .write-container { max-width: 580px; width: 100%; }
+
+    .section-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: #5c4a32; margin-bottom: 6px;
+      opacity: 0; animation: slideUp 0.6s ease 0.3s forwards;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      color: #2D241B;
+      margin-bottom: 10px; line-height: 1.05;
+      opacity: 0; animation: slideUp 0.6s ease 0.4s forwards;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, #5c4a32, transparent);
+      margin-bottom: 16px;
+      opacity: 0; animation: expandLine 0.8s ease 0.5s forwards;
+    }
+
+    /* ── Creative Middle Quote ── */
+    .middle-quote {
+      text-align: center;
+      margin: 24px 0 28px;
+      padding: 20px 10px;
+      position: relative;
+      opacity: 0; animation: slideUp 0.8s ease 0.55s forwards;
+    }
+    .middle-quote::before,
+    .middle-quote::after {
+      content: '';
+      position: absolute; left: 50%; transform: translateX(-50%);
+      height: 1px; background: linear-gradient(90deg, transparent, rgba(92,74,50,0.35), transparent);
+    }
+    .middle-quote::before { top: 0; width: 80%; }
+    .middle-quote::after { bottom: 0; width: 80%; }
+
+    .middle-quote .quote-text {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      font-weight: 600;
+      color: #5c4a32;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
+    .middle-quote .quote-text .highlight {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #2a2318;
+      font-size: 0.95em;
+    }
+    .middle-quote .quote-author {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #8a7355;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .form-group { margin-bottom: 0.85rem; opacity: 0; animation: slideUp 0.5s ease forwards; }
+    .form-group:nth-child(1) { animation-delay: 0.6s; }
+    .form-group:nth-child(2) { animation-delay: 0.67s; }
+    .form-group:nth-child(3) { animation-delay: 0.72s; }
+    .form-group:nth-child(4) { animation-delay: 0.77s; }
+
+    .form-group label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #3a2e1e;
+      font-weight: 700; margin-bottom: 5px; display: block;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(42,35,24,0.03);
+      border: 1px solid rgba(42,35,24,0.15);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: #2a2318;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 500;
+      transition: all 0.4s ease;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group select option {
+      background: #d8cfb8;
+      color: #2a2318;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      font-style: normal;
+      padding: 8px 14px;
+    }
+    .form-group select option:disabled {
+      color: #8a7355;
+      font-style: italic;
+    }
+
+    .select-wrapper { position: relative; }
+    .select-wrapper::after {
+      content: '\25BE';
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: #5c4a32; pointer-events: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #8a7355;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #5c4a32;
+      background: rgba(42,35,24,0.05);
+      box-shadow: 0 0 16px rgba(92,74,50,0.15);
+      transform: translateY(-1px);
+    }
+
+    .whatsapp-btn {
+      width: 100%;
+      padding: 13px 40px;
+      border: 1px solid #5c4a32;
+      border-radius: 50px;
+      background: transparent;
+      color: #2a2318;
+      font-family: 'Cinzel', serif;
+      font-weight: 700; font-size: 0.72rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0; animation: slideUp 0.5s ease 0.87s forwards;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .whatsapp-btn:hover { background: #5c4a32; color: #d8cfb8; box-shadow: 0 0 28px rgba(92,74,50,0.4); transform: translateY(-2px); }
+    .whatsapp-icon { width: 18px; height: 18px; object-fit: contain; }
+
+    .form-note {
+      text-align: center; margin-top: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 0.95rem; font-weight: 500;
+      color: #5c4a32;
+      opacity: 0; animation: slideUp 0.5s ease 0.97s forwards;
+    }
+
+    .personal-note {
+      text-align: center; margin-top: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 0.95rem; font-weight: 500;
+      color: #5c4a32;
+      opacity: 0; animation: slideUp 0.5s ease 0.97s forwards;
+    }
+
+    /* ── Bottom Traveller Quote ── */
+    .traveller-quote {
+      text-align: center; margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(92,74,50,0.25);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #5c4a32;
+      letter-spacing: 0.01em;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0; animation: slideUp 0.6s ease 1.15s forwards;
+    }
+
+    .traveller-quote .drop-cap {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 0.75;
+      vertical-align: baseline;
+      display: inline-block;
+      margin-right: 1px;
+      color: #2a2318;
+    }
+
+    /* ── Decorative ink splash ── */
+    .ink-splash {
+      position: fixed;
+      bottom: -60px; right: -60px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(92,74,50,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+      animation: gentlePulse 6s ease-in-out infinite;
+    }
+    .ink-splash-2 {
+      position: fixed;
+      top: -40px; left: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(92,74,50,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+      animation: gentlePulse 8s ease-in-out infinite 2s;
+    }
+
+    @media (max-width: 768px) {
+      .header { padding: 16px 24px; }
+      .nav-links { gap: 10px; }
+      .nav-link { padding: 5px 10px; font-size: 0.62rem; }
+      .page-content { padding: 80px 20px 20px; }
+      .section-title { font-size: 2.4rem; }
+      .write-container { max-width: 100%; }
+      .traveller-quote { font-size: 1.4rem; }
+      .middle-quote .quote-text { font-size: 1.2rem; }
+      .ink-splash, .ink-splash-2 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ink-splash"></div>
+  <div class="ink-splash-2"></div>
+
+  <header class="header">
+    <a href="menu.html" class="logo">Ganesh Tajane</a>
+    <div class="nav-links">
+      <a href="index.html?gallery=1" class="nav-link">Home</a>
+      <a href="menu.html" class="nav-link">
+        Menu
+        <div class="nav-ham"><span></span><span></span></div>
+      </a>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="write-container">
+
+      <div class="section-subtitle">Direct Connection</div>
+      <h1 class="section-title">Write to Me</h1>
+      <div class="divider"></div>
+
+      <form id="whatsappForm">
+
+        <div class="form-group">
+          <label for="writeName">Full Name</label>
+          <input type="text" id="writeName" required placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="writeAddress">City &amp; Country</label>
+          <input type="text" id="writeAddress" required placeholder="e.g. Mumbai, India">
+        </div>
+
+        <div class="form-group">
+          <label for="writeTopic">I am writing regarding</label>
+          <div class="select-wrapper">
+            <select id="writeTopic" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option value="Chess">Chess</option>
+              <option value="Spirituality">Spirituality</option>
+              <option value="Temple Vision">Temple Vision</option>
+              <option value="Book">Book</option>
+              <option value="Personal">Personal</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="writeMsg">Your Message</label>
+          <textarea id="writeMsg" rows="3" required placeholder="Write your message here..."></textarea>
+        </div>
+
+        <button type="submit" class="whatsapp-btn">
+          <img src="asset/whtasapp%20logo.png" alt="WhatsApp" class="whatsapp-icon">
+          Connect on WhatsApp
+        </button>
+      </form>
+
+      <p class="personal-note">I personally read as many messages as possible</p>
+
+      <div class="traveller-quote"><span class="drop-cap">E</span>very traveller carries a story,<br>you are welcome to share yours.</div>
+
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('whatsappForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name    = document.getElementById('writeName').value.trim();
+      const address = document.getElementById('writeAddress').value.trim();
+      const topic   = document.getElementById('writeTopic').value.trim();
+      const msg     = document.getElementById('writeMsg').value.trim();
+
+      const formattedText =
+        `Name: ${name}\nCity & Country: ${address}\nRegarding: ${topic}\nMessage: ${msg}`;
+      const encodedText = encodeURIComponent(formattedText);
+      const whatsappUrl = `https://wa.me/919767728581?text=${encodedText}`;
+
+      window.open(whatsappUrl, '_blank');
+    });
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>

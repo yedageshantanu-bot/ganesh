@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Welcome - Ganesh Tajane World</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap');
+
+    :root {
+      --bg-primary: #050506;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0ab;
+      --grad-gold-text: linear-gradient(135deg, #ffffff 10%, #ffd700 60%, #cca43b 100%);
+      --font-cinzel: 'Cinzel', serif;
+      --font-cinzel-dec: 'Cinzel Decorative', serif;
+      --font-montserrat: 'Montserrat', sans-serif;
+      --transition-fast: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { display: none; }
+
+    body {
+      overflow: hidden;
+      background: var(--bg-primary);
+      font-family: 'Poppins', sans-serif;
+      cursor: default;
+      user-select: none;
+    }
+
+    .intro-clickable, .intro-clickable * {
+      cursor: pointer !important;
+    }
+
+    /* ── Video Background ── */
+    .video-wrap {
+      position: fixed; inset: 0; z-index: 0;
+      opacity: 0;
+      transition: opacity 1.0s ease-in-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .video-wrap video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .video-overlay {
+      position: fixed; inset: 0;
+      background: transparent;
+      z-index: 1;
+      transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    /* ── Particles ── */
+    .particles {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .particle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+      filter: blur(0.5px);
+      animation: float linear infinite; opacity: 0;
+      will-change: transform, opacity;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(105vh) translateX(0) scale(0.3);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+        transform: translateY(80vh) translateX(15px) scale(0.9);
+      }
+      50% {
+        opacity: 0.3;
+        transform: translateY(50vh) translateX(-15px) scale(1.3);
+      }
+      80% {
+        opacity: 0.8;
+        transform: translateY(20vh) translateX(15px) scale(0.9);
+      }
+      100% {
+        transform: translateY(-10vh) translateX(0) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    /* ── Content ── */
+    .content {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; color: #fff; padding: 0 24px;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Center circle formatting & sizing */
+    .center-content {
+      width: 95vw;
+      max-width: 580px;
+      height: 95vw;
+      max-height: 580px;
+      border-radius: 50%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .center-content.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Staggered text animations */
+    .anim-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .center-content.show .anim-line {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.35s; }
+    .delay-3 { transition-delay: 0.65s; }
+    .delay-4 {
+      transition-delay: 0.95s;
+      transform: translateY(60px);
+    }
+
+    /* Golden Gradient Title */
+    .intro-title {
+      font-family: var(--font-cinzel);
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      line-height: 1.4;
+      font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+      margin-bottom: 0.8rem;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+    }
+    
+    .intro-title .highlight {
+      font-family: var(--font-cinzel-dec);
+      font-weight: 800;
+      display: block;
+      font-size: clamp(2.4rem, 5.8vw, 4.2rem);
+      background: var(--grad-gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.45), 0 3px 12px rgba(0, 0, 0, 0.8);
+      margin-top: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .intro-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 2.2rem;
+      letter-spacing: 0.06em;
+      line-height: 1.6;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      max-width: 520px;
+    }
+
+    /* Button & Click Feedback */
+    .cta-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--text-primary);
+      padding: 14px 42px;
+      font-family: var(--font-montserrat);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+      transition: var(--transition-fast);
+      outline: none;
+      pointer-events: auto;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cta-btn span,
+    .cta-btn .arrow-icon {
+      position: relative;
+      z-index: 5;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      z-index: 2;
+      transform: translateX(-101%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-btn .arrow-icon {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      color: #000;
+      border-color: var(--text-primary);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .cta-btn:hover .arrow-icon {
+      transform: translateX(4px);
+    }
+
+    .cta-btn.clicked {
+      background: var(--text-primary);
+      color: #000 !important;
+      border-color: var(--text-primary);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+      transform: scale(0.95);
+    }
+
+    @keyframes smoothReveal {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandLine { from { width: 0; } to { width: 120px; } }
+
+    /* ── Gallery Container ── */
+    .gallery-container {
+      position: fixed; inset: 0; z-index: 20;
+      opacity: 0; pointer-events: none; visibility: hidden;
+      transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+      background: #050506;
+    }
+    .gallery-container.visible { opacity: 1; pointer-events: all; visibility: visible; }
+
+    /* Header */
+    .gallery-header {
+      position: absolute; top: 0; left: 0; width: 100%;
+      padding: 40px 60px; display: flex; justify-content: space-between;
+      align-items: center; z-index: 100;
+    }
+    .logo-group { display: flex; align-items: center; gap: 15px; }
+    .gallery-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: #fff;
+      font-weight: 600; text-shadow: 0 2px 8px rgba(0,0,0,0.5); cursor: pointer;
+    }
+
+    /* Sound Toggle */
+    .sound-toggle { display: flex; align-items: flex-end; gap: 3px; cursor: pointer; height: 16px; padding: 0 5px; }
+    .eq-bar {
+      width: 2.5px; height: 100%; background: #fff;
+      transform-origin: bottom; animation: bounceEq 1.2s ease-in-out infinite alternate; opacity: 0.85;
+    }
+    .eq-bar:nth-child(1) { animation-duration: 0.8s; }
+    .eq-bar:nth-child(2) { animation-delay: 0.2s; animation-duration: 1.2s; }
+    .eq-bar:nth-child(3) { animation-delay: 0.4s; animation-duration: 0.9s; }
+    .eq-bar:nth-child(4) { animation-delay: 0.1s; animation-duration: 1.4s; }
+    .sound-toggle.paused .eq-bar, .sound-toggle.silent .eq-bar { animation: none; transform: scaleY(0.2); opacity: 0.5; }
+    @keyframes bounceEq { 0% { transform: scaleY(0.25); } 100% { transform: scaleY(1); } }
+
+    .menu-btn {
+      background: #25342d; border: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 24px; color: #fff; font-family: 'Cinzel', serif;
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      font-weight: 600; border-radius: 2px; cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .menu-btn:hover { background: #2f4239; border-color: rgba(255,255,255,0.3); box-shadow: 0 4px 15px rgba(0,0,0,0.25); }
+    .menu-btn-icon { display: flex; flex-direction: column; gap: 4px; }
+    .menu-btn-icon span { width: 14px; height: 1.5px; background: #fff; display: block; }
+
+    /* Slides */
+    .slides-wrapper { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden;
+      opacity: 0; transform: translateX(0);
+      z-index: 1;
+      will-change: transform, opacity; pointer-events: none;
+    }
+    .slide.active { opacity: 1; z-index: 3; pointer-events: auto; transform: translateX(0); }
+    
+    /* Horizontal slide transitions */
+    .slide.slide-in-next {
+      opacity: 1;
+      z-index: 4;
+      animation: slideInFromRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.slide-out-next {
+      opacity: 1;
+      z-index: 2;
+      animation: slideOutToLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.slide-in-prev {
+      opacity: 1;
+      z-index: 4;
+      animation: slideInFromLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.slide-out-prev {
+      opacity: 1;
+      z-index: 2;
+      animation: slideOutToRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideInFromRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    @keyframes slideOutToLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-30%); }
+    }
+    @keyframes slideInFromLeft {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+    @keyframes slideOutToRight {
+      from { transform: translateX(0); }
+      to { transform: translateX(30%); }
+    }
+
+    .slide-img-wrap {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      overflow: hidden;
+    }
+    .slide-img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      will-change: transform;
+      transform: scale(1.15);
+    }
+    
+    /* Parallax effect on the images */
+    .slide.slide-in-next .slide-img {
+      animation: imgInFromRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.slide-out-next .slide-img {
+      animation: imgOutToLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.slide-in-prev .slide-img {
+      animation: imgInFromLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide.slide-out-prev .slide-img {
+      animation: imgOutToRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes imgInFromRight {
+      from { transform: translateX(-100%) scale(1.15); }
+      to { transform: translateX(0) scale(1.15); }
+    }
+    @keyframes imgOutToLeft {
+      from { transform: translateX(0) scale(1.15); }
+      to { transform: translateX(30%) scale(1.15); }
+    }
+    @keyframes imgInFromLeft {
+      from { transform: translateX(100%) scale(1.15); }
+      to { transform: translateX(0) scale(1.15); }
+    }
+    @keyframes imgOutToRight {
+      from { transform: translateX(0) scale(1.15); }
+      to { transform: translateX(-30%) scale(1.15); }
+    }
+
+    /* 3D depth layers per slide */
+    .slide::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.4) 100%);
+      z-index: 2; pointer-events: none;
+    }
+    .slide::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%;
+      background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+      z-index: 2; pointer-events: none;
+    }
+
+    /* Mobile images - hidden on desktop */
+    .slide-img-mobile { display: none; }
+
+    /* Info Card - 3D Animated */
+    .info-card {
+      position: absolute; left: 6.5vw; top: 65%;
+      width: min(370px, 80vw);
+      background: linear-gradient(145deg, rgba(255,255,255,0.97), rgba(245,242,235,0.95));
+      border: 1px solid rgba(255,255,255,0.8);
+      outline: 1px solid rgba(0,0,0,0.04); outline-offset: -5px;
+      padding: 2.4rem 3.2rem; border-radius: 10px;
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.08),
+        0 12px 24px rgba(0,0,0,0.1),
+        0 30px 60px rgba(0,0,0,0.15),
+        0 50px 100px rgba(0,0,0,0.2),
+        0 0 50px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(0,0,0,0.04);
+      z-index: 50;
+      transform-style: preserve-3d;
+      perspective: 600px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      transform: translateY(80px) rotateX(20deg) rotateZ(-2deg) scale(0.88);
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+      transform-origin: center bottom;
+    }
+    .info-card.animating-in {
+      animation: cardEnter3D 1s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .info-card.animating-out {
+      animation: cardExit3D 0.45s cubic-bezier(0.7,0,0.84,0) forwards;
+    }
+    @keyframes cardEnter3D {
+      0% {
+        opacity: 0;
+        transform: translateY(80px) rotateX(20deg) rotateZ(-2deg) scale(0.88);
+      }
+      40% {
+        opacity: 0.6;
+        transform: translateY(20px) rotateX(5deg) rotateZ(0.5deg) scale(0.96);
+      }
+      70% {
+        opacity: 0.9;
+        transform: translateY(-5px) rotateX(-2deg) rotateZ(0deg) scale(1.01);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) rotateZ(0deg) scale(1);
+      }
+    }
+    @keyframes cardExit3D {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) rotateZ(0deg) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(-12deg) rotateZ(1deg) scale(0.93);
+      }
+    }
+    .info-card::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
+      border-radius: 10px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    .info-card::after {
+      content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+      border-radius: 10px 10px 0 0;
+    }
+    .info-card:hover {
+      box-shadow:
+        0 8px 16px rgba(0,0,0,0.1),
+        0 20px 40px rgba(0,0,0,0.12),
+        0 40px 80px rgba(0,0,0,0.16),
+        0 60px 120px rgba(0,0,0,0.2),
+        0 0 60px rgba(180,150,100,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.95),
+        inset 0 -1px 0 rgba(0,0,0,0.04);
+      border-color: rgba(180,150,100,0.4);
+      cursor: pointer;
+    }
+    .info-card-inner { transition: transform 0.2s ease-out; will-change: transform; }
+    .explore-lbl {
+      font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #8a7355; font-weight: 600;
+      margin-bottom: 0.5rem; display: block;
+    }
+    .title-lbl {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3.2vw,2.6rem);
+      color: #1a1a1a; font-weight: 400; line-height: 1.15; font-style: italic;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Bottom Bar */
+    .gallery-bottom-bar {
+      position: absolute; bottom: 0; left: 0; width: 100%;
+      padding: 40px 60px 48px; display: flex; justify-content: space-between;
+      align-items: center; z-index: 100;
+    }
+    .slide-counter-wrap { display: flex; align-items: center; gap: 15px; color: #fff; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .counter-num { width: 35px; }
+    .counter-line { width: 80px; height: 2px; background: rgba(255,255,255,0.3); position: relative; border-radius: 1px; }
+    .counter-line-fill { position: absolute; top: 0; left: 0; height: 100%; width: 20%; background: #fff; transition: width 0.7s cubic-bezier(0.76,0,0.24,1); border-radius: 1px; box-shadow: 0 0 6px rgba(255,255,255,0.5); }
+    .scroll-hint { font-family: 'Playfair Display', serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-weight: 500; }
+
+    /* Bottom Timer */
+    .bottom-timer-container { position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.15); z-index: 110; }
+    .bottom-timer-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #fff, rgba(255,255,255,0.8)); box-shadow: 0 0 12px rgba(255,255,255,0.6); transition: width 0.05s linear; }
+
+    /* Welcome Fade-Out */
+    .welcome-out { opacity: 0 !important; transform: translateY(-20px) !important; pointer-events: none !important; }
+    .welcome-video-out { opacity: 0 !important; transform: scale(1.05) !important; pointer-events: none !important; }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .gallery-header { padding: 24px; }
+      .gallery-logo { font-size: 1rem; }
+      .menu-btn { padding: 8px 18px; font-size: 0.75rem; gap: 8px; }
+
+      /* Show mobile images, hide desktop images */
+      .slide-img-desktop { display: none !important; }
+      .slide-img-mobile { display: block !important; }
+
+      .info-card {
+        left: 20px; top: auto; bottom: 100px;
+        width: calc(100% - 40px);
+        max-width: 290px; padding: 1.4rem 1.8rem;
+        border-radius: 12px;
+        box-shadow:
+          0 6px 12px rgba(0,0,0,0.12),
+          0 16px 32px rgba(0,0,0,0.18),
+          0 32px 64px rgba(0,0,0,0.22),
+          0 0 40px rgba(0,0,0,0.08),
+          inset 0 1px 0 rgba(255,255,255,0.8);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        opacity: 0;
+        transform: translateY(80px) rotateX(16deg) rotateZ(-1deg) scale(0.88);
+        transform-origin: center bottom;
+      }
+      .info-card.animating-in {
+        animation: cardEnter3DMobile 1s cubic-bezier(0.22,1,0.36,1) forwards;
+      }
+      .info-card.animating-out {
+        animation: cardExit3DMobile 0.45s cubic-bezier(0.7,0,0.84,0) forwards;
+      }
+      @keyframes cardEnter3DMobile {
+        0% {
+          opacity: 0;
+          transform: translateY(80px) rotateX(16deg) rotateZ(-1deg) scale(0.88);
+        }
+        40% { opacity: 0.6; }
+        70% {
+          opacity: 0.9;
+          transform: translateY(-3px) rotateX(-1.5deg) rotateZ(0deg) scale(1.01);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) rotateX(0deg) rotateZ(0deg) scale(1);
+        }
+      }
+      @keyframes cardExit3DMobile {
+        0% {
+          opacity: 1;
+          transform: translateY(0) rotateX(0deg) rotateZ(0deg) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(50px) rotateX(-10deg) rotateZ(1deg) scale(0.93);
+        }
+      }
+      .explore-lbl { font-size: 0.6rem; margin-bottom: 0.35rem; letter-spacing: 0.15em; }
+      .title-lbl { font-size: 1.35rem; }
+      .gallery-bottom-bar { padding: 20px 20px 28px; }
+      .slide-counter-wrap { font-size: 0.8rem; gap: 10px; }
+      .counter-line { width: 50px; }
+      .scroll-hint { font-size: 0.65rem; letter-spacing: 0.12em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Page View -->
+  <div class="video-wrap" id="videoWrap">
+    <video id="intro-video" playsinline preload="auto" muted>
+      <source src="entrey of ganesh.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay" id="videoOverlay"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="content" id="welcomeContent">
+    <div id="center-content" class="center-content">
+      <h1 class="intro-title">
+        <span class="anim-line delay-1">Welcome to the World of</span>
+        <span class="highlight anim-line delay-2">Ganesh Tajane</span>
+      </h1>
+      <p class="intro-subtitle anim-line delay-3">
+        A journey through fire, faith, purpose and becoming.
+      </p>
+      <div class="anim-line delay-4">
+        <button id="walkBtn" class="cta-btn">
+          <span>Walk with Me</span>
+          <svg class="arrow-icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-container" id="gallery">
+    <header class="gallery-header">
+      <div class="logo-group">
+        <div class="gallery-logo">Ganesh Tajane</div>
+        <div class="sound-toggle silent" id="soundToggle">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
+      </div>
+      <a href="menu.html" class="menu-btn" id="galleryMenuBtn">
+        <span>Menu</span>
+        <div class="menu-btn-icon"><span></span><span></span></div>
+      </a>
+    </header>
+
+    <div class="slides-wrapper">
+      <!-- Slide 1: Before the Fire -->
+      <div class="slide" data-hash="before-the-fire">
+        <div class="slide-img-wrap">
+          <img class="slide-img-desktop slide-img" src="asset/Before%20the%20Fire.png" alt="Before the Fire">
+          <img class="slide-img-mobile slide-img" src="asset/Before%20the%20Fire%20for%20mobile.png" alt="Before the Fire">
+        </div>
+        <div class="info-card"><div class="info-card-inner"><span class="explore-lbl">Remember</span><span class="title-lbl">Before the Fire</span></div></div>
+      </div>
+
+      <!-- Slide 2: The Path of Vayu -->
+      <div class="slide" data-hash="the-path-of-vayu">
+        <div class="slide-img-wrap">
+          <img class="slide-img-desktop slide-img" src="asset/The%20Path%20of%20Vayu.png" alt="The Path of Vayu">
+          <img class="slide-img-mobile slide-img" src="asset/The%20Path%20of%20Vayu%20for%20mobile.png" alt="The Path of Vayu">
+        </div>
+        <div class="info-card"><div class="info-card-inner"><span class="explore-lbl">Awaken</span><span class="title-lbl">The Path of Vayu</span></div></div>
+      </div>
+
+      <!-- Slide 3: Chess -->
+      <div class="slide" data-hash="chess">
+        <div class="slide-img-wrap">
+          <img class="slide-img-desktop slide-img" src="asset/chess.png" alt="Chess">
+          <img class="slide-img-mobile slide-img" src="asset/chess%20for%20mobile.png" alt="Chess">
+        </div>
+        <div class="info-card"><div class="info-card-inner"><span class="explore-lbl">Discipline</span><span class="title-lbl">Chess</span></div></div>
+      </div>
+
+      <!-- Slide 4: The Written Word -->
+      <div class="slide" data-hash="the-written-word">
+        <div class="slide-img-wrap">
+          <img class="slide-img-desktop slide-img" src="asset/The%20written%20word.png" alt="The Written Word">
+          <img class="slide-img-mobile slide-img" src="asset/The%20written%20word%20for%20mobile.png" alt="The Written Word">
+        </div>
+        <div class="info-card"><div class="info-card-inner"><span class="explore-lbl">Read</span><span class="title-lbl">The Written Word</span></div></div>
+      </div>
+
+      <!-- Slide 5: Vayu Mahesh -->
+      <div class="slide" data-hash="vayu-mahesh">
+        <div class="slide-img-wrap">
+          <img class="slide-img-desktop slide-img" src="asset/Vayu%20mahesh.png" alt="Vayu Mahesh">
+          <img class="slide-img-mobile slide-img" src="asset/Vayu%20mahesh%20for%20mobile.png" alt="Vayu Mahesh">
+        </div>
+        <div class="info-card"><div class="info-card-inner"><span class="explore-lbl">Build</span><span class="title-lbl">Vayu Mahesh</span></div></div>
+      </div>
+    </div>
+
+    <div class="gallery-bottom-bar">
+      <div class="slide-counter-wrap">
+        <div class="counter-num">1 / 5</div>
+        <div class="counter-line"><div class="counter-line-fill"></div></div>
+      </div>
+      <div class="scroll-hint">Scroll to Navigate</div>
+    </div>
+
+    <div class="bottom-timer-container"><div class="bottom-timer-fill"></div></div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="vayuMusic" loop preload="auto">
+    <source src="asset/vayu%20mahesh%20page%20music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+  (function() {
+    // ── Elements ──
+    var welcomeContent = document.getElementById('welcomeContent');
+    var videoWrap = document.getElementById('videoWrap');
+    var videoOverlay = document.getElementById('videoOverlay');
+    var particles = document.getElementById('particles');
+    var gallery = document.getElementById('gallery');
+    var walkBtn = document.getElementById('walkBtn');
+    var soundToggle = document.getElementById('soundToggle');
+    var music = document.getElementById('vayuMusic');
+    var slides = document.querySelectorAll('.slide');
+    var counterNum = document.querySelector('.counter-num');
+    var counterFill = document.querySelector('.counter-line-fill');
+    var timerFill = document.querySelector('.bottom-timer-fill');
+    var totalSlides = slides.length;
+    var currentSlide = 0;
+    var slideTimer = null;
+    var autoTimer = null;
+    var galleryReady = false;
+    var SLIDE_DURATION = 6000;
+
+    // Cinematic Intro Video Elements & Controls
+    var video = document.getElementById('intro-video');
+    var overlay = document.getElementById('center-content');
+    var overlayRevealed = false;
+    var videoPaused = false;
+    var fallbackTimeout = null;
+    var videoStarted = false;
+
+    function showTextOverlay() {
+      if (fallbackTimeout) clearTimeout(fallbackTimeout);
+      if (overlay) {
+        overlay.classList.add('show');
+      }
+    }
+
+    function checkVideoTime() {
+      if (!video) return;
+
+      // Reveal overlay at 2.5 seconds (cinematic delay)
+      if (!overlayRevealed && video.currentTime >= 2.5) {
+        showTextOverlay();
+        overlayRevealed = true;
+      }
+
+      // Pause video at 3.85 seconds
+      if (!videoPaused && video.currentTime >= 3.85) {
+        video.pause();
+        video.currentTime = 3.85; // Clamp to the perfect static frame
+        videoPaused = true;
+      }
+
+      if (!videoPaused) {
+        requestAnimationFrame(checkVideoTime);
+      }
+    }
+
+    function createParticles() {
+      if (!particles) return;
+      particles.innerHTML = '';
+      for (var i = 0; i < 55; i++) {
+        var p = document.createElement('div');
+        p.classList.add('particle');
+        var size = Math.random() * 4.5 + 1.5; // Sizes between 1.5px and 6px
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (Math.random() * 18 + 12) + 's'; // Slower spiritual drift
+        p.style.animationDelay = (Math.random() * -30) + 's'; // Negative delay so particles are pre-scattered on load
+        particles.appendChild(p);
+      }
+      particles.style.opacity = '1';
+    }
+
+    function startIntroVideo() {
+      if (videoStarted) return;
+      videoStarted = true;
+
+      // Remove pointer cursor from body
+      document.body.classList.remove('intro-clickable');
+
+      // Create and fade in the particles
+      createParticles();
+
+      if (video) {
+        video.muted = true;
+        video.volume = 0;
+        
+        var playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            // Video started playing successfully muted (autoplay)
+            requestAnimationFrame(checkVideoTime);
+          }).catch(function(error) {
+            console.log("Autoplay failed, attempting backup show:", error);
+            showTextOverlay();
+          });
+        }
+      }
+
+      // Start the fallback timeout ONLY after play starts
+      fallbackTimeout = setTimeout(function() {
+        if (!overlayRevealed) {
+          showTextOverlay();
+          overlayRevealed = true;
+        }
+      }, 4000);
+    }
+
+    if (video) {
+      video.loop = false;
+      video.muted = true;
+      video.volume = 0;
+      video.preload = "auto";
+      
+      // Make sure the first frame is rendered on load and video wrap fades in
+      var handleLoadedData = function() {
+        try {
+          video.currentTime = 0;
+        } catch (e) {
+          console.log("Failed to set currentTime on load:", e);
+        }
+        if (videoWrap) {
+          videoWrap.style.opacity = '1';
+        }
+        // Start the video automatically!
+        startIntroVideo();
+      };
+
+      if (video.readyState >= 2) {
+        handleLoadedData();
+      } else {
+        video.addEventListener('loadeddata', handleLoadedData);
+      }
+
+      video.addEventListener('ended', function() {
+        video.pause();
+        videoPaused = true;
+        showTextOverlay();
+        overlayRevealed = true;
+      });
+
+      video.load();
+
+      // Global click and touch listeners to start video as manual fallback
+      var handleInteraction = function() {
+        if (!videoStarted) {
+          startIntroVideo();
+        }
+        document.removeEventListener('click', handleInteraction);
+        document.removeEventListener('touchend', handleInteraction);
+      };
+      document.addEventListener('click', handleInteraction);
+      document.addEventListener('touchend', handleInteraction);
+
+      // Keep individual element listeners as backup/redundancy
+      if (videoWrap) {
+        videoWrap.addEventListener('click', handleInteraction);
+      }
+      if (welcomeContent) {
+        welcomeContent.addEventListener('click', handleInteraction);
+      }
+    }
+
+    // ── Check URL for direct gallery access or specific slide ──
+    var urlParams = new URLSearchParams(window.location.search);
+    var hash = window.location.hash.replace('#/', '');
+    if (urlParams.get('gallery') === '1') {
+      var startSlide = 0;
+      if (hash) {
+        slides.forEach(function(s, i) {
+          if (s.getAttribute('data-hash') === hash) startSlide = i;
+        });
+      }
+      showGallery(startSlide, true);
+    }
+
+    // ── Show Gallery ──
+    function showGallery(startIndex, immediate) {
+      if (gallery) {
+        gallery.style.opacity = '';
+        gallery.style.transition = '';
+      }
+      if (immediate) {
+        welcomeContent.style.display = 'none';
+        videoWrap.style.display = 'none';
+        videoOverlay.style.display = 'none';
+        particles.style.display = 'none';
+      }
+      gallery.classList.add('visible');
+      galleryReady = true;
+      if (typeof startIndex === 'number' && startIndex >= 0 && startIndex < totalSlides) {
+        slides.forEach(function(s) { s.classList.remove('active', 'prev-active'); });
+        currentSlide = startIndex;
+        slides[currentSlide].classList.add('active');
+      } else {
+        slides[0].classList.add('active');
+      }
+      updateCounter();
+      resetTimer();
+      // Animate card in after a short delay
+      setTimeout(function() { animateCardIn(currentSlide); }, 300);
+      // Auto-play music
+      soundToggle.classList.remove('silent', 'paused');
+      music.volume = 0.7;
+      music.play().catch(function() {});
+    }
+
+    // ── Animate Info Card ──
+    function animateCardIn(slideIndex) {
+      var card = slides[slideIndex].querySelector('.info-card');
+      if (!card) return;
+      // Clear inline tilt styles to avoid blocking keyframes
+      card.style.transform = '';
+      card.style.transition = '';
+      card.style.boxShadow = '';
+      // Remove any existing animation classes
+      card.classList.remove('animating-out');
+      // Force reflow to restart animation
+      void card.offsetWidth;
+      card.classList.add('animating-in');
+    }
+
+    function animateCardOut(slideIndex, callback) {
+      var card = slides[slideIndex].querySelector('.info-card');
+      if (!card) { if (callback) callback(); return; }
+      // Clear inline tilt styles to avoid blocking keyframes
+      card.style.transform = '';
+      card.style.transition = '';
+      card.style.boxShadow = '';
+      card.classList.remove('animating-in');
+      // Force reflow
+      void card.offsetWidth;
+      card.classList.add('animating-out');
+      if (callback) {
+        setTimeout(callback, 350);
+      }
+    }
+
+    function resetAllCards() {
+      slides.forEach(function(s) {
+        var card = s.querySelector('.info-card');
+        if (card) {
+          card.classList.remove('animating-in', 'animating-out');
+          card.style.opacity = '';
+        }
+      });
+    }
+
+    // ── Walk With Me Button ──
+    walkBtn.addEventListener('click', function(e) {
+      if (e) e.preventDefault();
+      
+      // Click feedback: button shrinks and glows golden
+      walkBtn.classList.add('clicked');
+      
+      // Immediately start transition to gallery (cross-fade)
+      welcomeContent.classList.add('welcome-out');
+      videoWrap.classList.add('welcome-video-out');
+      videoOverlay.classList.add('welcome-out');
+      if (particles) particles.classList.add('welcome-out');
+      
+      // Open/fade in the slide gallery immediately
+      showGallery(0);
+      
+      // After transition finishes, clean up displays for performance
+      setTimeout(function() {
+        welcomeContent.style.display = 'none';
+        videoWrap.style.display = 'none';
+        videoOverlay.style.display = 'none';
+        if (particles) particles.style.display = 'none';
+        walkBtn.classList.remove('clicked');
+        
+        // Pause video for performance
+        if (video) video.pause();
+      }, 1500);
+    });
+
+    // ── Menu Button ──
+    var menuBtn = document.getElementById('galleryMenuBtn');
+    menuBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'menu.html';
+    });
+
+    // ── Gallery Logo click = go home (direct gallery) ──
+    document.querySelector('.gallery-logo').addEventListener('click', function() {
+      window.location.href = 'index.html?gallery=1';
+    });
+
+    // ── Slide Logic ──
+    function updateCounter() {
+      if (counterNum) counterNum.textContent = (currentSlide + 1) + ' / ' + totalSlides;
+      if (counterFill) counterFill.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+    }
+
+    function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+    function prevSlide() { goToSlide((currentSlide - 1 + totalSlides) % totalSlides); }
+
+    function resetTimer() {
+      clearInterval(slideTimer);
+      clearInterval(autoTimer);
+      var elapsed = 0;
+      if (timerFill) timerFill.style.width = '0%';
+      slideTimer = setInterval(function() {
+        elapsed += 50;
+        var pct = (elapsed / SLIDE_DURATION) * 100;
+        if (timerFill) timerFill.style.width = Math.min(pct, 100) + '%';
+      }, 50);
+      autoTimer = setInterval(nextSlide, SLIDE_DURATION);
+    }
+
+    var transitioning = false;
+
+    function goToSlide(index) {
+      if (!galleryReady || index === currentSlide || index < 0 || index >= totalSlides || transitioning) return;
+      transitioning = true;
+
+      var prevIndex = currentSlide;
+      currentSlide = index;
+
+      var direction = 'next';
+      if (currentSlide > prevIndex) {
+        direction = 'next';
+      } else if (currentSlide < prevIndex) {
+        direction = 'prev';
+      }
+      if (prevIndex === totalSlides - 1 && currentSlide === 0) direction = 'next';
+      if (prevIndex === 0 && currentSlide === totalSlides - 1) direction = 'prev';
+
+      // Clear timers
+      clearInterval(slideTimer);
+      clearInterval(autoTimer);
+      if (timerFill) timerFill.style.width = '0%';
+
+      // Clear classes from all slides
+      slides.forEach(function(s) {
+        s.classList.remove('active', 'prev-active', 'slide-in-next', 'slide-out-next', 'slide-in-prev', 'slide-out-prev');
+      });
+
+      // Set classes to trigger CSS transition
+      slides[prevIndex].classList.add('slide-out-' + direction);
+      slides[currentSlide].classList.add('active', 'slide-in-' + direction);
+
+      // Trigger card animations synchronously with slide transitions
+      animateCardOut(prevIndex);
+      animateCardIn(currentSlide);
+
+      updateCounter();
+
+      // After the 1.5s transition completes, clean up and reset timers
+      setTimeout(function() {
+        slides.forEach(function(s, idx) {
+          s.classList.remove('slide-in-next', 'slide-out-next', 'slide-in-prev', 'slide-out-prev');
+          if (idx !== currentSlide) {
+            var card = s.querySelector('.info-card');
+            if (card) {
+              card.classList.remove('animating-in', 'animating-out');
+            }
+          }
+        });
+        resetTimer();
+        transitioning = false;
+      }, 1500);
+    }
+
+    // Touch events for mobile swiping
+    var touchStartX = 0;
+    document.addEventListener('touchstart', function(e) {
+      if (!galleryReady) return;
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      if (!galleryReady || transitioning) return;
+      var diffX = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) nextSlide(); else prevSlide();
+      }
+    }, { passive: true });
+
+    // ── Scroll / Wheel ──
+    var scrollCooldown = false;
+    document.addEventListener('wheel', function(e) {
+      if (!galleryReady || scrollCooldown || transitioning) return;
+      scrollCooldown = true;
+      setTimeout(function() { scrollCooldown = false; }, 1200);
+      if (e.deltaY > 0) nextSlide(); else prevSlide();
+    }, { passive: true });
+
+    // ── Keyboard ──
+    document.addEventListener('keydown', function(e) {
+      if (!galleryReady || transitioning) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextSlide();
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // ── 3D Card Tilt on Mouse Move ──
+    var galleryEl = document.getElementById('gallery');
+    galleryEl.addEventListener('mousemove', function(e) {
+      if (!galleryReady || transitioning) return;
+      var activeSlide = slides[currentSlide];
+      if (!activeSlide) return;
+      var card = activeSlide.querySelector('.info-card');
+      if (!card) return;
+      var rect = card.getBoundingClientRect();
+      var cardX = (e.clientX - rect.left) / rect.width - 0.5;
+      var cardY = (e.clientY - rect.top) / rect.height - 0.5;
+
+      var rotateY = cardX * 18;
+      var rotateX = -cardY * 18;
+
+      card.style.transform = 'translateY(0) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+      card.style.transition = 'transform 0.15s ease-out, box-shadow 0.15s ease-out';
+      card.style.boxShadow = (12 + cardX * 10) + 'px ' + (20 + cardY * 10) + 'px 50px rgba(0,0,0,0.18), ' + (-cardX * 8) + 'px ' + (-cardY * 8) + 'px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.95), 0 0 40px rgba(180,150,100,0.12)';
+    });
+    galleryEl.addEventListener('mouseleave', function() {
+      if (!galleryReady || transitioning) return;
+      var activeSlide = slides[currentSlide];
+      if (!activeSlide) return;
+      var card = activeSlide.querySelector('.info-card');
+      if (!card) return;
+      card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg)';
+      card.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1), box-shadow 0.7s ease';
+      card.style.boxShadow = '';
+    });
+
+    // ── Click slide info card to enter detailed page ──
+    slides.forEach(function(slide) {
+      var card = slide.querySelector('.info-card');
+      if (card) {
+        card.addEventListener('click', function() {
+          if (!slide.classList.contains('active')) return;
+          var hash = slide.getAttribute('data-hash');
+          if (hash === 'before-the-fire') {
+            gallery.style.transition = 'opacity 0.3s ease';
+            gallery.style.opacity = '0';
+            setTimeout(function() {
+              window.location.href = 'before-the-fire.html';
+            }, 300);
+          } else if (hash === 'the-path-of-vayu') {
+            gallery.style.transition = 'opacity 0.3s ease';
+            gallery.style.opacity = '0';
+            setTimeout(function() {
+              window.location.href = 'the-path-of-vayu.html';
+            }, 300);
+          } else if (hash === 'vayu-mahesh') {
+            gallery.style.transition = 'opacity 0.3s ease';
+            gallery.style.opacity = '0';
+            setTimeout(function() {
+              window.location.href = 'vayu-mahesh.html';
+            }, 300);
+          } else if (hash === 'the-written-word') {
+            gallery.style.transition = 'opacity 0.3s ease';
+            gallery.style.opacity = '0';
+            setTimeout(function() {
+              window.location.href = 'written-word.html';
+            }, 300);
+          }
+        });
+      }
+    });
+
+    // ── Sound Toggle ──
+    soundToggle.addEventListener('click', function() {
+      if (soundToggle.classList.contains('silent')) {
+        soundToggle.classList.remove('silent', 'paused');
+        music.play().catch(function() {});
+      } else if (soundToggle.classList.contains('paused')) {
+        soundToggle.classList.remove('paused');
+        music.play().catch(function() {});
+      } else {
+        soundToggle.classList.add('paused');
+        music.pause();
+      }
+    });
+
+    // ── Pageshow Event Listener (Fix Back Button / BFcache Black Screen) ──
+    window.addEventListener('pageshow', function(event) {
+      if (gallery) {
+        gallery.style.opacity = '';
+        gallery.style.transition = '';
+      }
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('gallery') === '1' && gallery) {
+        gallery.classList.add('visible');
+        if (music && soundToggle && !soundToggle.classList.contains('silent') && !soundToggle.classList.contains('paused')) {
+          music.play().catch(function() {});
+        }
+      }
+    });
+  })();
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"92bd335f1c28495a922e488528b8f7e6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

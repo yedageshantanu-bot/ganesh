@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Following — Ganesh Tajane</title>
+  <meta name="description" content="Five journeys. Five paths. One truth. Follow the collection of Ganesh Tajane.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { display: none; }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'Inter', sans-serif;
+      color: #2a2318;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(100,85,60,0.18) 100%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Header ── */
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      padding: 18px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 200;
+      background: linear-gradient(180deg, rgba(216,207,184,0.97) 0%, rgba(216,207,184,0.8) 70%, transparent 100%);
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: #2a2318; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .logo:hover { color: #8a7355; }
+
+    .back-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: #5c4a32;
+      background: rgba(42,35,24,0.08);
+      border: 1px solid rgba(42,35,24,0.2);
+      padding: 10px 24px; border-radius: 2px;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .back-btn:hover {
+      color: #2a2318;
+      border-color: rgba(42,35,24,0.4);
+      background: rgba(42,35,24,0.15);
+    }
+    .back-btn svg { transition: transform 0.3s ease; }
+    .back-btn:hover svg { transform: translateX(-4px); }
+
+    /* ── Desktop Gallery — All 5 in one row ── */
+    .gallery-section {
+      position: relative; z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 18px;
+      padding: 18px 40px 24px;
+      width: 100%;
+      height: 100vh;
+      padding-top: 70px;
+    }
+
+    /* ── Collection Card ── */
+    .collection-card {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 100%;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      transform-style: preserve-3d;
+      background: #1a1610;
+      opacity: 0;
+      transform: translateY(80px) scale(0.9) rotateX(8deg);
+    }
+
+    .collection-card.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+
+    /* ── Glow border layer ── */
+    .card-glow {
+      position: absolute; inset: -2px;
+      border-radius: 12px;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(180,150,100,0.5),
+        transparent,
+        rgba(180,150,100,0.3),
+        transparent
+      );
+      filter: blur(6px);
+    }
+
+    .collection-card:hover .card-glow {
+      opacity: 1;
+      animation: glowRotate 3s linear infinite;
+    }
+
+    @keyframes glowRotate {
+      to { filter: blur(6px) hue-rotate(20deg); }
+    }
+
+    .collection-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%);
+      z-index: 2;
+      transition: opacity 0.6s ease;
+    }
+
+    .collection-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      z-index: 5;
+      pointer-events: none;
+      transition: border-color 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .collection-card:hover::after {
+      border-color: rgba(180,150,100,0.4);
+      box-shadow: inset 0 0 30px rgba(180,150,100,0.08);
+    }
+
+    .card-image {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 1s cubic-bezier(0.16,1,0.3,1), filter 0.8s ease;
+      will-change: transform;
+    }
+
+    .collection-card:hover .card-image {
+      transform: scale(1.12);
+      filter: brightness(1.05) contrast(1.05);
+    }
+
+    .card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 22px 26px;
+      z-index: 3;
+      transform: translateY(0);
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .collection-card:hover .card-content {
+      transform: translateY(-6px);
+    }
+
+    .card-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+      display: block;
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem; font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 5px;
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    .card-title .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .collection-card.revealed .card-title .letter {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem; font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .card-explore {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.4s ease, gap 0.4s ease;
+      position: relative;
+    }
+
+    .card-explore::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, rgba(180,150,100,0.8), transparent);
+      transition: width 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .collection-card:hover .card-explore::after {
+      width: 100%;
+    }
+
+    .card-explore-line {
+      width: 14px; height: 1px;
+      background: rgba(255,255,255,0.3);
+      transition: width 0.4s ease, background 0.4s ease;
+    }
+
+    .collection-card:hover .card-explore {
+      color: #fff;
+      gap: 12px;
+    }
+
+    .collection-card:hover .card-explore-line {
+      width: 22px;
+      background: rgba(139,115,85,0.8);
+    }
+
+    /* ── Shimmer sweep on hover ── */
+    .card-shimmer {
+      position: absolute; inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .card-shimmer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255,255,255,0.06) 45%,
+        rgba(255,255,255,0.12) 50%,
+        rgba(255,255,255,0.06) 55%,
+        transparent 60%
+      );
+      transition: none;
+    }
+
+    .collection-card:hover .card-shimmer::before {
+      animation: shimmerSweep 1s ease forwards;
+    }
+
+    @keyframes shimmerSweep {
+      to { left: 200%; }
+    }
+
+    /* ── Particle dots ── */
+    .card-particles {
+      position: absolute; inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: rgba(180,150,100,0.6);
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    /* ── Mobile Vertical Layout ── */
+    .mobile-gallery {
+      display: none;
+      position: relative; z-index: 10;
+      padding: 0 20px 24px;
+    }
+
+    .mobile-card {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      color: #fff;
+      margin-bottom: 24px;
+      aspect-ratio: 3/4;
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+    }
+
+    .mobile-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .mobile-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.78) 100%);
+      z-index: 2;
+    }
+
+    .mobile-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      z-index: 5;
+      pointer-events: none;
+      transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .mobile-card:active::after {
+      border-color: rgba(180,150,100,0.5);
+      box-shadow: inset 0 0 40px rgba(180,150,100,0.1);
+    }
+
+    .mobile-card .card-image {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .mobile-card.visible .card-image {
+      animation: mobileImgReveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    @keyframes mobileImgReveal {
+      from { transform: scale(1.15); }
+      to { transform: scale(1); }
+    }
+
+    .mobile-card .card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px 28px;
+      z-index: 3;
+    }
+
+    .mobile-card .card-number {
+      font-size: 0.6rem;
+      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.5s ease 0.3s, transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.3s;
+    }
+
+    .mobile-card.visible .card-number {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mobile-card .card-title {
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+      overflow: hidden;
+    }
+
+    .mobile-card .card-title .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .mobile-card.visible .card-title .letter {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-card .card-quote {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease 0.5s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.5s;
+    }
+
+    .mobile-card.visible .card-quote {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-card .card-explore {
+      font-size: 0.62rem;
+      opacity: 0;
+      transition: opacity 0.5s ease 0.6s;
+    }
+
+    .mobile-card.visible .card-explore {
+      opacity: 1;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .header { padding: 14px 20px; }
+      .gallery-section { display: none; }
+      .mobile-gallery { display: block; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1100px) {
+      .gallery-section { gap: 14px; padding: 18px 24px 24px; padding-top: 70px; }
+      .card-title { font-size: 1rem; }
+      .card-quote { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="menu.html" class="logo">Ganesh Tajane</a>
+    <a href="menu.html" class="back-btn">
+      <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 1L1 5L5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="1" y1="5" x2="11" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      Menu
+    </a>
+  </header>
+
+  <!-- Desktop Gallery — All 5 in one row -->
+  <div class="gallery-section" id="gallerySection">
+
+    <a href="before-the-fire.html" class="collection-card" data-tilt>
+      <div class="card-glow"></div>
+      <img class="card-image" src="asset/before-the-fire%20for%20home%20page.png" alt="Before the Fire" loading="lazy">
+      <div class="card-shimmer"></div>
+      <div class="card-particles"></div>
+      <div class="card-content">
+        <span class="card-number">01</span>
+        <h2 class="card-title">Before the Fire</h2>
+        <p class="card-quote">"A journey into silence."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Begin Here
+        </span>
+      </div>
+    </a>
+
+    <a href="the-path-of-vayu.html" class="collection-card" data-tilt>
+      <div class="card-glow"></div>
+      <img class="card-image" src="asset/path-of-vayu%20for%20home%20page.png" alt="The Path of Vayu" loading="lazy">
+      <div class="card-shimmer"></div>
+      <div class="card-particles"></div>
+      <div class="card-content">
+        <span class="card-number">02</span>
+        <h2 class="card-title">The Path of Vayu</h2>
+        <p class="card-quote">"Wisdom in every breath."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Walk the Path
+        </span>
+      </div>
+    </a>
+
+    <a href="index.html?gallery=1#/chess" class="collection-card" data-tilt>
+      <div class="card-glow"></div>
+      <img class="card-image" src="asset/chess%20for%20home%20page.png" alt="Chess" loading="lazy">
+      <div class="card-shimmer"></div>
+      <div class="card-particles"></div>
+      <div class="card-content">
+        <span class="card-number">03</span>
+        <h2 class="card-title">Chess</h2>
+        <p class="card-quote">"The game within life."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Make the Move
+        </span>
+      </div>
+    </a>
+
+    <a href="written-word.html" class="collection-card" data-tilt>
+      <div class="card-glow"></div>
+      <img class="card-image" src="asset/the-written-word%20for%20home%20page.png" alt="The Written Word" loading="lazy">
+      <div class="card-shimmer"></div>
+      <div class="card-particles"></div>
+      <div class="card-content">
+        <span class="card-number">04</span>
+        <h2 class="card-title">The Written Word</h2>
+        <p class="card-quote">"Thoughts that shape reality."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Read On
+        </span>
+      </div>
+    </a>
+
+    <a href="vayu-mahesh.html" class="collection-card" data-tilt>
+      <div class="card-glow"></div>
+      <img class="card-image" src="asset/vayu-mahesh%20for%20home%20page.png" alt="Vayu Mahesh" loading="lazy">
+      <div class="card-shimmer"></div>
+      <div class="card-particles"></div>
+      <div class="card-content">
+        <span class="card-number">05</span>
+        <h2 class="card-title">Vayu Mahesh</h2>
+        <p class="card-quote">"The union of stillness and strength."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          See the Vision
+        </span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Mobile Vertical Gallery -->
+  <div class="mobile-gallery" id="mobileGallery">
+
+    <a href="before-the-fire.html" class="mobile-card">
+      <img class="card-image" src="asset/Before%20the%20Fire%20for%20mobile.png" alt="Before the Fire" loading="lazy">
+      <div class="card-content">
+        <span class="card-number">01</span>
+        <h2 class="card-title">Before the Fire</h2>
+        <p class="card-quote">"A journey into silence."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Begin Here
+        </span>
+      </div>
+    </a>
+
+    <a href="the-path-of-vayu.html" class="mobile-card">
+      <img class="card-image" src="asset/The%20Path%20of%20Vayu%20for%20mobile.png" alt="The Path of Vayu" loading="lazy">
+      <div class="card-content">
+        <span class="card-number">02</span>
+        <h2 class="card-title">The Path of Vayu</h2>
+        <p class="card-quote">"Wisdom in every breath."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Walk the Path
+        </span>
+      </div>
+    </a>
+
+    <a href="index.html?gallery=1#/chess" class="mobile-card">
+      <img class="card-image" src="asset/chess%20for%20mobile.png" alt="Chess" loading="lazy">
+      <div class="card-content">
+        <span class="card-number">03</span>
+        <h2 class="card-title">Chess</h2>
+        <p class="card-quote">"The game within life."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Make the Move
+        </span>
+      </div>
+    </a>
+
+    <a href="written-word.html" class="mobile-card">
+      <img class="card-image" src="asset/The%20written%20word%20for%20mobile.png" alt="The Written Word" loading="lazy">
+      <div class="card-content">
+        <span class="card-number">04</span>
+        <h2 class="card-title">The Written Word</h2>
+        <p class="card-quote">"Thoughts that shape reality."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          Read On
+        </span>
+      </div>
+    </a>
+
+    <a href="vayu-mahesh.html" class="mobile-card">
+      <img class="card-image" src="asset/Vayu%20mahesh%20for%20mobile.png" alt="Vayu Mahesh" loading="lazy">
+      <div class="card-content">
+        <span class="card-number">05</span>
+        <h2 class="card-title">Vayu Mahesh</h2>
+        <p class="card-quote">"The union of stillness and strength."</p>
+        <span class="card-explore">
+          <span class="card-explore-line"></span>
+          See the Vision
+        </span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    (function() {
+      var isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+      // ── Split title text into individual letters ──
+      function splitTitle(el) {
+        var text = el.textContent;
+        el.innerHTML = '';
+        text.split('').forEach(function(ch, i) {
+          var span = document.createElement('span');
+          span.className = 'letter';
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          span.style.transitionDelay = (i * 0.04) + 's';
+          el.appendChild(span);
+        });
+      }
+
+      document.querySelectorAll('.card-title').forEach(splitTitle);
+
+      // ── Create floating particles ──
+      function createParticles(card) {
+        var container = card.querySelector('.card-particles');
+        if (!container) return;
+        for (var i = 0; i < 8; i++) {
+          var p = document.createElement('div');
+          p.className = 'particle';
+          p.style.left = (Math.random() * 100) + '%';
+          p.style.top = (Math.random() * 100) + '%';
+          p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+          container.appendChild(p);
+        }
+      }
+
+      // ── HEADER ENTRANCE ──
+      gsap.to('.header', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.1
+      });
+
+      if (!isMobile) {
+        var cards = document.querySelectorAll('.collection-card');
+
+        // ── STAGGERED CARD ENTRANCE with 3D flip ──
+        cards.forEach(function(card, i) {
+          createParticles(card);
+
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotateX: 0,
+            duration: 1,
+            ease: 'power4.out',
+            delay: 0.3 + (i * 0.1),
+            onStart: function() {
+              card.classList.add('revealed');
+            }
+          });
+
+          // Image ken burns entrance
+          var img = card.querySelector('.card-image');
+          gsap.fromTo(img,
+            { scale: 1.2, filter: 'brightness(0.8)' },
+            {
+              scale: 1,
+              filter: 'brightness(1)',
+              duration: 1.6,
+              ease: 'power2.out',
+              delay: 0.3 + (i * 0.1)
+            }
+          );
+
+          // Number slide in
+          var num = card.querySelector('.card-number');
+          gsap.to(num, {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            delay: 0.7 + (i * 0.1)
+          });
+
+          // Quote fade in
+          var quote = card.querySelector('.card-quote');
+          gsap.to(quote, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            delay: 0.8 + (i * 0.1)
+          });
+
+          // Particles float in
+          var particles = card.querySelectorAll('.particle');
+          particles.forEach(function(p, pi) {
+            gsap.to(p, {
+              opacity: 0.4 + Math.random() * 0.4,
+              y: -(10 + Math.random() * 30),
+              x: (Math.random() - 0.5) * 20,
+              duration: 2 + Math.random() * 2,
+              ease: 'sine.inOut',
+              delay: 1 + (pi * 0.15),
+              repeat: -1,
+              yoyo: true
+            });
+          });
+        });
+
+        // ── 3D TILT + MAGNETIC EFFECT ON MOUSE MOVE ──
+        var gallery = document.getElementById('gallerySection');
+
+        gallery.addEventListener('mousemove', function(e) {
+          cards.forEach(function(card) {
+            var rect = card.getBoundingClientRect();
+            var cardCenterX = rect.left + rect.width / 2;
+            var cardCenterY = rect.top + rect.height / 2;
+
+            var deltaX = (e.clientX - cardCenterX) / (rect.width / 2);
+            var deltaY = (e.clientY - cardCenterY) / (rect.height / 2);
+
+            // Only apply if mouse is somewhat near the card
+            var distX = Math.abs(e.clientX - cardCenterX);
+            var distY = Math.abs(e.clientY - cardCenterY);
+            var maxDist = 400;
+            var influence = Math.max(0, 1 - (distX + distY) / maxDist);
+
+            if (influence > 0) {
+              var tiltX = deltaY * -8 * influence;
+              var tiltY = deltaX * 8 * influence;
+              var moveX = deltaX * 5 * influence;
+              var moveY = deltaY * 5 * influence;
+
+              gsap.to(card, {
+                rotateX: tiltX,
+                rotateY: tiltY,
+                x: moveX,
+                y: moveY,
+                duration: 0.4,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+
+              // Parallax the image
+              var img = card.querySelector('.card-image');
+              gsap.to(img, {
+                x: -deltaX * 8 * influence,
+                y: -deltaY * 8 * influence,
+                duration: 0.4,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+            }
+          });
+        });
+
+        gallery.addEventListener('mouseleave', function() {
+          cards.forEach(function(card) {
+            gsap.to(card, {
+              rotateX: 0,
+              rotateY: 0,
+              x: 0,
+              y: 0,
+              duration: 0.6,
+              ease: 'power3.out',
+              overwrite: 'auto'
+            });
+            var img = card.querySelector('.card-image');
+            gsap.to(img, {
+              x: 0,
+              y: 0,
+              duration: 0.6,
+              ease: 'power3.out',
+              overwrite: 'auto'
+            });
+          });
+        });
+
+        // ── HOVER GLOW INTENSIFY ──
+        cards.forEach(function(card) {
+          card.addEventListener('mouseenter', function() {
+            gsap.to(card, {
+              boxShadow: '0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(180,150,100,0.2), 0 0 80px rgba(180,150,100,0.1)',
+              duration: 0.5,
+              ease: 'power2.out'
+            });
+          });
+
+          card.addEventListener('mouseleave', function() {
+            gsap.to(card, {
+              boxShadow: '0 0 0 rgba(0,0,0,0), 0 0 0 rgba(180,150,100,0)',
+              duration: 0.6,
+              ease: 'power2.out'
+            });
+          });
+        });
+
+      } else {
+        // ── MOBILE CARDS with IntersectionObserver ──
+        var mobileCards = document.querySelectorAll('.mobile-card');
+
+        mobileCards.forEach(function(card, i) {
+          createParticles(card);
+
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+
+                // Animate particles
+                var particles = entry.target.querySelectorAll('.particle');
+                particles.forEach(function(p, pi) {
+                  gsap.to(p, {
+                    opacity: 0.5,
+                    y: -(15 + Math.random() * 25),
+                    duration: 2 + Math.random() * 2,
+                    ease: 'sine.inOut',
+                    delay: 0.8 + (pi * 0.12),
+                    repeat: -1,
+                    yoyo: true
+                  });
+                });
+
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15 });
+
+          card.style.transitionDelay = (i * 0.15) + 's';
+          observer.observe(card);
+        });
+
+        // ── MOBILE TILT on touch ──
+        mobileCards.forEach(function(card) {
+          card.addEventListener('touchmove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var touch = e.touches[0];
+            var centerX = rect.left + rect.width / 2;
+            var centerY = rect.top + rect.height / 2;
+            var deltaX = (touch.clientX - centerX) / (rect.width / 2);
+            var deltaY = (touch.clientY - centerY) / (rect.height / 2);
+
+            gsap.to(card, {
+              rotateX: deltaY * -4,
+              rotateY: deltaX * 4,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          });
+
+          card.addEventListener('touchend', function() {
+            gsap.to(card, {
+              rotateX: 0,
+              rotateY: 0,
+              duration: 0.5,
+              ease: 'power3.out'
+            });
+          });
+        });
+      }
+    })();
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>

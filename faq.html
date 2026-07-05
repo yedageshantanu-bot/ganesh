@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FAQs — Ganesh Tajane</title>
+  <meta name="description"
+    content="Frequently asked questions about Ganesh Tajane, his journey, Vayu, and Vayu Mahesh.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #d4c9b0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #8a7355;
+      border-radius: 3px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'DM Sans', sans-serif;
+      color: #2a2318;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(100, 85, 60, 0.18) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 28px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(208, 199, 178, 0.95) 0%, transparent 100%);
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: #2a2318;
+      text-decoration: none;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.2s forwards;
+    }
+
+    .logo:hover {
+      color: #8a7355;
+    }
+
+    .menu-btn-header {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #2a2318;
+      background: rgba(42, 35, 24, 0.15);
+      border: 1px solid rgba(42, 35, 24, 0.35);
+      padding: 10px 22px;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.3s forwards;
+    }
+
+    .menu-btn-header:hover {
+      background: rgba(42, 35, 24, 0.15);
+      border-color: rgba(42, 35, 24, 0.4);
+    }
+
+    .menu-ham span {
+      display: block;
+      width: 14px;
+      height: 1.5px;
+      background: #2a2318;
+      margin: 3px 0;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ── Main Layout ── */
+    .page-wrapper {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(360px, 420px) 1fr;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Left Column */
+    .left-col {
+      padding: 110px 50px 50px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+
+    .left-col::-webkit-scrollbar {
+      display: none;
+    }
+
+    .left-label {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 2.1rem;
+      letter-spacing: 0.02em;
+      color: #3a3025;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.4s forwards;
+      line-height: 1.1;
+    }
+
+    .big-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5.5rem, 9vw, 9rem);
+      font-weight: 900;
+      line-height: 0.88;
+      color: #2a2318;
+      letter-spacing: -0.04em;
+      opacity: 0;
+      animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .big-title .big-s {
+      font-size: 0.45em;
+      vertical-align: bottom;
+      display: inline-block;
+      transform: translateY(-0.12em);
+      font-weight: 700;
+      margin-left: 3px;
+      letter-spacing: 0;
+    }
+
+    .left-divider {
+      width: 50px;
+      height: 1.5px;
+      background: linear-gradient(90deg, #5c4a32, transparent);
+      margin: 16px 0 14px;
+      opacity: 0;
+      animation: expandLine 0.8s ease 0.7s forwards;
+    }
+
+    @keyframes expandLine {
+      from {
+        width: 0;
+        opacity: 0;
+      }
+
+      to {
+        width: 60px;
+        opacity: 1;
+      }
+    }
+
+    .left-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.72rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.7;
+      color: #3d3122;
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.8s forwards;
+      letter-spacing: 0.015em;
+    }
+
+    .left-desc {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.8;
+      color: #3a3025;
+      margin-bottom: 0;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.9s forwards;
+    }
+
+    .stay-in-touch {
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.95s forwards;
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(42, 35, 24, 0.12);
+      flex-shrink: 0;
+    }
+
+    .stay-in-touch-label {
+      display: none;
+    }
+
+    .stay-in-touch p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #2a2318;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    /* ── Premium CTA Button ── */
+    .contact-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #d8cfb8;
+      text-decoration: none;
+      border: 1px solid #2a2318;
+      padding: 15px 28px;
+      border-radius: 2px;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      width: fit-content;
+      position: relative;
+      overflow: hidden;
+      background: #2a2318;
+    }
+
+    /* shimmer sweep */
+    .contact-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg,
+          transparent 0%,
+          rgba(42, 35, 24, 0.06) 40%,
+          rgba(42, 35, 24, 0.12) 50%,
+          rgba(42, 35, 24, 0.06) 60%,
+          transparent 100%);
+      transform: skewX(-20deg);
+      transition: none;
+      animation: shimmerBtn 3.5s ease-in-out 2s infinite;
+    }
+
+    /* dark fill on hover */
+    .contact-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #d8cfb8;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    .contact-cta:hover::after {
+      transform: scaleX(1);
+    }
+
+    .contact-cta:hover {
+      border-color: #2a2318;
+      transform: translateY(-3px);
+      color: #2a2318;
+      box-shadow: 0 12px 32px rgba(42, 35, 24, 0.18), 0 4px 12px rgba(42, 35, 24, 0.1);
+      gap: 20px;
+    }
+
+    .cta-text,
+    .cta-arrow {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-arrow {
+      font-size: 1rem;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+    }
+
+    .contact-cta:hover .cta-arrow {
+      transform: translateX(6px);
+    }
+
+    @keyframes shimmerBtn {
+      0% {
+        left: -100%;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      50% {
+        left: 150%;
+        opacity: 1;
+      }
+
+      51% {
+        opacity: 0;
+      }
+
+      100% {
+        left: 150%;
+        opacity: 0;
+      }
+    }
+
+    .faq-count {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #8a7355;
+      margin-top: 16px;
+      display: block;
+      opacity: 0.75;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Vertical separator */
+    .v-line {
+      position: fixed;
+      left: 420px;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(42, 35, 24, 0.2) 20%, rgba(42, 35, 24, 0.2) 80%, transparent);
+      z-index: 2;
+    }
+
+    /* Right Column */
+    .right-col {
+      padding: 120px 70px 80px 70px;
+      overflow-y: auto;
+      max-height: 100vh;
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(42, 35, 24, 0.15);
+      opacity: 0;
+      animation: slideUp 0.6s ease forwards;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid rgba(42, 35, 24, 0.15);
+    }
+
+    .faq-item:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+
+    .faq-item:nth-child(2) {
+      animation-delay: 0.55s;
+    }
+
+    .faq-item:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .faq-item:nth-child(4) {
+      animation-delay: 0.65s;
+    }
+
+    .faq-item:nth-child(5) {
+      animation-delay: 0.7s;
+    }
+
+    .faq-item:nth-child(6) {
+      animation-delay: 0.75s;
+    }
+
+    .faq-item:nth-child(7) {
+      animation-delay: 0.8s;
+    }
+
+    .faq-item:nth-child(8) {
+      animation-delay: 0.85s;
+    }
+
+    .faq-item:nth-child(9) {
+      animation-delay: 0.9s;
+    }
+
+    .faq-item:nth-child(10) {
+      animation-delay: 0.95s;
+    }
+
+    .faq-item:nth-child(11) {
+      animation-delay: 1s;
+    }
+
+    .faq-item:nth-child(12) {
+      animation-delay: 1.05s;
+    }
+
+    .faq-item:nth-child(13) {
+      animation-delay: 1.1s;
+    }
+
+    .faq-item:nth-child(14) {
+      animation-delay: 1.15s;
+    }
+
+    .faq-item:nth-child(15) {
+      animation-delay: 1.2s;
+    }
+
+    .faq-item:nth-child(16) {
+      animation-delay: 1.25s;
+    }
+
+    .faq-item:nth-child(17) {
+      animation-delay: 1.3s;
+    }
+
+    .faq-item:nth-child(18) {
+      animation-delay: 1.35s;
+    }
+
+    .faq-item:nth-child(19) {
+      animation-delay: 1.4s;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      text-align: left;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover .q-text {
+      color: #5c4a32;
+    }
+
+    .q-prefix {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2a2318;
+      flex-shrink: 0;
+      margin-right: 4px;
+    }
+
+    .q-text {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      font-weight: 600;
+      color: #2a2318;
+      line-height: 1.45;
+      transition: color 0.3s ease;
+      flex: 1;
+    }
+
+    .q-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(42, 35, 24, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .q-icon svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      color: #2a2318;
+    }
+
+    .faq-item.open .q-icon {
+      background: #2a2318;
+      border-color: #2a2318;
+    }
+
+    .faq-item.open .q-icon svg {
+      transform: rotate(180deg);
+      color: #d8cfb8;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-answer-inner {
+      padding: 0 0 20px 0;
+    }
+
+    .faq-answer p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #4a3c2a;
+    }
+
+    .faq-answer p+p {
+      margin-top: 10px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .page-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .left-col {
+        position: relative;
+        height: auto;
+        overflow-y: visible;
+        padding: 100px 24px 40px;
+      }
+
+      .v-line {
+        display: none;
+      }
+
+      .right-col {
+        padding: 0 24px 80px;
+        max-height: none;
+        overflow-y: visible;
+      }
+
+      .header {
+        padding: 20px 24px;
+      }
+
+      .big-title {
+        font-size: clamp(4rem, 15vw, 7rem);
+      }
+
+      .stay-in-touch {
+        margin-top: auto;
+      }
+
+      .faq-question {
+        padding: 18px 0;
+      }
+
+      .faq-answer-inner {
+        padding: 0 0 16px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html?gallery=1" class="logo">Ganesh Tajane</a>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="index.html?gallery=1" class="menu-btn-header" style="text-decoration:none;">
+        <span>Home</span>
+      </a>
+      <a href="menu.html" class="menu-btn-header">
+        <span>Menu</span>
+        <div class="menu-ham">
+          <span></span>
+          <span></span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="v-line"></div>
+
+  <div class="page-wrapper">
+    <!-- Left Column -->
+    <aside class="left-col">
+      <div class="left-label">Frequently asked questions</div>
+      <h1 class="big-title">FAQ<span class="big-s">s</span></h1>
+      <div class="left-divider"></div>
+      <p class="left-sub">
+        Some arrive for answers.<br>
+        Others arrive for questions.<br>
+        Both are welcome here.
+      </p>
+      <p class="left-desc">
+        Many of these questions have accompanied me on my own journey of self-discovery. I share these reflections with
+        the hope that they bring clarity, encouragement, and inspiration to your path as well.
+      </p>
+      <div class="stay-in-touch">
+        <p>Stay in touch for general requests</p>
+        <a href="write.html" class="contact-cta">
+          <span class="cta-text">Write to Me</span>
+          <span class="cta-arrow">→</span>
+        </a>
+        <span class="faq-count">18 questions answered</span>
+      </div>
+    </aside>
+
+    <!-- Right Column -->
+    <main class="right-col">
+      <div class="faq-list" id="faqList">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Who is Ganesh Tajane, and why does he call himself Vayu?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Ganesh Tajane is the name given to me at birth. Vayu is a name I came to remember along the journey.
+              </p>
+              <p>From a young age, I felt drawn toward meditation, silence, and questions that most people around me
+                were not asking. Alongside that was a persistent calling that one day I would build a temple, though I
+                had no understanding of what that meant or where it would lead.</p>
+              <p>As life unfolded through experiences, inner exploration, and moments that are difficult to explain
+                through logic alone, certain pieces of the puzzle began to reveal themselves. "Vayu" was one of them.
+              </p>
+              <p>I do not use the name because I believe it makes me special, nor do I see it as a title to be earned or
+                displayed. It is simply a part of my journey that I came to recognize rather than invent.</p>
+              <p>If Ganesh is the person living the journey, Vayu is the thread that has quietly guided it.</p>
+              <p>Everything shared through Vayu Mahesh is ultimately an attempt to understand where that thread leads.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">What is Vayu Mahesh, and why is it being built?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Vayu Mahesh is a temple I am building as the fulfillment of a calling that has been with me since
+                childhood. From a very young age, I carried a strong feeling that one day I would build a temple. At the
+                time, I did not know where it would be, what form it would take, or why this thought remained so deeply
+                rooted within me. As the years passed, through meditation, inner exploration, mystical experiences, and
+                life's many twists and turns, that calling gradually began to reveal its purpose.</p>
+              <p>At the heart of Vayu Mahesh will be the sacred Shivlinga that I discovered on the banks of the Narmada.
+                The discovery of the Shivlinga and the experiences connected to it became an important part of
+                understanding the path that had been unfolding throughout my life.</p>
+              <p>Vayu Mahesh is being built as a sacred space where people can step away from the noise, confusion, and
+                compulsive patterns that often dominate modern life. Many of us sense what needs to change within
+                ourselves, yet struggle to move beyond the habits, fears, and limitations that hold us back.</p>
+              <p>My hope is that the presence of Vayu Mahesh, the Shivlinga, and the energy of the space will support
+                people in finding greater clarity, awareness, and alignment with their own lives. Not by giving them
+                answers, but by helping them see more clearly for themselves.</p>
+              <p>Ultimately, Vayu Mahesh is an expression of devotion, a lifelong commitment to a calling I did not
+                create, and an offering for those who are sincerely seeking a deeper connection with themselves and with
+                life.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Are the teachings here based on any particular religion or tradition?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>My journey is deeply connected to Lord Shiva, and many of the experiences, reflections, and insights
+                shared on this website naturally emerge from that connection.</p>
+              <p>At the same time, Vayu Mahesh is not about asking people to adopt a particular belief system or follow
+                a prescribed path. The experiences shared here are rooted in devotion, meditation, self-inquiry, and
+                direct experience.</p>
+              <p>While the language and symbolism of my journey may often be connected to Shiva, the deeper questions it
+                explores — purpose, truth, consciousness, destiny, and self-discovery — belong to every human being. My
+                intention is not to tell people what to believe, but to encourage them to explore these questions
+                through their own journey.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Why did you begin this journey of self-discovery?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>In many ways, I don't feel that I chose this path — it feels more accurate to say that this path found
+                me.</p>
+              <p>From a very young age, I had a natural inclination towards meditation, silence, and inner exploration.
+                Alongside that came experiences and questions that I could not easily explain. But perhaps the most
+                unusual thing was a persistent feeling that stayed with me throughout my childhood: a deep conviction
+                that one day I would build a temple.</p>
+              <p>As I grew older, that inner calling became inseparable from a deeper search for meaning. Questions
+                about purpose, consciousness, destiny, and what lies beyond the visible world began to shape my life.
+                Whether this calling originated in this lifetime alone or is connected to something carried from before,
+                I cannot say with certainty. I only know that it has guided my journey from the very beginning.</p>
+              <p>What started as a search to understand that calling gradually became a journey of self-discovery, one
+                that continues to unfold with every experience, challenge, and revelation along the way.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Is this the story of a guru or a spiritual teacher?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>This is the story of a seeker. I do not present myself as a guru, enlightened master, or final
+                authority on truth. I am simply sharing my experiences, lessons, mistakes, and discoveries in the hope
+                that they may offer value to others walking their own path.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">How is chess connected to the spiritual path?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>At first glance, chess and spirituality may seem unrelated. One is a game played on sixty-four squares,
+                while the other is a journey into the nature of life and consciousness. Yet the longer I have walked
+                both paths, the more I have come to see their similarities.</p>
+              <p>Every move has consequences, every position demands clarity, and every mistake becomes a
+                lesson. In many ways, the chessboard acts as a mirror, revealing not only our strengths but also our
+                fears, impulses, habits, and blind spots.</p>
+              <p>One of the most important lessons chess has taught me is that knowing how the pieces move does not mean
+                you know how to play the game well. Many people can memorize openings, study strategies, and understand
+                the rules, yet still struggle to make the right decisions when faced with a real position.</p>
+              <p>Life is much the same. We may read spiritual books, learn philosophies, and collect ideas about the
+                truth, but knowledge alone does not create transformation. What matters is the ability to apply that
+                understanding in the midst of real challenges, uncertainty, and everyday life.</p>
+              <p>For me, both chess and spirituality ultimately point towards the same thing: learning to see clearly,
+                act consciously, and take responsibility for the consequences of our choices.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Can I see the Shivlinga or receive darshan of it?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Many people who read the story of the Shivlinga feel a natural curiosity and wish to experience its
+                presence for themselves. At present, the Shivlinga is not publicly accessible, as the larger vision of
+                Vayu Mahesh is still in the process of being built.</p>
+              <p>My intention has never been to turn the Shivlinga into an object of attraction or pilgrimage before the
+                right foundation is established. When the time is right and the space intended for it is ready,
+                information will be shared openly through this website.</p>
+              <p>I understand the desire to receive darshan, especially for those who feel connected to the story or are
+                drawn to the energy associated with the Shivlinga. From my own experience, its presence carries a depth
+                that is difficult to fully describe in words. However, I also believe that certain experiences unfold at
+                the right time and in the right way.</p>
+              <p>If it is meant to happen, the opportunity to stand before it and experience its presence will come
+                naturally. Until then, I ask only for patience as the vision of Vayu Mahesh continues to take shape.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">I heard that the Shivlinga has naturally formed eyes and jattas (matted locks). Is that
+              true?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. The Shivlinga I discovered has unique natural formations that resemble two eyes on the front and
+                jattas (matted locks) on the back. These features were not carved, altered, or intentionally created.
+                They are naturally present on the Shivlinga as it was found.</p>
+              <p>In the spiritual traditions associated with Lord Shiva, both the eyes and the jattas carry deep
+                symbolic significance. The eyes are often associated with awareness, perception, and divine
+                consciousness, while the jattas symbolize asceticism, spiritual power, and a life devoted to a higher
+                purpose.</p>
+              <p>For this reason, many people who have seen the Shivlinga find these formations remarkable. At the same
+                time, I understand that different individuals may interpret them in different ways. Some may view them
+                as extraordinary natural formations, while others may feel a deeper spiritual significance in them.</p>
+              <p>I do not ask anyone to accept a particular interpretation. I simply share what was discovered and what
+                I have personally experienced. Each person is free to observe, reflect, and arrive at their own
+                understanding.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Can I contribute to or become part of the Vayu Mahesh journey?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. Vayu Mahesh is not being built by one person alone. If the vision resonates with you, there are
+                many ways to contribute — through ideas, conversations, creative work, support, or simply by walking
+                your own path with sincerity. Every meaningful journey grows through the people it touches.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">How can I connect with or reach out personally?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>The best way is through the contact channels provided on this website. While I may not always be able
+                to respond immediately, I read messages with care and appreciate every sincere connection that emerges
+                through this journey.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">What makes Vayu Mahesh different from the spirituality we see on social media
+              today?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Vayu Mahesh is not an attempt to package spirituality into content. It is an ongoing journey being
+                shared in real time. In a world where spirituality is often reduced to quotes, trends, and quick
+                inspiration, this space is dedicated to honest inquiry, lived experience, and inner transformation. I do
+                not claim to have all the answers. I simply share what I have lived, learned, questioned, and discovered
+                along the way.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">What is the story behind the Shivlinga found on the banks of the Narmada?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>The discovery of the Shivlinga was not something I was searching for. It unfolded as part of a larger
+                journey that continually challenged my understanding of coincidence, faith, and guidance. What happened
+                that day remains one of the most meaningful experiences of my life. Rather than presenting it as proof
+                of anything, I share it honestly as it happened and allow each person to draw their own conclusions. For
+                me, it became a reminder that some moments arrive not to be explained, but to be experienced.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">What if my path leads me somewhere different from yours?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Then you should follow it. The purpose of sharing my journey is not to create copies of it. Every
+                sincere seeker must ultimately walk their own path. If my experiences help illuminate part of the way,
+                they have served their purpose.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Why should anyone trust your experiences or interpretations of them?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>You shouldn't trust them blindly. I don't ask anyone to believe my experiences because they happened to
+                me. I simply share them honestly. What matters is not whether my journey convinces you, but whether it
+                inspires you to explore your own.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Are you trying to build a following?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>My intention is not to gather followers but to share a path. A true path should lead people closer to
+                themselves, not make them dependent on someone else.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Do I have to agree with everything shared here?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>No. Questioning is part of the journey. If something resonates, explore it. If it doesn't, leave it
+                aside. Truth doesn't require blind agreement.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">What if I am skeptical about spirituality, signs, or mystical experiences?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Then you are welcome here. Skepticism and inquiry are not enemies of spirituality; they can be part of
+                an honest search for truth.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-prefix">Q.</span>
+            <span class="q-text">Do you believe some people are chosen for a spiritual path or a greater purpose?</span>
+            <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>I do not believe that spiritual growth is reserved for a select few. Every human being has the capacity
+                to seek, question, grow, and awaken to a deeper understanding of life. At the same time, I do believe
+                that certain responsibilities, experiences, or purposes may come to those who have spent years or
+                perhaps even lifetimes preparing themselves for them.</p>
+              <p>The greater the responsibility, the greater the commitment it often demands. Such a path may require
+                patience, sacrifice, discipline, and a willingness to place the calling above personal comfort and
+                convenience. Whether we call it grace, destiny, karma, or the intelligence of life, I feel that nature
+                entrusts deeper responsibilities to those who become ready to carry them.</p>
+              <p>What matters is not feeling special because of the experience, but becoming worthy of the
+                responsibility that comes with it. In the end, the question is not who is chosen. The question is who is
+                willing to listen, commit, and respond when the call arrives.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const inner = item.querySelector('.faq-answer-inner');
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        if (window.innerWidth <= 900) {
+          // ── Mobile: instant close (no animation) → position stable → scroll + open immediately ──
+          faqItems.forEach(i => {
+            const ans = i.querySelector('.faq-answer');
+            ans.style.transition = 'none';   // kill transition so close is instant
+            ans.style.maxHeight = '0';
+            i.classList.remove('open');
+          });
+
+          if (!isOpen) {
+            // Restore open animation only for the item being opened
+            answer.style.transition = '';
+
+            // Two rAF frames: browser processes the instant-close first, then we act
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                item.classList.add('open');
+                answer.style.maxHeight = inner.scrollHeight + 40 + 'px';
+
+                // Scroll question to just below the fixed header
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 70;
+                const itemTop = item.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                  top: itemTop - headerHeight - 8,
+                  behavior: 'instant'
+                });
+              });
+            });
+          }
+
+        } else {
+          // ── Desktop: normal animated accordion, no scroll ──
+          faqItems.forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.faq-answer').style.maxHeight = '0';
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            answer.style.maxHeight = inner.scrollHeight + 40 + 'px';
+          }
+        }
+      });
+    });
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fellow Travelers - Ganesh Tajane World</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #ede8dc; }
+    ::-webkit-scrollbar-thumb { background: #9A7B5A; border-radius: 3px; }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'Inter', sans-serif;
+      color: #2D241B;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(100, 85, 60, 0.18) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%; padding: 30px 50px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 100;
+      background: linear-gradient(180deg, rgba(216,207,184,0.95) 0%, transparent 100%);
+      opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards;
+    }
+
+    .logo { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; color: #2D241B; text-decoration: none; transition: all 0.3s ease; }
+    .logo:hover { color: #9A7B5A; }
+
+    .nav-links { display: flex; gap: 20px; }
+    .nav-link { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #6B5642; text-decoration: none; padding: 8px 16px; border: 1px solid rgba(107,86,66,0.18); border-radius: 4px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+    .nav-link:hover { color: #2D241B; border-color: #6B5642; background: rgba(107,86,66,0.08); }
+    .nav-ham span { display: block; width: 13px; height: 1.5px; background: #6B5642; margin: 2.5px 0; transition: background 0.3s; }
+    .nav-link:hover .nav-ham span { background: #2D241B; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes quoteFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .page-content { min-height: 100vh; padding: 120px 40px 100px; position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+    .section-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #6B5642;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: slideUp 0.6s ease 0.3s forwards;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      color: #2D241B;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: slideUp 0.6s ease 0.4s forwards;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .section-quote-wrapper {
+      margin-top: 48px;
+      margin-bottom: 56px;
+      max-width: 750px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .section-quote-wrapper.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-quote-line {
+      font-family: 'Cormorant Garamond', serif;
+      display: block;
+    }
+
+    .section-quote-line.line-primary {
+      font-weight: 700;
+      font-style: italic;
+      font-size: 56px;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      color: #6B5642;
+      margin-bottom: 6px;
+    }
+
+    .section-quote-line.line-secondary {
+      font-weight: 400;
+      font-style: italic;
+      font-size: 58px;
+      opacity: 1;
+      line-height: 1.1;
+      color: #6B5642;
+    }
+
+    .section-quote-wrapper.visible .line-primary {
+      animation: quoteFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .section-quote-wrapper.visible .line-secondary {
+      animation: quoteFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.25s forwards;
+      opacity: 0;
+    }
+
+    .divider { width: 60px; height: 2px; background: linear-gradient(90deg, #6B5642, transparent); margin-bottom: 50px; opacity: 0; animation: expandLine 0.8s ease 0.6s forwards; }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes expandLine { from { width: 0; opacity: 0; } to { width: 60px; opacity: 1; } }
+
+    .view-toggle { display: flex; gap: 15px; margin-bottom: 44px; border-bottom: 1px solid rgba(107,86,66,0.18); padding-bottom: 14px; opacity: 0; animation: slideUp 0.6s ease 0.65s forwards; }
+
+    .toggle-btn {
+      background: transparent; border: none; color: #8A7159;
+      font-family: 'Cinzel', serif; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase; cursor: pointer;
+      padding: 8px 16px; transition: all 0.4s ease; position: relative;
+    }
+
+    .toggle-btn:hover { color: #6B5642; }
+    .toggle-btn.active { color: #2D241B; }
+
+    .toggle-btn.active::after {
+      content: ''; position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, #6B5642, rgba(107,86,66,0.5));
+    }
+
+    .messages-list { display: flex; flex-direction: column; gap: 22px; }
+
+    .message-card {
+      background: rgba(45,36,27,0.02);
+      border: 1px solid rgba(107,86,66,0.18); border-radius: 8px; padding: 30px;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden;
+      opacity: 0; animation: cardIn 0.5s ease forwards;
+    }
+
+    .message-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
+      background: linear-gradient(180deg, #6B5642, rgba(107,86,66,0.3));
+      transition: height 0.5s ease;
+    }
+
+    .message-card:hover { border-color: rgba(107,86,66,0.28); transform: translateX(5px); box-shadow: 0 10px 30px rgba(45,36,27,0.08); }
+    .message-card:hover::before { height: 100%; }
+
+    @keyframes cardIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .traveler-name { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: #2D241B; letter-spacing: 0.05em; }
+    .traveler-meta { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 500; color: #6B5642; margin-top: 4px; font-style: italic; }
+
+    .traveler-text {
+      font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem;
+      line-height: 1.8; color: #4a3c2a; padding-left: 20px;
+      border-left: 2px solid rgba(107,86,66,0.18);
+    }
+
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+    .messages-section.active { display: block; }
+    .messages-section { display: none; }
+
+    .form-group { margin-bottom: 1.5rem; opacity: 0; animation: slideUp 0.5s ease forwards; }
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.2s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
+
+    .form-group label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: #3a2e1e;
+      font-weight: 700; margin-bottom: 5px; display: block;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%; background: rgba(45,36,27,0.03); border: 1px solid rgba(107,86,66,0.18);
+      border-radius: 6px; padding: 14px 18px; color: #2D241B;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 500; transition: all 0.4s ease; outline: none;
+    }
+
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #8A7159; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .form-group input:focus, .form-group textarea:focus { border-color: #6B5642; background: rgba(45,36,27,0.05); box-shadow: 0 0 20px rgba(107,86,66,0.12); transform: translateY(-2px); }
+
+    .submit-btn {
+      padding: 14px 40px; border: 1px solid #6B5642; border-radius: 50px; background: transparent;
+      color: #2D241B; font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.72rem;
+      letter-spacing: 0.3em; text-transform: uppercase; cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; animation: slideUp 0.5s ease 0.4s forwards;
+    }
+
+    .submit-btn:hover { background: #6B5642; color: #F6F1E7; box-shadow: 0 0 30px rgba(107,86,66,0.3); transform: translateY(-3px); }
+
+    .form-status { padding: 14px 20px; border-radius: 6px; font-size: 0.85rem; margin-top: 1rem; display: none; }
+    .form-status.success { display: block; background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3); color: #25d366; }
+    .form-status.error { display: block; background: rgba(255, 75, 75, 0.1); border: 1px solid rgba(255, 75, 75, 0.3); color: #ff4b4b; }
+
+    .loading-spinner { text-align: center; padding: 50px; font-family: 'Playfair Display', serif; font-style: italic; color: #6B5642; font-size: 1.1rem; }
+    .loading-spinner::before { content: '\2726'; display: block; font-size: 2rem; margin-bottom: 15px; animation: spin 3s linear infinite; color: #6B5642; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      .header { padding: 20px 24px; }
+      .nav-links { gap: 10px; }
+      .nav-link { padding: 6px 12px; font-size: 0.65rem; }
+      .page-content { padding: 100px 24px 60px; }
+      .message-card { padding: 20px; }
+      .section-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+      .section-quote-wrapper { margin-top: 32px; margin-bottom: 40px; }
+      .section-quote-line.line-primary { font-size: clamp(28px, 7vw, 42px); letter-spacing: -0.5px; }
+      .section-quote-line.line-secondary { font-size: clamp(24px, 5.5vw, 36px); }
+      .view-toggle { flex-direction: column; gap: 10px; }
+      .toggle-btn { font-size: 0.68rem; padding: 6px 12px; }
+      .traveler-name { font-size: 0.9rem; }
+      .traveler-meta { font-size: 0.8rem; }
+      .traveler-text { font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .section-quote-line.line-primary { font-size: 26px; }
+      .section-quote-line.line-secondary { font-size: 24px; }
+      .section-quote-wrapper { margin-top: 24px; margin-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="menu.html" class="logo">Ganesh Tajane</a>
+    <div class="nav-links">
+      <a href="index.html?gallery=1" class="nav-link">Home</a>
+      <a href="menu.html" class="nav-link">
+        Menu
+        <div class="nav-ham"><span></span><span></span></div>
+      </a>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="section-subtitle">Shared Journeys</div>
+    <h1 class="section-title">Messages from Fellow Travelers</h1>
+    <div class="section-quote-wrapper" id="quoteWrapper">
+      <span class="section-quote-line line-primary">"Every message carries a story,</span>
+      <span class="section-quote-line line-secondary">Every story carries a world."</span>
+    </div>
+    <div class="divider"></div>
+
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="btnShowMessages">Read Reflections</button>
+      <button class="toggle-btn" id="btnTellExperience">Share Your Reflections</button>
+    </div>
+
+    <div class="messages-section active" id="messagesSection">
+      <div class="messages-list" id="messagesList">
+        <div class="loading-spinner">Seeking reflections...</div>
+      </div>
+    </div>
+
+    <div class="form-section" id="formSection">
+      <form id="travelersForm">
+        <div class="form-group">
+          <label for="travelerName">Full Name</label>
+          <input type="text" id="travelerName" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label for="travelerLocation">City &amp; Country</label>
+          <input type="text" id="travelerLocation" placeholder="e.g. Mumbai, India">
+        </div>
+        <div class="form-group">
+          <label for="travelerMessage">Your Experience / Reflection</label>
+          <textarea id="travelerMessage" rows="5" required placeholder="Share your experience..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Leave a Reflection</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = 'https://ifssqkfmymcjfquqfrmw.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlmc3Nxa2ZteW1jamZxdXFmcm13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1Mzc2NjMsImV4cCI6MjA5NzExMzY2M30.GzeyXgI20coRpEdChVe9YV4a3VZNknqHwjcH4BBKans';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    }
+
+    const btnShowMessages = document.getElementById('btnShowMessages');
+    const btnTellExperience = document.getElementById('btnTellExperience');
+    const messagesSection = document.getElementById('messagesSection');
+    const formSection = document.getElementById('formSection');
+
+    btnShowMessages.addEventListener('click', () => {
+      btnShowMessages.classList.add('active');
+      btnTellExperience.classList.remove('active');
+      messagesSection.classList.add('active');
+      formSection.classList.remove('active');
+      loadMessages();
+    });
+
+    btnTellExperience.addEventListener('click', () => {
+      btnTellExperience.classList.add('active');
+      btnShowMessages.classList.remove('active');
+      formSection.classList.add('active');
+      messagesSection.classList.remove('active');
+    });
+
+    async function loadMessages() {
+      const list = document.getElementById('messagesList');
+      list.innerHTML = '<div class="loading-spinner">Seeking reflections...</div>';
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('traveler_messages')
+          .select('*')
+          .eq('approved', true)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+          list.innerHTML = '<div class="loading-spinner">No reflections found. Be the first to share your journey!</div>';
+          return;
+        }
+
+        list.innerHTML = '';
+        data.forEach((msg, i) => {
+          const date = new Date(msg.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          const metaParts = [];
+          if (msg.city_country) metaParts.push(msg.city_country);
+          metaParts.push(date);
+          const metaInfo = metaParts.join(' \u2022 ');
+
+          const card = document.createElement('div');
+          card.className = 'message-card';
+          card.style.animationDelay = (i * 0.1) + 's';
+          card.innerHTML = `
+            <div class="card-header">
+              <div>
+                <div class="traveler-name">${escapeHTML(msg.full_name)}</div>
+                <div class="traveler-meta">${escapeHTML(metaInfo)}</div>
+              </div>
+            </div>
+            <p class="traveler-text">"${escapeHTML(msg.message)}"</p>
+          `;
+          list.appendChild(card);
+        });
+      } catch (err) {
+        list.innerHTML = `<div class="loading-spinner" style="color: #ff4b4b;">
+          Could not load reflections.<br>
+          <span style="font-size: 0.8rem; opacity: 0.7;">Run the SQL script in Supabase first.</span>
+        </div>`;
+      }
+    }
+
+    document.getElementById('travelersForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('travelerName').value.trim();
+      const location = document.getElementById('travelerLocation').value.trim();
+      const message = document.getElementById('travelerMessage').value.trim();
+
+      const form = e.target;
+      const existingStatus = form.querySelector('.form-status');
+      if (existingStatus) existingStatus.remove();
+
+      const statusMsg = document.createElement('div');
+      statusMsg.className = 'form-status';
+      form.appendChild(statusMsg);
+
+      try {
+        const { error } = await supabaseClient
+          .from('traveler_messages')
+          .insert([{ full_name: name, city_country: location || null, message }]);
+
+        if (error) throw error;
+
+        statusMsg.className = 'form-status success';
+        statusMsg.textContent = 'Your reflection has been submitted! It will appear after admin approval.';
+        form.reset();
+
+        setTimeout(() => {
+          btnTellExperience.click();
+        }, 2000);
+      } catch (err) {
+        statusMsg.className = 'form-status error';
+        statusMsg.textContent = `Could not submit: ${err.message || 'database error'}`;
+      }
+    });
+
+    loadMessages();
+
+    const quoteWrapper = document.getElementById('quoteWrapper');
+    const quoteObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          quoteObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    quoteObserver.observe(quoteWrapper);
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>

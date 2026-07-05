@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Crossroads — Ganesh Tajane</title>
+  <meta name="description" content="Explore the world of Ganesh Tajane — About, FAQ, Writings, and more.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* Hide scrollbars */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'Inter', sans-serif;
+      color: #2a2318;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Parchment noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle vignette */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(100, 85, 60, 0.18) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    .header {
+      width: 100%;
+      padding: 30px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      position: relative;
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: #2a2318;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      color: #8a7355;
+    }
+
+    .back-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #5c4a32;
+      background: rgba(42,35,24,0.08);
+      border: 1px solid rgba(42,35,24,0.2);
+      padding: 10px 24px;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .back-btn:hover {
+      color: #2a2318;
+      border-color: rgba(42,35,24,0.4);
+      background: rgba(42,35,24,0.15);
+    }
+
+    .back-btn svg {
+      transition: transform 0.3s ease;
+    }
+
+    .back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    /* ── Main content wrapper ── */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 60px 80px;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Title Section */
+    .title-section {
+      text-align: center;
+      margin-bottom: 50px;
+      opacity: 0;
+      animation: fadeInDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .explore-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #5c4a32;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .explore-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #2a2318;
+    }
+
+    /* Grid Layout */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      width: 100%;
+      opacity: 0;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    /* Menu Cards */
+    .menu-card {
+      background: rgba(42,35,24,0.02);
+      border: 1px solid rgba(42,35,24,0.1);
+      border-radius: 8px;
+      padding: 45px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: #2a2318;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hover effect border glow */
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(92, 168, 128, 0.08), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .menu-card:hover::before {
+      opacity: 1;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(92,74,50,0.35);
+      background: rgba(42,35,24,0.04);
+      box-shadow: 
+        0 20px 40px rgba(42, 35, 24, 0.15),
+        0 0 30px rgba(92, 74, 50, 0.1);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      margin-bottom: 22px;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-card:hover .card-icon {
+      transform: scale(1.2) rotate(6deg);
+    }
+
+    .card-label {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      color: #2a2318;
+      transition: color 0.3s ease;
+    }
+
+    .menu-card:hover .card-label {
+      color: #5c4a32;
+    }
+
+    .card-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #8a7355;
+      line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+
+    .menu-card:hover .card-desc {
+      color: #5c4a32;
+    }
+
+    /* Footer Quote */
+    .footer-quote {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(42,35,24,0.1);
+      width: 100%;
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease 0.6s forwards;
+    }
+
+    .footer-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: #000000;
+      line-height: 1.8;
+    }
+
+    .footer-quote span {
+      color: #000000;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ── Responsive Design ── */
+    @media (max-width: 992px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .header {
+        padding: 30px 40px;
+      }
+      .main-content {
+        padding: 20px 40px 60px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .header {
+        padding: 24px 20px;
+      }
+      .main-content {
+        padding: 10px 20px 40px;
+      }
+      .explore-title {
+        font-size: 2.2rem;
+      }
+      .menu-card {
+        padding: 35px 24px;
+      }
+      .card-icon {
+        font-size: 2.4rem;
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="explore.html" class="logo">Ganesh Tajane</a>
+    <a href="explore.html" class="back-btn">
+      <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 1L1 5L5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="1" y1="5" x2="11" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      Back to Gallery
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="title-section">
+      <span class="explore-subtitle">Find Your Way</span>
+      <h1 class="explore-title">The Crossroads</h1>
+    </div>
+
+    <div class="menu-grid">
+      <!-- 01: Home -->
+      <a href="explore.html" class="menu-card" data-nav="true">
+        <span class="card-icon">🏠</span>
+        <div class="card-label">Home</div>
+        <div class="card-desc">Enter the world</div>
+      </a>
+
+      <!-- 02: About -->
+      <a href="about.html" class="menu-card" data-nav="true">
+        <span class="card-icon">🔥</span>
+        <div class="card-label">About</div>
+        <div class="card-desc">The man, the name, the vision</div>
+      </a>
+
+      <!-- 03: Fellow Travelers -->
+      <a href="messages.html" class="menu-card" data-nav="true">
+        <span class="card-icon">👣</span>
+        <div class="card-label">Fellow Travelers</div>
+        <div class="card-desc">Messages & reflections</div>
+      </a>
+
+      <!-- 04: FAQ -->
+      <a href="faq.html" class="menu-card" data-nav="true">
+        <span class="card-icon">❓</span>
+        <div class="card-label">FAQ</div>
+        <div class="card-desc">Things often asked</div>
+      </a>
+
+      <!-- 05: Write to Me -->
+      <a href="write.html" class="menu-card" data-nav="true">
+        <span class="card-icon">✍️</span>
+        <div class="card-label">Write to Me</div>
+        <div class="card-desc">Send a personal note</div>
+      </a>
+
+      <!-- 06: Connect -->
+      <a href="connect.html" class="menu-card" data-nav="true">
+        <span class="card-icon">🌐</span>
+        <div class="card-label">Connect</div>
+        <div class="card-desc">Find me across the web</div>
+      </a>
+    </div>
+
+    <div class="footer-quote">
+      <p>"<span>For the curious mind, the searching heart,</span> and the restless spirit."</p>
+    </div>
+  </main>
+
+  <script>
+    // Card interactive 3D tilt effect on mousemove
+    const cards = document.querySelectorAll('.menu-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        
+        card.style.transform = `translateY(-10px) scale(1.03) perspective(1000px) rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>

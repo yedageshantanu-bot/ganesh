@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Admin - Ganesh Tajane World</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #ede8dc; }
+    ::-webkit-scrollbar-thumb { background: #9A7B5A; border-radius: 3px; }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'Inter', sans-serif;
+      color: #2D241B;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(100, 85, 60, 0.18) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header */
+    .header {
+      position: fixed; top: 0; left: 0; width: 100%; padding: 24px 50px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 100;
+      background: linear-gradient(180deg, rgba(216,207,184,0.95) 0%, transparent 100%);
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 600;
+      letter-spacing: 0.15em; color: #2D241B; text-decoration: none;
+    }
+
+    .back-link {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #6B5642; text-decoration: none; padding: 8px 16px;
+      border: 1px solid rgba(107,86,66,0.18); border-radius: 4px;
+      transition: all 0.3s ease; font-family: 'Cinzel', serif; font-weight: 600;
+    }
+    .back-link:hover { color: #2D241B; border-color: #6B5642; background: rgba(107,86,66,0.08); }
+
+    /* Login Section */
+    .login-section {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 40px 60px;
+      position: relative; z-index: 1;
+    }
+
+    .login-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(107,86,66,0.15);
+      border-radius: 12px;
+      padding: 50px 45px;
+      width: 100%; max-width: 420px;
+      box-shadow: 0 20px 50px rgba(45,36,27,0.1);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .login-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: #2D241B; text-align: center;
+      margin-bottom: 8px; letter-spacing: 0.1em;
+    }
+
+    .login-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: #6B5642; text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: #3a2e1e;
+      font-weight: 700; margin-bottom: 8px; display: block;
+    }
+
+    .form-group input {
+      width: 100%; background: rgba(45,36,27,0.03);
+      border: 1px solid rgba(107,86,66,0.2);
+      border-radius: 6px; padding: 14px 18px; color: #2D241B;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 500;
+      transition: all 0.4s ease; outline: none;
+    }
+
+    .form-group input::placeholder { color: #8A7159; font-style: italic; }
+    .form-group input:focus {
+      border-color: #6B5642; background: rgba(45,36,27,0.05);
+      box-shadow: 0 0 20px rgba(107,86,66,0.12);
+    }
+
+    .login-btn {
+      width: 100%; padding: 14px; border: 1px solid #6B5642;
+      border-radius: 50px; background: transparent;
+      color: #2D241B; font-family: 'Cinzel', serif; font-weight: 700;
+      font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 10px;
+    }
+    .login-btn:hover {
+      background: #6B5642; color: #F6F1E7;
+      box-shadow: 0 0 30px rgba(107,86,66,0.3);
+      transform: translateY(-2px);
+    }
+
+    .error-msg {
+      color: #c0392b; font-size: 0.85rem; text-align: center;
+      margin-top: 15px; display: none;
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+    }
+
+    /* Dashboard Section */
+    .dashboard-section {
+      display: none;
+      min-height: 100vh;
+      padding: 100px 40px 60px;
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .dashboard-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 40px; flex-wrap: wrap; gap: 20px;
+    }
+
+    .dash-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800; color: #2D241B;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    .dash-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic; color: #6B5642;
+      margin-top: 4px;
+    }
+
+    .logout-btn {
+      padding: 10px 24px; border: 1px solid rgba(107,86,66,0.3);
+      border-radius: 4px; background: transparent;
+      color: #6B5642; font-family: 'Cinzel', serif; font-weight: 600;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s ease;
+    }
+    .logout-btn:hover { background: #6B5642; color: #F6F1E7; }
+
+    /* Stats */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(107,86,66,0.12);
+      border-radius: 8px; padding: 24px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem; font-weight: 800; color: #6B5642;
+    }
+
+    .stat-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #8A7159; margin-top: 6px; font-family: 'Cinzel', serif;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex; gap: 12px; margin-bottom: 30px;
+      border-bottom: 1px solid rgba(107,86,66,0.15);
+      padding-bottom: 14px; flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent; border: none; color: #8A7159;
+      font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer;
+      padding: 8px 16px; transition: all 0.3s ease; position: relative;
+    }
+    .filter-btn:hover { color: #6B5642; }
+    .filter-btn.active { color: #2D241B; }
+    .filter-btn.active::after {
+      content: ''; position: absolute; bottom: -15px; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, #6B5642, rgba(107,86,66,0.5));
+    }
+
+    /* Comments List */
+    .comments-list {
+      display: flex; flex-direction: column; gap: 18px;
+    }
+
+    .comment-card {
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(107,86,66,0.12);
+      border-radius: 8px; padding: 24px 28px;
+      transition: all 0.4s ease; position: relative;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .comment-card:hover {
+      border-color: rgba(107,86,66,0.25);
+      box-shadow: 0 8px 25px rgba(45,36,27,0.08);
+    }
+
+    .comment-card.pending {
+      border-left: 3px solid #e67e22;
+    }
+
+    .comment-card.approved {
+      border-left: 3px solid #27ae60;
+    }
+
+    .comment-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 12px; flex-wrap: wrap; gap: 10px;
+    }
+
+    .comment-name {
+      font-family: 'Cinzel', serif; font-size: 0.95rem;
+      font-weight: 700; color: #2D241B; letter-spacing: 0.05em;
+    }
+
+    .comment-meta {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem; color: #6B5642; margin-top: 3px;
+      font-style: italic;
+    }
+
+    .comment-status {
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px; font-weight: 700;
+      font-family: 'Cinzel', serif;
+    }
+    .status-pending { background: rgba(230,126,34,0.15); color: #e67e22; }
+    .status-approved { background: rgba(39,174,96,0.15); color: #27ae60; }
+
+    .comment-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1.1rem;
+      line-height: 1.7; color: #4a3c2a;
+      padding-left: 18px;
+      border-left: 2px solid rgba(107,86,66,0.15);
+      margin-bottom: 16px;
+    }
+
+    .comment-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+
+    .action-btn {
+      padding: 8px 20px; border-radius: 4px;
+      font-family: 'Cinzel', serif; font-weight: 700;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s ease; border: 1px solid;
+    }
+
+    .approve-btn {
+      background: rgba(39,174,96,0.1); border-color: rgba(39,174,96,0.3);
+      color: #27ae60;
+    }
+    .approve-btn:hover { background: #27ae60; color: #fff; }
+
+    .delete-btn {
+      background: rgba(192,57,43,0.1); border-color: rgba(192,57,43,0.3);
+      color: #c0392b;
+    }
+    .delete-btn:hover { background: #c0392b; color: #fff; }
+
+    .loading-msg {
+      text-align: center; padding: 50px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: #6B5642; font-size: 1.1rem;
+    }
+
+    .empty-msg {
+      text-align: center; padding: 50px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: #8A7159; font-size: 1rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header { padding: 20px 24px; }
+      .login-card { padding: 35px 28px; }
+      .dashboard-section { padding: 90px 20px 40px; }
+      .dashboard-header { flex-direction: column; align-items: flex-start; }
+      .comment-header { flex-direction: column; }
+      .comment-actions { flex-direction: column; }
+      .action-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="/" class="logo">Ganesh Tajane</a>
+    <a href="/" class="back-link">Back to Site</a>
+  </header>
+
+  <!-- LOGIN SECTION -->
+  <section class="login-section" id="loginSection">
+    <div class="login-card">
+      <h1 class="login-title">Admin Access</h1>
+      <p class="login-subtitle">Enter your credentials to continue</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="adminEmail">Email Address</label>
+          <input type="email" id="adminEmail" required placeholder="Enter admin email">
+        </div>
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" required placeholder="Enter password">
+        </div>
+        <button type="submit" class="login-btn">Sign In</button>
+      </form>
+      <div class="error-msg" id="errorMsg">Invalid credentials. Please try again.</div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD SECTION -->
+  <section class="dashboard-section" id="dashboardSection">
+    <div class="dashboard-header">
+      <div>
+        <h1 class="dash-title">Fellow Travelers</h1>
+        <p class="dash-subtitle">Manage comments and reflections</p>
+      </div>
+      <button class="logout-btn" id="logoutBtn">Sign Out</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" id="totalCount">0</div>
+        <div class="stat-label">Total Messages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="pendingCount">0</div>
+        <div class="stat-label">Pending Review</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="approvedCount">0</div>
+        <div class="stat-label">Approved</div>
+      </div>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">All Messages</button>
+      <button class="filter-btn" data-filter="pending">Pending</button>
+      <button class="filter-btn" data-filter="approved">Approved</button>
+    </div>
+
+    <div class="comments-list" id="commentsList">
+      <div class="loading-msg">Loading messages...</div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = 'https://ifssqkfmymcjfquqfrmw.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlmc3Nxa2ZteW1jamZxdXFmcm13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1Mzc2NjMsImV4cCI6MjA5NzExMzY2M30.GzeyXgI20coRpEdChVe9YV4a3VZNknqHwjcH4BBKans';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const loginSection = document.getElementById('loginSection');
+    const dashboardSection = document.getElementById('dashboardSection');
+    const loginForm = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const commentsList = document.getElementById('commentsList');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    let currentFilter = 'all';
+    let allMessages = [];
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    }
+
+    // Login
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPassword').value;
+
+      errorMsg.style.display = 'none';
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('admin_users')
+          .select('*')
+          .eq('email', email)
+          .eq('password_hash', password)
+          .single();
+
+        if (error || !data) {
+          errorMsg.style.display = 'block';
+          return;
+        }
+
+        localStorage.setItem('ganesh_admin', 'true');
+        localStorage.setItem('ganesh_admin_email', email);
+        showDashboard();
+      } catch (err) {
+        errorMsg.style.display = 'block';
+      }
+    });
+
+    // Check if already logged in
+    if (localStorage.getItem('ganesh_admin') === 'true') {
+      showDashboard();
+    }
+
+    function showDashboard() {
+      loginSection.style.display = 'none';
+      dashboardSection.style.display = 'block';
+      loadComments();
+    }
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('ganesh_admin');
+      localStorage.removeItem('ganesh_admin_email');
+      dashboardSection.style.display = 'none';
+      loginSection.style.display = 'flex';
+      loginForm.reset();
+    });
+
+    // Load comments
+    async function loadComments() {
+      commentsList.innerHTML = '<div class="loading-msg">Loading messages...</div>';
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('traveler_messages')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        allMessages = data || [];
+        updateStats();
+        renderComments();
+      } catch (err) {
+        commentsList.innerHTML = '<div class="loading-msg" style="color:#c0392b;">Failed to load messages. Make sure you ran the SQL setup.</div>';
+      }
+    }
+
+    function updateStats() {
+      const total = allMessages.length;
+      const pending = allMessages.filter(m => !m.approved).length;
+      const approved = allMessages.filter(m => m.approved).length;
+
+      document.getElementById('totalCount').textContent = total;
+      document.getElementById('pendingCount').textContent = pending;
+      document.getElementById('approvedCount').textContent = approved;
+    }
+
+    function renderComments() {
+      let filtered = allMessages;
+      if (currentFilter === 'pending') filtered = allMessages.filter(m => !m.approved);
+      if (currentFilter === 'approved') filtered = allMessages.filter(m => m.approved);
+
+      if (filtered.length === 0) {
+        commentsList.innerHTML = '<div class="empty-msg">No messages found.</div>';
+        return;
+      }
+
+      commentsList.innerHTML = '';
+      filtered.forEach((msg, i) => {
+        const date = new Date(msg.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const metaParts = [];
+        if (msg.city_country) metaParts.push(msg.city_country);
+        metaParts.push(date);
+        const metaInfo = metaParts.join(' \u2022 ');
+
+        const statusClass = msg.approved ? 'approved' : 'pending';
+        const statusText = msg.approved ? 'Approved' : 'Pending';
+
+        const card = document.createElement('div');
+        card.className = `comment-card ${statusClass}`;
+        card.style.animationDelay = (i * 0.05) + 's';
+        card.innerHTML = `
+          <div class="comment-header">
+            <div>
+              <div class="comment-name">${escapeHTML(msg.full_name)}</div>
+              <div class="comment-meta">${escapeHTML(metaInfo)}</div>
+            </div>
+            <span class="comment-status status-${statusClass}">${statusText}</span>
+          </div>
+          <p class="comment-text">"${escapeHTML(msg.message)}"</p>
+          <div class="comment-actions">
+            ${!msg.approved ? `<button class="action-btn approve-btn" onclick="approveMsg('${msg.id}')">Approve</button>` : ''}
+            <button class="action-btn delete-btn" onclick="deleteMsg('${msg.id}')">Delete</button>
+          </div>
+        `;
+        commentsList.appendChild(card);
+      });
+    }
+
+    // Filter tabs
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderComments();
+      });
+    });
+
+    // Approve message
+    window.approveMsg = async (id) => {
+      try {
+        const { error } = await supabaseClient
+          .from('traveler_messages')
+          .update({ approved: true })
+          .eq('id', id);
+
+        if (error) throw error;
+        loadComments();
+      } catch (err) {
+        alert('Failed to approve. Please try again.');
+      }
+    };
+
+    // Delete message
+    window.deleteMsg = async (id) => {
+      if (!confirm('Are you sure you want to delete this message?')) return;
+
+      try {
+        const { error } = await supabaseClient
+          .from('traveler_messages')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        loadComments();
+      } catch (err) {
+        alert('Failed to delete. Please try again.');
+      }
+    };
+  </script>
+  <script>
+    // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
+    (function() {
+      // Prevent pinch-to-zoom on touch devices
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Prevent double-tap to zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function(e) {
+        const now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+
+      // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent Ctrl + Mouse Wheel zoom
+      document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>
