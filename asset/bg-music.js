@@ -32,7 +32,8 @@
         border-color: rgba(255, 255, 255, 0.5);
         transform: scale(1.05);
       }
-      .global-sound-toggle .eq-bar {
+      .global-sound-toggle .eq-bar,
+      .sound-toggle .eq-bar {
         width: 3px;
         height: 100%;
         background: #ffffff;
@@ -41,10 +42,10 @@
         opacity: 0.9;
         border-radius: 1px;
       }
-      .global-sound-toggle .eq-bar:nth-child(1) { animation-duration: 0.8s; }
-      .global-sound-toggle .eq-bar:nth-child(2) { animation-delay: 0.2s; animation-duration: 1.2s; }
-      .global-sound-toggle .eq-bar:nth-child(3) { animation-delay: 0.4s; animation-duration: 0.9s; }
-      .global-sound-toggle .eq-bar:nth-child(4) { animation-delay: 0.1s; animation-duration: 1.4s; }
+      .global-sound-toggle .eq-bar:nth-child(1), .sound-toggle .eq-bar:nth-child(1) { animation-duration: 0.8s; }
+      .global-sound-toggle .eq-bar:nth-child(2), .sound-toggle .eq-bar:nth-child(2) { animation-delay: 0.2s; animation-duration: 1.2s; }
+      .global-sound-toggle .eq-bar:nth-child(3), .sound-toggle .eq-bar:nth-child(3) { animation-delay: 0.4s; animation-duration: 0.9s; }
+      .global-sound-toggle .eq-bar:nth-child(4), .sound-toggle .eq-bar:nth-child(4) { animation-delay: 0.1s; animation-duration: 1.4s; }
 
       .global-sound-toggle.paused .eq-bar,
       .global-sound-toggle.silent .eq-bar,
@@ -141,11 +142,12 @@
   }
 
   toggleBtn.addEventListener('click', function (e) {
+    e.preventDefault();
     e.stopPropagation();
-    if (audio.paused) {
-      playAudio();
-    } else {
+    if (!audio.paused) {
       pauseAudio();
+    } else {
+      playAudio();
     }
   });
 

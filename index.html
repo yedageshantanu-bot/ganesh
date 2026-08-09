@@ -1321,10 +1321,12 @@
         resetTimer();
         // Animate card in after a short delay
         setTimeout(function () { animateCardIn(currentSlide); }, 300);
-        // Auto-play music
-        soundToggle.classList.remove('silent', 'paused');
-        music.volume = 0.7;
-        music.play().catch(function () { });
+        // Auto-play music if not paused
+        if (localStorage.getItem('bgMusicState') !== 'paused') {
+          soundToggle.classList.remove('silent', 'paused');
+          music.volume = 0.7;
+          music.play().catch(function () { });
+        }
       }
 
       // ── Animate Info Card ──
@@ -1588,19 +1590,7 @@
         }
       });
 
-      // ── Sound Toggle ──
-      soundToggle.addEventListener('click', function () {
-        if (soundToggle.classList.contains('silent')) {
-          soundToggle.classList.remove('silent', 'paused');
-          music.play().catch(function () { });
-        } else if (soundToggle.classList.contains('paused')) {
-          soundToggle.classList.remove('paused');
-          music.play().catch(function () { });
-        } else {
-          soundToggle.classList.add('paused');
-          music.pause();
-        }
-      });
+
 
       // ── Pageshow Event Listener (Fix Back Button / BFcache Black Screen) ──
       window.addEventListener('pageshow', function (event) {
