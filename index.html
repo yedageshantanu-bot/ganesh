@@ -1126,11 +1126,6 @@
     </div>
   </div>
 
-  <!-- Background Music -->
-  <audio id="vayuMusic" loop preload="auto">
-    <source src="asset/background-music.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
     (function () {
       // ── Elements ──
@@ -1141,7 +1136,6 @@
       var gallery = document.getElementById('gallery');
       var walkBtn = document.getElementById('walkBtn');
       var soundToggle = document.getElementById('soundToggle');
-      var music = document.getElementById('vayuMusic');
       var slides = document.querySelectorAll('.slide');
       var counterNum = document.querySelector('.counter-num');
       var counterFill = document.querySelector('.counter-line-fill');
@@ -1321,12 +1315,7 @@
         resetTimer();
         // Animate card in after a short delay
         setTimeout(function () { animateCardIn(currentSlide); }, 300);
-        // Auto-play music if not paused
-        if (localStorage.getItem('bgMusicState') !== 'paused') {
-          soundToggle.classList.remove('silent', 'paused');
-          music.volume = 0.7;
-          music.play().catch(function () { });
-        }
+
       }
 
       // ── Animate Info Card ──
@@ -1601,9 +1590,6 @@
         var urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('gallery') === '1' && gallery) {
           gallery.classList.add('visible');
-          if (music && soundToggle && !soundToggle.classList.contains('silent') && !soundToggle.classList.contains('paused')) {
-            music.play().catch(function () { });
-          }
         }
       });
     })();
