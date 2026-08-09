@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>About — The Man, The Name, The Vision</title>
-  <meta name="description" content="The story of Ganesh Tajane — a seeker, the name Vayu, and the vision of Vayu Mahesh.">
+  <meta name="description"
+    content="The story of Ganesh Tajane — a seeker, the name Vayu, and the vision of Vayu Mahesh.">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #d4c9b0; }
-    ::-webkit-scrollbar-thumb { background: #8a7355; border-radius: 3px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #d4c9b0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #8a7355;
+      border-radius: 3px;
+    }
 
     body {
       min-height: 100vh;
@@ -43,14 +59,15 @@
     /* ── Header ── */
     .header {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       padding: 28px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: linear-gradient(180deg, rgba(216,207,184,0.95) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(216, 207, 184, 0.95) 0%, transparent 100%);
     }
 
     .logo {
@@ -65,7 +82,10 @@
       animation: fadeIn 0.8s ease 0.2s forwards;
       transition: color 0.3s ease;
     }
-    .logo:hover { color: #8a7355; }
+
+    .logo:hover {
+      color: #8a7355;
+    }
 
     .back-btn {
       font-family: 'Cinzel', serif;
@@ -74,8 +94,8 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #2a2318;
-      background: rgba(42,35,24,0.08);
-      border: 1px solid rgba(42,35,24,0.2);
+      background: rgba(42, 35, 24, 0.08);
+      border: 1px solid rgba(42, 35, 24, 0.2);
       padding: 10px 22px;
       border-radius: 2px;
       cursor: pointer;
@@ -87,11 +107,13 @@
       opacity: 0;
       animation: fadeIn 0.8s ease 0.3s forwards;
     }
+
     .back-btn:hover {
       color: #8a7355;
-      border-color: rgba(42,35,24,0.4);
-      background: rgba(42,35,24,0.15);
+      border-color: rgba(42, 35, 24, 0.4);
+      background: rgba(42, 35, 24, 0.15);
     }
+
     .back-ham span {
       display: block;
       width: 13px;
@@ -100,9 +122,22 @@
       margin: 3px 0;
       transition: background 0.3s;
     }
-    .back-btn:hover .back-ham span { background: #8a7355; }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .back-btn:hover .back-ham span {
+      background: #8a7355;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* ── Hero ── */
     .hero {
@@ -114,7 +149,9 @@
       z-index: 2;
     }
 
-    .hero-inner { max-width: 800px; }
+    .hero-inner {
+      max-width: 800px;
+    }
 
     .hero-eyebrow {
       font-family: 'Inter', sans-serif;
@@ -135,7 +172,7 @@
       letter-spacing: -0.02em;
       color: #2a2318;
       opacity: 0;
-      animation: slideUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+      animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
     }
 
     .hero-title em {
@@ -152,11 +189,13 @@
       opacity: 0;
       animation: slideUp 0.8s ease 0.7s forwards;
     }
+
     .hero-divider-line {
       width: 70px;
       height: 1px;
       background: linear-gradient(90deg, #5c4a32, transparent);
     }
+
     .hero-divider-dot {
       width: 5px;
       height: 5px;
@@ -175,8 +214,15 @@
     }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ── Scroll Indicator ── */
@@ -191,6 +237,7 @@
       opacity: 0;
       animation: fadeIn 1s ease 1.2s forwards;
     }
+
     .scroll-hint-text {
       font-family: 'Inter', sans-serif;
       font-size: 0.6rem;
@@ -199,15 +246,26 @@
       color: #5c4a32;
       writing-mode: vertical-rl;
     }
+
     .scroll-hint-line {
       width: 1px;
       height: 55px;
       background: linear-gradient(180deg, #5c4a32, transparent);
       animation: scrollPulse 2.5s ease-in-out infinite;
     }
+
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.2; transform: scaleY(1); }
-      50% { opacity: 0.7; transform: scaleY(1.15); }
+
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 0.7;
+        transform: scaleY(1.15);
+      }
     }
 
     /* ── Sections ── */
@@ -219,7 +277,7 @@
 
     .section {
       padding: 60px 70px;
-      border-top: 1px solid rgba(42,35,24,0.12);
+      border-top: 1px solid rgba(42, 35, 24, 0.12);
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -254,7 +312,7 @@
     .section-head-divider {
       width: 50px;
       height: 2px;
-      background: linear-gradient(90deg, #5c4a32, rgba(92,74,50,0.15), transparent);
+      background: linear-gradient(90deg, #5c4a32, rgba(92, 74, 50, 0.15), transparent);
       margin-bottom: 24px;
     }
 
@@ -267,7 +325,7 @@
       line-height: 1.8;
       margin-bottom: 32px;
       padding-left: 16px;
-      border-left: 2px solid rgba(92,74,50,0.3);
+      border-left: 2px solid rgba(92, 74, 50, 0.3);
     }
 
     /* ── Drop Cap ── */
@@ -279,7 +337,9 @@
       color: #3d3226;
     }
 
-    .section-body p:last-child { margin-bottom: 0; }
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
 
     .section-body p.has-dropcap::first-letter {
       font-family: 'Cinzel', serif;
@@ -290,7 +350,7 @@
       margin-right: 14px;
       margin-top: 10px;
       color: #2a2318;
-      text-shadow: 2px 2px 0 rgba(92,74,50,0.1);
+      text-shadow: 2px 2px 0 rgba(92, 74, 50, 0.1);
     }
 
     .section-body em {
@@ -313,19 +373,20 @@
       line-height: 1.7;
       color: #5c4a32;
       padding: 38px 42px;
-      border-left: 2px solid rgba(92,74,50,0.35);
+      border-left: 2px solid rgba(92, 74, 50, 0.35);
       margin: 48px 0;
-      background: rgba(92,74,50,0.03);
+      background: rgba(92, 74, 50, 0.03);
       border-radius: 0 6px 6px 0;
       position: relative;
     }
+
     .pull-quote::before {
       content: '\201C';
       position: absolute;
       left: 18px;
       top: 8px;
       font-size: 5.5rem;
-      color: rgba(92,74,50,0.08);
+      color: rgba(92, 74, 50, 0.08);
       font-family: 'Cormorant Garamond', serif;
       line-height: 1;
     }
@@ -340,31 +401,37 @@
     }
 
     .two-col-card {
-      background: rgba(42,35,24,0.02);
-      border: 1px solid rgba(42,35,24,0.08);
+      background: rgba(42, 35, 24, 0.02);
+      border: 1px solid rgba(42, 35, 24, 0.08);
       border-radius: 6px;
       padding: 36px;
-      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
     }
+
     .two-col-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 2px;
       background: linear-gradient(90deg, transparent, #5c4a32, transparent);
       opacity: 0;
       transition: opacity 0.5s ease;
     }
+
     .two-col-card:hover {
-      border-color: rgba(92,74,50,0.2);
-      background: rgba(92,74,50,0.04);
+      border-color: rgba(92, 74, 50, 0.2);
+      background: rgba(92, 74, 50, 0.04);
       transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(42,35,24,0.1);
+      box-shadow: 0 20px 50px rgba(42, 35, 24, 0.1);
     }
-    .two-col-card:hover::before { opacity: 1; }
+
+    .two-col-card:hover::before {
+      opacity: 1;
+    }
 
     .card-icon-text {
       font-family: 'Inter', sans-serif;
@@ -393,21 +460,25 @@
 
     /* ── Highlight Box ── */
     .highlight-box {
-      background: rgba(42,35,24,0.04);
-      border: 1px solid rgba(42,35,24,0.08);
+      background: rgba(42, 35, 24, 0.04);
+      border: 1px solid rgba(42, 35, 24, 0.08);
       border-radius: 8px;
       padding: 40px 44px;
       margin: 48px 0;
       position: relative;
     }
+
     .highlight-box::after {
       content: '';
       position: absolute;
-      top: 0; right: 0;
-      width: 60px; height: 60px;
-      background: linear-gradient(135deg, transparent 50%, rgba(92,74,50,0.05) 50%);
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, transparent 50%, rgba(92, 74, 50, 0.05) 50%);
       border-radius: 0 8px 0 0;
     }
+
     .highlight-box .hb-label {
       font-family: 'Inter', sans-serif;
       font-size: 0.55rem;
@@ -417,6 +488,7 @@
       margin-bottom: 16px;
       display: block;
     }
+
     .highlight-box .hb-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem;
@@ -442,27 +514,32 @@
       text-transform: uppercase;
       color: #2a2318;
       text-decoration: none;
-      border: 1px solid rgba(92,74,50,0.35);
+      border: 1px solid rgba(92, 74, 50, 0.35);
       padding: 16px 42px;
       border-radius: 50px;
-      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
     }
+
     .closing-cta::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(92,74,50,0.12), rgba(92,74,50,0.04));
+      background: linear-gradient(135deg, rgba(92, 74, 50, 0.12), rgba(92, 74, 50, 0.04));
       transform: translateX(-101%);
-      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .closing-cta:hover::before { transform: translateX(0); }
+
+    .closing-cta:hover::before {
+      transform: translateX(0);
+    }
+
     .closing-cta:hover {
       background: #5c4a32;
       color: #d8cfb8;
       border-color: #5c4a32;
-      box-shadow: 0 0 40px rgba(92,74,50,0.25);
+      box-shadow: 0 0 40px rgba(92, 74, 50, 0.25);
       transform: translateY(-3px);
     }
 
@@ -471,11 +548,12 @@
       text-align: center;
       margin: 56px 0 20px;
       padding: 40px 20px;
-      border-top: 1px solid rgba(92,74,50,0.2);
-      border-bottom: 1px solid rgba(92,74,50,0.2);
-      background: rgba(92,74,50,0.02);
+      border-top: 1px solid rgba(92, 74, 50, 0.2);
+      border-bottom: 1px solid rgba(92, 74, 50, 0.2);
+      background: rgba(92, 74, 50, 0.02);
       border-radius: 4px;
     }
+
     .creative-label {
       font-family: 'Inter', sans-serif;
       font-size: 0.6rem;
@@ -485,6 +563,7 @@
       display: block;
       margin-bottom: 18px;
     }
+
     .creative-words {
       display: flex;
       flex-wrap: wrap;
@@ -492,6 +571,7 @@
       gap: 8px 24px;
       margin-bottom: 18px;
     }
+
     .creative-word {
       font-family: 'Caveat', cursive;
       font-size: 1.8rem;
@@ -500,6 +580,7 @@
       letter-spacing: 0.02em;
       position: relative;
     }
+
     .creative-word::after {
       content: '';
       position: absolute;
@@ -507,8 +588,9 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(92,74,50,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(92, 74, 50, 0.3), transparent);
     }
+
     .creative-final {
       font-family: 'Caveat', cursive;
       font-size: 1.5rem;
@@ -523,37 +605,88 @@
     .reveal {
       opacity: 0;
       transform: translateY(45px);
-      transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .reveal-delay-1 { transition-delay: 0.15s; }
-    .reveal-delay-2 { transition-delay: 0.3s; }
-    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    .reveal-delay-1 {
+      transition-delay: 0.15s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.45s;
+    }
 
     /* ── Mobile ── */
     @media (max-width: 768px) {
-      .header { padding: 20px 24px; }
-      .hero { padding: 0 24px 40px; }
-      .section { padding: 50px 24px; }
-      .two-col { grid-template-columns: 1fr; gap: 24px; }
-      .closing-section { padding: 60px 24px 80px; }
-      .scroll-hint { display: none; }
-      .pull-quote { padding: 28px 20px 28px 24px; }
-      .section-body p.has-dropcap::first-letter { font-size: 3.8em; }
-      .highlight-box { padding: 28px 24px; }
+      .header {
+        padding: 20px 24px;
+      }
+
+      .hero {
+        padding: 0 24px 40px;
+      }
+
+      .section {
+        padding: 50px 24px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .closing-section {
+        padding: 60px 24px 80px;
+      }
+
+      .scroll-hint {
+        display: none;
+      }
+
+      .pull-quote {
+        padding: 28px 20px 28px 24px;
+      }
+
+      .section-body p.has-dropcap::first-letter {
+        font-size: 3.8em;
+      }
+
+      .highlight-box {
+        padding: 28px 24px;
+      }
+    }
+
+    .reader-progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0; height: 5px;
+      background: linear-gradient(90deg, #c5a880, #5c4a32);
+      z-index: 1010;
+      box-shadow: 0 1px 8px rgba(138, 115, 85, 0.4);
+      transition: width 0.1s ease-out;
     }
   </style>
 </head>
+
 <body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div class="reader-progress-bar" id="readerProgressBar"></div>
 
   <!-- Header -->
   <header class="header">
-    <a href="index.html?gallery=1" class="logo">Ganesh Tajane</a>
+    <a href="explore.html" class="logo">Ganesh Tajane</a>
     <div style="display:flex;gap:12px;align-items:center;">
-      <a href="index.html?gallery=1" class="back-btn" style="text-decoration:none;">
+      <a href="explore.html" class="back-btn" style="text-decoration:none;">
         <span>Home</span>
       </a>
       <a href="menu.html" class="back-btn">
@@ -601,16 +734,29 @@
         Some journeys begin with answers. Mine began with a longing I could not explain.
       </div>
       <div class="section-body">
-        <p class="has-dropcap">I am a seeker, a chess player, a writer in the making, and a man devoted to a vision greater than himself.</p>
-        <p>From an early age, I felt drawn towards questions that many people encounter much later in life. I was fascinated by spirituality, mysticism, destiny, the nature of existence, and the unseen forces that seem to shape human lives. While I could not always explain these interests, they remained a quiet presence within me.</p>
-        <p>There was also a persistent feeling that my life was connected to something larger than personal success or ambition. I did not know what that something was. I only knew that it was real.</p>
+        <p class="has-dropcap">I am a seeker, a chess player, a writer in the making, and a man devoted to a vision
+          greater than himself.</p>
+        <p>From an early age, I felt drawn towards questions that many people encounter much later in life. I was
+          fascinated by spirituality, mysticism, destiny, the nature of existence, and the unseen forces that seem to
+          shape human lives. While I could not always explain these interests, they remained a quiet presence within me.
+        </p>
+        <p>There was also a persistent feeling that my life was connected to something larger than personal success or
+          ambition. I did not know what that something was. I only knew that it was real.</p>
       </div>
 
       <div class="section-body reveal reveal-delay-2">
-        <p>As the years unfolded, life brought many experiences that deepened this feeling. Some were ordinary. Others were difficult to explain. Moments of insight, inner knowing, strange coincidences, profound dreams, and spiritual experiences gradually shaped my understanding of myself and the path I was meant to walk.</p>
-        <p>Alongside this inner journey, chess became one of my greatest teachers. The chessboard taught me discipline, patience, resilience, self-awareness, and the ability to remain present under pressure. Many of the lessons I learned through competition later revealed themselves as spiritual lessons as well.</p>
-        <p>Over time, the scattered pieces of my life began to form a clearer picture. The questions that had accompanied me since childhood slowly found direction. The calling that had always been present finally revealed its purpose.</p>
-        <p>I do not claim to have reached a destination. I am not a guru, nor do I seek followers. I am simply a fellow traveler attempting to walk faithfully towards a vision that has shaped my life in ways I am still discovering.</p>
+        <p>As the years unfolded, life brought many experiences that deepened this feeling. Some were ordinary. Others
+          were difficult to explain. Moments of insight, inner knowing, strange coincidences, profound dreams, and
+          spiritual experiences gradually shaped my understanding of myself and the path I was meant to walk.</p>
+        <p>Alongside this inner journey, chess became one of my greatest teachers. The chessboard taught me discipline,
+          patience, resilience, self-awareness, and the ability to remain present under pressure. Many of the lessons I
+          learned through competition later revealed themselves as spiritual lessons as well.</p>
+        <p>Over time, the scattered pieces of my life began to form a clearer picture. The questions that had
+          accompanied me since childhood slowly found direction. The calling that had always been present finally
+          revealed its purpose.</p>
+        <p>I do not claim to have reached a destination. I am not a guru, nor do I seek followers. I am simply a fellow
+          traveler attempting to walk faithfully towards a vision that has shaped my life in ways I am still
+          discovering.</p>
       </div>
 
       <div class="creative-closing reveal reveal-delay-3">
@@ -634,16 +780,28 @@
         Some names identify who we are. Others remind us why we came.
       </div>
       <div class="section-body">
-        <p class="has-dropcap">For most of my life, I knew myself only as Ganesh. The name Vayu entered my life much later. It did not come through a book, a teacher, or a deliberate search for a new identity. It emerged through a series of profound spiritual experiences, inner revelations, and moments of recognition that gradually changed my understanding of who I am and why I am here.</p>
-        <p>For years, I carried an unshakable feeling that my life was connected to a purpose larger than myself. A calling that I could sense but could not yet fully understand.</p>
-        <p>As that calling deepened, certain experiences began to reveal fragments of a story that seemed older than this lifetime. Not memories in the ordinary sense, but impressions. Recognitions. A feeling of remembering rather than discovering.</p>
-        <p>Through these experiences, the name Vayu began to emerge. Not as something new, but as something familiar. As though it had been waiting patiently beneath the surface of my life until the time was right for it to be understood.</p>
-        <p>With that recognition came responsibility. A sense that some journeys do not begin at birth, and some work is not completed within a single lifetime.</p>
+        <p class="has-dropcap">For most of my life, I knew myself only as Ganesh. The name Vayu entered my life much
+          later. It did not come through a book, a teacher, or a deliberate search for a new identity. It emerged
+          through a series of profound spiritual experiences, inner revelations, and moments of recognition that
+          gradually changed my understanding of who I am and why I am here.</p>
+        <p>For years, I carried an unshakable feeling that my life was connected to a purpose larger than myself. A
+          calling that I could sense but could not yet fully understand.</p>
+        <p>As that calling deepened, certain experiences began to reveal fragments of a story that seemed older than
+          this lifetime. Not memories in the ordinary sense, but impressions. Recognitions. A feeling of remembering
+          rather than discovering.</p>
+        <p>Through these experiences, the name Vayu began to emerge. Not as something new, but as something familiar. As
+          though it had been waiting patiently beneath the surface of my life until the time was right for it to be
+          understood.</p>
+        <p>With that recognition came responsibility. A sense that some journeys do not begin at birth, and some work is
+          not completed within a single lifetime.</p>
       </div>
 
       <div class="section-body reveal reveal-delay-1">
-        <p>The name Vayu became a reminder of that responsibility. A reminder that I am not here merely to pursue personal success, but to serve a vision that extends beyond myself. It reminds me of the path I have chosen, the work I have been called to fulfill, and the sacred trust that accompanies it.</p>
-        <p>Whether one sees this as destiny, grace, karma, remembrance, or simply the language through which the soul understands itself, Vayu is the name through which I walk this path.</p>
+        <p>The name Vayu became a reminder of that responsibility. A reminder that I am not here merely to pursue
+          personal success, but to serve a vision that extends beyond myself. It reminds me of the path I have chosen,
+          the work I have been called to fulfill, and the sacred trust that accompanies it.</p>
+        <p>Whether one sees this as destiny, grace, karma, remembrance, or simply the language through which the soul
+          understands itself, Vayu is the name through which I walk this path.</p>
         <p><strong>It is not a title. It is a commitment.</strong></p>
       </div>
 
@@ -668,18 +826,31 @@
         Every temple is first built in the heart before it is built in stone.
       </div>
       <div class="section-body">
-        <p class="has-dropcap">Vayu Mahesh is the vision towards which every path in my life eventually converges. It is the reason this website exists. It is the reason I write. It is the reason I continue to walk this path.</p>
-        <p>At its simplest, Vayu Mahesh is the dream of building a temple dedicated to Lord Shiva. But to describe it only as a temple would be incomplete.</p>
-        <p>Long before there were plans, designs, or ideas of stone and architecture, there was a feeling — a conviction that a sacred space was meant to come into existence. A place where people could step away from the noise of the world and reconnect with something deeper within themselves. A place of silence. A place of devotion. A place of remembrance.</p>
-        <p>For me, Vayu Mahesh is not merely a structure to be built. It is a vow to be fulfilled. A commitment that has shaped the direction of my life and continues to influence the choices I make each day.</p>
+        <p class="has-dropcap">Vayu Mahesh is the vision towards which every path in my life eventually converges. It is
+          the reason this website exists. It is the reason I write. It is the reason I continue to walk this path.</p>
+        <p>At its simplest, Vayu Mahesh is the dream of building a temple dedicated to Lord Shiva. But to describe it
+          only as a temple would be incomplete.</p>
+        <p>Long before there were plans, designs, or ideas of stone and architecture, there was a feeling — a conviction
+          that a sacred space was meant to come into existence. A place where people could step away from the noise of
+          the world and reconnect with something deeper within themselves. A place of silence. A place of devotion. A
+          place of remembrance.</p>
+        <p>For me, Vayu Mahesh is not merely a structure to be built. It is a vow to be fulfilled. A commitment that has
+          shaped the direction of my life and continues to influence the choices I make each day.</p>
       </div>
 
       <div class="section-body reveal reveal-delay-1">
-        <p>The vision is rooted in a simple belief: That despite all the advances of the modern world, the human heart still longs for meaning, still seeks peace, and still yearns for a connection with the sacred.</p>
-        <p>Vayu Mahesh is intended to be a place where that longing can find a home. A place where seekers, pilgrims, wanderers, and ordinary people can sit in the presence of Shiva and remember what the world often causes them to forget.</p>
-        <p>That beneath every role, achievement, success, failure, belief, and identity, there exists something eternal. Something unchanging. Something divine.</p>
-        <p>Everything I share through my writings, my reflections, my experiences, and even the lessons learned through chess ultimately points towards this vision.</p>
-        <p>Whether Vayu Mahesh is completed in my lifetime or beyond it, the work has already begun. Every step taken with sincerity is a stone laid in its foundation. And every soul touched by this journey becomes a part of its story.</p>
+        <p>The vision is rooted in a simple belief: That despite all the advances of the modern world, the human heart
+          still longs for meaning, still seeks peace, and still yearns for a connection with the sacred.</p>
+        <p>Vayu Mahesh is intended to be a place where that longing can find a home. A place where seekers, pilgrims,
+          wanderers, and ordinary people can sit in the presence of Shiva and remember what the world often causes them
+          to forget.</p>
+        <p>That beneath every role, achievement, success, failure, belief, and identity, there exists something eternal.
+          Something unchanging. Something divine.</p>
+        <p>Everything I share through my writings, my reflections, my experiences, and even the lessons learned through
+          chess ultimately points towards this vision.</p>
+        <p>Whether Vayu Mahesh is completed in my lifetime or beyond it, the work has already begun. Every step taken
+          with sincerity is a stone laid in its foundation. And every soul touched by this journey becomes a part of its
+          story.</p>
       </div>
 
       <div class="creative-closing reveal reveal-delay-2">
@@ -698,7 +869,7 @@
 
   <!-- Closing -->
   <div class="closing-section reveal">
-    <a href="index.html?gallery=1" class="closing-cta">Return to the Journey</a>
+    <a href="explore.html" class="closing-cta">Return to the Journey</a>
   </div>
 
   <script>
@@ -714,10 +885,27 @@
     reveals.forEach(el => observer.observe(el));
   </script>
   <script>
+    // Update scroll progress bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      document.getElementById('readerProgressBar').style.width = scrolled + "%";
+    });
+    
+    // Initial check on load
+    window.addEventListener('load', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      document.getElementById('readerProgressBar').style.width = scrolled + "%";
+    });
+  </script>
+  <script>
     // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
-    (function() {
+    (function () {
       // Prevent pinch-to-zoom on touch devices
-      document.addEventListener('touchstart', function(e) {
+      document.addEventListener('touchstart', function (e) {
         if (e.touches.length > 1) {
           e.preventDefault();
         }
@@ -725,7 +913,7 @@
 
       // Prevent double-tap to zoom
       let lastTouchEnd = 0;
-      document.addEventListener('touchend', function(e) {
+      document.addEventListener('touchend', function (e) {
         const now = new Date().getTime();
         if (now - lastTouchEnd <= 300) {
           e.preventDefault();
@@ -734,19 +922,22 @@
       }, false);
 
       // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
           e.preventDefault();
         }
       });
 
       // Prevent Ctrl + Mouse Wheel zoom
-      document.addEventListener('wheel', function(e) {
+      document.addEventListener('wheel', function (e) {
         if (e.ctrlKey) {
           e.preventDefault();
         }
       }, { passive: false });
     })();
   </script>
+  <script src="asset/bg-music.js"></script>
+  <script src="asset/effects.js"></script>
 </body>
+
 </html>

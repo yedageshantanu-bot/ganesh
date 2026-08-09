@@ -833,6 +833,16 @@
         opacity: 1;
       }
     }
+    
+    .reader-progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0; height: 5px;
+      background: linear-gradient(90deg, #c5a880, #5c4a32);
+      z-index: 1010;
+      box-shadow: 0 1px 8px rgba(138, 115, 85, 0.4);
+      transition: width 0.1s ease-out;
+    }
 
     /* ── Mobile Layout Adaptations ── */
     @media (max-width: 992px) {
@@ -955,16 +965,34 @@
         margin: 30px 0;
       }
     }
+
+    /* Birds background canvas */
+    #birds-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1; /* behind viewports */
+      opacity: 0.5;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- Top Scroll Progress Bar -->
+  <div class="reader-progress-bar" id="readerProgressBar"></div>
+
+  <!-- Birds Background Effect -->
+  <canvas id="birds-canvas"></canvas>
+
   <!-- Header -->
   <header class="header">
-    <a href="index.html?gallery=1" class="logo">Ganesh Tajane</a>
+    <a href="explore.html" class="logo">Ganesh Tajane</a>
     <div style="display:flex;gap:12px;align-items:center;">
-      <a href="index.html?gallery=1" class="back-btn" style="text-decoration:none;">
+      <a href="explore.html" class="back-btn" style="text-decoration:none;">
         <span>Home</span>
       </a>
       <a href="menu.html" class="back-btn">
@@ -1045,60 +1073,17 @@
               <div class="full-screen-image-container">
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
-              <p class="has-dropcap">Why do we build temples?</p>
+              <p class="has-dropcap">Why do we build temples? If the Divine is everywhere, why create a sacred place? Why spend centuries carving mountains into shrines, raising towering temples, and preserving them generation after generation? Surely, it is not because God needs a home. Temples were never built for stone; they were built for the human being.</p>
 
-              <p>If the Divine is everywhere, why create a sacred place? Why spend centuries carving mountains into
-                shrines, raising towering temples, and preserving them generation after generation?</p>
+              <p>Life constantly pulls us outward. Every day, we chase success, responsibilities, relationships, ambitions, and countless distractions. In that endless movement, it is easy to lose the one thing that matters most—ourselves. A temple exists to reverse that journey. It invites us to turn inward before stepping back into the world.</p>
 
-              <p>Surely, it is not because God needs a home.</p>
+              <p>A temple is not merely a place to pray. It is a carefully created space where the mind can become quiet, where the heart can become receptive, and where one can behold the form of the Divine with complete attention. The purpose is not simply to see the deity; the purpose is to allow the deity to become alive within you.</p>
 
-              <p>Temples were never built for stone.</p>
+              <p>When you leave the temple, you are meant to carry that presence into your thoughts, your words, and your actions. The silence you experienced inside should walk with you outside. The grace you felt before the deity should become the way you treat another human being. The clarity you discovered within should guide every decision you make. Then every action becomes meaningful, every word carries awareness, and every step becomes an offering toward the well-being of others.</p>
 
-              <p>They were built for the human being.</p>
+              <p>That is why a temple matters. Not because the Divine is confined within its walls, but because the human mind often needs a sacred space to remember what it truly is. A temple is not an escape from life; it is where we prepare ourselves to live life consciously. Perhaps that is why our ancestors built temples with such devotion. They were not only preserving faith; they were preserving a way of transforming human consciousness.</p>
 
-              <p>Life constantly pulls us outward. Every day, we chase success, responsibilities, relationships,
-                ambitions, and countless distractions. In that endless movement, it is easy to lose the one thing that
-                matters most—ourselves.</p>
-
-              <p>A temple exists to reverse that journey.</p>
-
-              <p>It invites us to turn inward before stepping back into the world.</p>
-
-              <p>A temple is not merely a place to pray. It is a carefully created space where the mind can become
-                quiet, where the heart can become receptive, and where one can behold the form of the Divine with
-                complete attention.</p>
-
-              <p>The purpose is not simply to see the deity.</p>
-
-              <p>The purpose is to allow the deity to become alive within you.</p>
-
-              <p>When you leave the temple, you are meant to carry that presence into your thoughts, your words, and
-                your actions. The silence you experienced inside should walk with you outside. The grace you felt before
-                the deity should become the way you treat another human being. The clarity you discovered within should
-                guide every decision you make.</p>
-
-              <p>Then every action becomes meaningful.</p>
-
-              <p>Every word carries awareness.</p>
-
-              <p>Every step becomes an offering toward the well-being of others.</p>
-
-              <p>That is why a temple matters.</p>
-
-              <p>Not because the Divine is confined within its walls, but because the human mind often needs a sacred
-                space to remember what it truly is.</p>
-
-              <p>A temple is not an escape from life.</p>
-
-              <p>It is where we prepare ourselves to live life consciously.</p>
-
-              <p>Perhaps that is why our ancestors built temples with such devotion. They were not only preserving
-                faith; they were preserving a way of transforming human consciousness.</p>
-
-              <p>The more I reflected on this, the more I realized that my journey was never about searching for a
-                temple.</p>
-
-              <p>It was about discovering why one must first be built within.</p>
+              <p>The more I reflected on this, the more I realized that my journey was never about searching for a temple. It was about discovering why one must first be built within.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">The first step into a</div>
@@ -1180,95 +1165,21 @@
               <div class="full-screen-image-container">
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
-              <p class="has-dropcap">When the idea of Vayu Mahesh first began to take shape within me, my first response
-                was not excitement.</p>
+              <p class="has-dropcap">When the idea of Vayu Mahesh first began to take shape within me, my first response was not excitement. It was resistance. I never dreamed of building a temple. I never sat down with a plan to create a spiritual movement or establish another sacred place. I was simply searching for truth—trying to understand life, existence, and my own purpose. And the deeper I searched, the louder one question became: Why another temple?</p>
 
-              <p>It was resistance.</p>
+              <p>India is already filled with countless temples. If the Divine is everywhere, why create one more? If spirituality is an inner journey, shouldn't people simply look within? Why encourage them to seek something outside themselves? For a long time, I lived with these questions instead of trying to answer them. Gradually, something became clear.</p>
 
-              <p>I never dreamed of building a temple. I never sat down with a plan to create a spiritual movement or
-                establish another sacred place. I was simply searching for truth—trying to understand life, existence,
-                and my own purpose.</p>
+              <p>Yes, the ultimate temple is within. The deepest realization does not come from stone walls or sacred architecture; it comes when a human being discovers the Divine within himself. But another truth stood beside it: Not everyone can reach that possibility alone.</p>
 
-              <p>And the deeper I searched, the louder one question became.</p>
+              <p>Some are burdened by the demands of everyday life. Some are searching but have no direction. Others long for something beyond the material world but have never met a Guru or experienced a space powerful enough to awaken that longing. The inner path may be available to everyone, but walking it is not. That realization changed everything. A true temple is not meant to replace the inner journey; it is meant to support it.</p>
 
-              <p>Why another temple?</p>
+              <p>Just as a lamp helps someone walk through darkness, a consecrated space can help a person become receptive to something greater than themselves. It does not give enlightenment, but it can make one available to grace. That became the heart of Vayu Mahesh. I have never believed that spirituality should belong only to those who dedicate their lives to yogic practices. Human beings are different, and every person stands at a different point in their evolution.</p>
 
-              <p>India is already filled with countless temples. If the Divine is everywhere, why create one more? If
-                spirituality is an inner journey, shouldn't people simply look within? Why encourage them to seek
-                something outside themselves?</p>
+              <p>A mother raising children, a businessman carrying endless responsibilities, a student searching for direction, an elderly person looking for peace—each one deserves access to the same divine possibility. Not everyone can follow the same spiritual path, but everyone deserves the opportunity to experience grace. Vayu Mahesh was born from that understanding.</p>
 
-              <p>For a long time, I lived with these questions instead of trying to answer them.</p>
+              <p>It is not a place created to promote rituals or beliefs. It is envisioned as a space where anyone, regardless of background or spiritual experience, can simply come, sit, become still, and open themselves to a higher possibility. For someone immersed in the noise of daily life, even a few moments of genuine connection can transform the direction of their entire life.</p>
 
-              <p>Gradually, something became clear.</p>
-
-              <p>Yes, the ultimate temple is within.</p>
-
-              <p>The deepest realization does not come from stone walls or sacred architecture. It comes when a human
-                being discovers the Divine within himself.</p>
-
-              <p>But another truth stood beside it.</p>
-
-              <p>Not everyone can reach that possibility alone.</p>
-
-              <p>Some are burdened by the demands of everyday life. Some are searching but have no direction. Others
-                long for something beyond the material world but have never met a Guru or experienced a space powerful
-                enough to awaken that longing.</p>
-
-              <p>The inner path may be available to everyone.</p>
-
-              <p>Walking it is not.</p>
-
-              <p>That realization changed everything.</p>
-
-              <p>A true temple is not meant to replace the inner journey.</p>
-
-              <p>It is meant to support it.</p>
-
-              <p>Just as a lamp helps someone walk through darkness, a consecrated space can help a person become
-                receptive to something greater than themselves. It does not give enlightenment, but it can make one
-                available to grace.</p>
-
-              <p>That became the heart of Vayu Mahesh.</p>
-
-              <p>I have never believed that spirituality should belong only to those who meditate for hours, study
-                ancient scriptures, or dedicate their lives to yogic practices.</p>
-
-              <p>Human beings are different.</p>
-
-              <p>Every person stands at a different point in their evolution.</p>
-
-              <p>A mother raising children, a businessman carrying endless responsibilities, a student searching for
-                direction, an elderly person looking for peace—each one deserves access to the same divine possibility.
-              </p>
-
-              <p>Not everyone can follow the same spiritual path.</p>
-
-              <p>But everyone deserves the opportunity to experience grace.</p>
-
-              <p>Vayu Mahesh was born from that understanding.</p>
-
-              <p>It is not a place created to promote rituals or beliefs.</p>
-
-              <p>It is envisioned as a space where anyone, regardless of background or spiritual experience, can simply
-                come, sit, become still, and open themselves to a higher possibility.</p>
-
-              <p>For someone immersed in the noise of daily life, even a few moments of genuine connection can transform
-                the direction of their entire life.</p>
-
-              <p>If a person enters carrying anxiety and leaves with clarity…</p>
-
-              <p>If someone arrives feeling alone and departs with hope…</p>
-
-              <p>If even one life becomes more conscious because of the presence of this space…</p>
-
-              <p>Then Vayu Mahesh has already fulfilled its purpose.</p>
-
-              <p>This temple is not an end.</p>
-
-              <p>It is a doorway.</p>
-
-              <p>A silent invitation for every human being to discover that the Divine they seek has always been waiting
-                within them.</p>
+              <p>If a person enters carrying anxiety and leaves with clarity… if someone arrives feeling alone and departs with hope… if even one life becomes more conscious because of the presence of this space… then Vayu Mahesh has already fulfilled its purpose. This temple is not an end; it is a doorway—a silent invitation for every human being to discover that the Divine they seek has always been waiting within them.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">Before a person can</div>
@@ -1349,104 +1260,21 @@
               <div class="full-screen-image-container">
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
+              <p class="has-dropcap">Every dream has a beginning, but only a few become a destiny. The difference is commitment. As the vision of Vayu Mahesh became clearer, I also began to understand the scale of what I had been called to do. This wasn't a project that could be completed in a year or two. It wasn't something I could pursue only when life was convenient. If this temple was ever going to exist, it would demand years of unwavering commitment.</p>
 
-              <p class="has-dropcap">Every dream has a beginning.</p>
+              <p>Around that time, my dreams became more vivid than ever. Sometimes I would find myself in the presence of yogis. Sometimes there would be no words, only a deep knowing. And somehow, the same message kept returning in different forms: A work of this magnitude needs a Sankalp—not a wish, not motivation, but a Sankalp.</p>
 
-              <p>But only a few become a destiny.</p>
+              <p>Again and again, one number began appearing within me: 108. I never sat down and decided that I would choose 108 Purnimas. It wasn't an intellectual decision. If someone had asked me why 108, I wouldn't have been able to explain it. I simply knew. There was a pull toward that number that I couldn't ignore.</p>
 
-              <p>The difference is commitment.</p>
+              <p>And then came one particular Purnima. Even today, I cannot fully explain what was different about that full moon. Outwardly, it looked no different from the countless Purnimas that had come before it. But inwardly, everything had changed. It felt as though that night had been waiting for me. People often say that we choose our vows; my experience was the opposite: I did not choose that Purnima, that Purnima chose me.</p>
 
-              <p>As the vision of Vayu Mahesh became clearer, I also began to understand the scale of what I had been
-                called to do. This wasn't a project that could be completed in a year or two. It wasn't something I
-                could pursue only when life was convenient. If this temple was ever going to exist, it would demand
-                years of unwavering commitment.</p>
+              <p>On that night, something within me became absolutely still. There was no excitement, no emotional high, no dramatic experience—only certainty. I knew that if I wanted to build something that could outlive me, I first had to become someone who could remain committed longer than my changing emotions, my fears, my failures, and even my successes.</p>
 
-              <p>Around that time, my dreams became more vivid than ever.</p>
+              <p>That night, I took a Sankalp of 108 Purnimas—nearly nine years. In Sanatana Dharma, 108 is more than a sacred number. It represents completeness, discipline, and a spiritual cycle of transformation. It is said that when a Sankalp is carried with sincerity through 108 full moons, nature itself begins to support that intention. Whether one calls it grace, destiny, or the quiet law of life, something begins to move beyond personal effort. I don't know whether that is true for everyone, but I knew it was true for me.</p>
 
-              <p>Sometimes I would find myself in the presence of yogis. Sometimes there would be no words, only a deep
-                knowing. And somehow, the same message kept returning in different forms.</p>
+              <p>From that moment onward, my life stopped belonging entirely to me. Every decision, every opportunity, every sacrifice would now be weighed against one question: Does this serve the Sankalp? Because once a true Sankalp is taken, you no longer wake up each morning asking yourself whether you feel like continuing. The decision has already been made; you simply keep walking.</p>
 
-              <p>A work of this magnitude needs a Sankalp.</p>
-
-              <p>Not a wish.</p>
-
-              <p>Not motivation.</p>
-
-              <p>A Sankalp.</p>
-
-              <p>Again and again, one number began appearing within me.</p>
-
-              <p>108.</p>
-
-              <p>I never sat down and decided that I would choose 108 Purnimas. It wasn't an intellectual decision. If
-                someone had asked me why 108, I wouldn't have been able to explain it.</p>
-
-              <p>I simply knew.</p>
-
-              <p>There was a pull toward that number that I couldn't ignore.</p>
-
-              <p>And then came one particular Purnima.</p>
-
-              <p>Even today, I cannot fully explain what was different about that full moon. Outwardly, it looked no
-                different from the countless Purnimas that had come before it. But inwardly, everything had changed.</p>
-
-              <p>It felt as though that night had been waiting for me.</p>
-
-              <p>People often say that we choose our vows.</p>
-
-              <p>My experience was the opposite.</p>
-
-              <p>I did not choose that Purnima. That Purnima chose me.</p>
-
-              <p>On that night, something within me became absolutely still.</p>
-
-              <p>There was no excitement.</p>
-
-              <p>No emotional high.</p>
-
-              <p>No dramatic experience.</p>
-
-              <p>Only certainty.</p>
-
-              <p>I knew that if I wanted to build something that could outlive me, I first had to become someone who
-                could remain committed longer than my changing emotions, my fears, my failures, and even my successes.
-              </p>
-
-              <p>That night, I took a Sankalp of 108 Purnimas.</p>
-
-              <p>Nearly nine years.</p>
-
-              <p>In Sanatana Dharma, 108 is more than a sacred number. It represents completeness, discipline, and a
-                spiritual cycle of transformation. It is said that when a Sankalp is carried with sincerity through 108
-                full moons, nature itself begins to support that intention. Whether one calls it grace, destiny, or the
-                quiet law of life, something begins to move beyond personal effort.</p>
-
-              <p>I don't know whether that is true for everyone.</p>
-
-              <p>But I knew it was true for me.</p>
-
-              <p>From that moment onward, my life stopped belonging entirely to me.</p>
-
-              <p>Every decision, every opportunity, every sacrifice would now be weighed against one question.</p>
-
-              <p>Does this serve the Sankalp?</p>
-
-              <p>Because once a true Sankalp is taken, you no longer wake up each morning asking yourself whether you
-                feel like continuing.</p>
-
-              <p>The decision has already been made.</p>
-
-              <p>You simply keep walking.</p>
-
-              <p>The temple did not exist.</p>
-
-              <p>The land did not exist.</p>
-
-              <p>The resources did not exist.</p>
-
-              <p>But the vow existed.</p>
-
-              <p>And sometimes, a vow is more powerful than anything that already exists in the physical world.</p>
+              <p>The temple did not exist. The land did not exist. The resources did not exist. But the vow existed. And sometimes, a vow is more powerful than anything that already exists in the physical world.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">When your commitment</div>
@@ -1543,67 +1371,15 @@
               <div class="full-screen-image-container">
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
+              <p class="has-dropcap">There came a moment when I stopped asking whether I would be able to build this temple. A different question quietly took its place: What remains when I am no longer here? Everything we chase in life eventually fades. Wealth changes hands. Names are forgotten. Buildings become ruins. Even the strongest bodies return to dust. Time humbles everything that is built only for ourselves.</p>
 
-              <p class="has-dropcap">There came a moment when I stopped asking whether I would be able to build this
-                temple.</p>
+              <p>That realization changed the way I looked at my own life. I no longer wanted success that ended with me. I wanted to become part of something that could continue long after my last breath. The temple was never meant to be my achievement; it was meant to become a place where generations yet unborn could sit in silence, seek answers, and remember that there is something greater than ambition.</p>
 
-              <p>A different question quietly took its place.</p>
+              <p>Perhaps a child will walk into it one day carrying questions that no one around them can answer. Perhaps someone standing at the edge of giving up will find the strength to begin again. Perhaps a seeker will discover the same stillness that changed my life. I may never know their names, and I do not need to. That is the nature of a true legacy: we plant trees whose shade we may never sit beneath; we light lamps that continue burning after we have gone.</p>
 
-              <p>What remains when I am no longer here?</p>
+              <p>Slowly, I understood that my life was never asking me to become important. It was asking me to become useful. Every decision, every sacrifice, every difficult season began to make sense when viewed through that lens. I was no longer working only for the present. I was working for people I would never meet, for prayers I would never hear, and for moments I would never witness.</p>
 
-              <p>Everything we chase in life eventually fades. Wealth changes hands. Names are forgotten. Buildings
-                become ruins. Even the strongest bodies return to dust. Time humbles everything that is built only for
-                ourselves.</p>
-
-              <p>That realization changed the way I looked at my own life.</p>
-
-              <p>I no longer wanted success that ended with me.</p>
-
-              <p>I wanted to become part of something that could continue long after my last breath.</p>
-
-              <p>The temple was never meant to be my achievement. It was meant to become a place where generations yet
-                unborn could sit in silence, seek answers, and remember that there is something greater than ambition.
-              </p>
-
-              <p>Perhaps a child will walk into it one day carrying questions that no one around them can answer.</p>
-
-              <p>Perhaps someone standing at the edge of giving up will find the strength to begin again.</p>
-
-              <p>Perhaps a seeker will discover the same stillness that changed my life.</p>
-
-              <p>I may never know their names.</p>
-
-              <p>I do not need to.</p>
-
-              <p>That is the nature of a true legacy.</p>
-
-              <p>We plant trees whose shade we may never sit beneath.</p>
-
-              <p>We light lamps that continue burning after we have gone.</p>
-
-              <p>Slowly, I understood that my life was never asking me to become important.</p>
-
-              <p>It was asking me to become useful.</p>
-
-              <p>Every decision, every sacrifice, every difficult season began to make sense when viewed through that
-                lens. I was no longer working only for the present. I was working for people I would never meet, for
-                prayers I would never hear, and for moments I would never witness.</p>
-
-              <p>That thought does not feel heavy.</p>
-
-              <p>It feels liberating.</p>
-
-              <p>Because the moment your purpose becomes larger than your lifetime, fear begins to lose its grip.</p>
-
-              <p>You stop measuring success by what you can possess.</p>
-
-              <p>You begin measuring it by what continues after you are gone.</p>
-
-              <p>Maybe that is what Shiva has been teaching me all along.</p>
-
-              <p>Not to build something that bears my name.</p>
-
-              <p>But to dedicate my life to something that does not need it.</p>
+              <p>That thought does not feel heavy—it feels liberating. Because the moment your purpose becomes larger than your lifetime, fear begins to lose its grip. You stop measuring success by what you can possess; you begin measuring it by what continues after you are gone. Maybe that is what Shiva has been teaching me all along: not to build something that bears my name, but to dedicate my life to something that does not need it.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">Do not ask how</div>
@@ -1730,6 +1506,19 @@
         // Scroll current active viewport back to top instantly
         const prevContainer = viewports[prevTab].querySelector('.viewport-scroll-container');
 
+        // Update progress bar for the new tab immediately
+        setTimeout(() => {
+          const targetContainer = viewports[currentTab].querySelector('.viewport-scroll-container');
+          if (targetContainer) {
+            const winScroll = targetContainer.scrollTop;
+            const height = targetContainer.scrollHeight - targetContainer.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('readerProgressBar').style.width = scrolled + "%";
+          } else {
+            document.getElementById('readerProgressBar').style.width = "0%";
+          }
+        }, 50);
+
         // Transition views using GSAP
         const currentViewport = viewports[currentTab];
         const previousViewport = viewports[prevTab];
@@ -1816,6 +1605,16 @@
       let wheelCooldown = false;
 
       document.querySelectorAll('.viewport-scroll-container').forEach((container, idx) => {
+        // Update progress bar on scroll
+        container.addEventListener('scroll', () => {
+          if (idx === currentTab) {
+            const winScroll = container.scrollTop;
+            const height = container.scrollHeight - container.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('readerProgressBar').style.width = scrolled + "%";
+          }
+        }, { passive: true });
+
         container.addEventListener('wheel', (e) => {
           const st = container.scrollTop;
           const sh = container.scrollHeight;
@@ -1974,6 +1773,96 @@
       }, { passive: false });
     })();
   </script>
-</body>
 
+  <!-- Birds Flying Background Animation -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('birds-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const birds = [];
+
+      class Bird {
+        constructor() {
+          this.reset(true);
+        }
+
+        reset(initial = false) {
+          // If initial, distribute across the screen, otherwise spawn off-screen right
+          this.x = initial ? Math.random() * (width + 400) - 100 : width + 50 + Math.random() * 500;
+          this.y = Math.random() * (height * 0.7); // mostly in the upper 70% of the screen
+          this.size = 12 + Math.random() * 18; // depth size (larger: 12px to 30px)
+          this.speedX = -(0.5 + Math.random() * 1.0); // fly left
+          this.speedY = (Math.random() - 0.5) * 0.15 - 0.05; // slight upward drift
+          this.wingPhase = Math.random() * Math.PI * 2;
+          this.wingSpeed = 0.08 + Math.random() * 0.06;
+          this.alpha = 0.12 + (this.size - 12) / 18 * 0.28; // larger birds are darker/closer
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          this.wingPhase += this.wingSpeed;
+
+          if (this.x < -100) {
+            this.reset();
+          }
+        }
+
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.fillStyle = `rgba(42, 35, 24, ${this.alpha})`;
+
+          // Flapping wings calculated via sine wave
+          const wingOffset = Math.sin(this.wingPhase) * this.size * 0.45;
+
+          ctx.beginPath();
+          ctx.moveTo(0, -this.size * 0.08); // center head
+
+          // Left wing
+          ctx.quadraticCurveTo(-this.size * 0.35, -this.size * 0.35 + wingOffset, -this.size, wingOffset);
+          ctx.quadraticCurveTo(-this.size * 0.35, -this.size * 0.05 + wingOffset, 0, this.size * 0.08);
+
+          // Right wing
+          ctx.quadraticCurveTo(this.size * 0.35, -this.size * 0.35 + wingOffset, this.size, wingOffset);
+          ctx.quadraticCurveTo(this.size * 0.35, -this.size * 0.05 + wingOffset, 0, -this.size * 0.08);
+
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      // Initialize flock (increased quantity)
+      const count = Math.min(45, Math.floor((width * height) / 20000) + 15);
+      for (let i = 0; i < count; i++) {
+        birds.push(new Bird());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < birds.length; i++) {
+          birds[i].update();
+          birds[i].draw();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    })();
+  </script>
+  <script src="asset/bg-music.js"></script>
+</body>
 </html>

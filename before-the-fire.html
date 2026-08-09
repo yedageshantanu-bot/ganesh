@@ -407,7 +407,7 @@
       line-height: 1.95;
       color: #2D241B;
       margin-bottom: 1.8em;
-      text-align: justify;
+      text-align: left;
     }
 
     .reading-body p:last-child {
@@ -835,6 +835,16 @@
         opacity: 1;
       }
     }
+    
+    .reader-progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0; height: 5px;
+      background: linear-gradient(90deg, #c5a880, #5c4a32);
+      z-index: 1010;
+      box-shadow: 0 1px 8px rgba(138, 115, 85, 0.4);
+      transition: width 0.1s ease-out;
+    }
 
     /* ── Mobile Layout Adaptations ── */
     @media (max-width: 992px) {
@@ -962,13 +972,14 @@
 
 <body>
 
-
+  <!-- Top Scroll Progress Bar -->
+  <div class="reader-progress-bar" id="readerProgressBar"></div>
 
   <!-- Header -->
   <header class="header">
-    <a href="index.html?gallery=1" class="logo">Ganesh Tajane</a>
+    <a href="explore.html" class="logo">Ganesh Tajane</a>
     <div style="display:flex;gap:12px;align-items:center;">
-      <a href="index.html?gallery=1" class="back-btn" style="text-decoration:none;">
+      <a href="explore.html" class="back-btn" style="text-decoration:none;">
         <span>Home</span>
       </a>
       <a href="menu.html" class="back-btn">
@@ -1038,31 +1049,7 @@
               <div class="full-screen-image-container">
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
-              <p class="has-dropcap">I was born and raised in Nashik, a city deeply rooted in spirituality and
-                tradition. I grew up in a modest lower-middle-class family where faith, hard work, and quiet sacrifice
-                shaped everyday life.</p>
-
-              <p>As a young child, I survived a serious medical condition that nearly took my life. Looking back, it
-                feels as though life had granted me a second chance long before I understood why.</p>
-
-              <p>My mother was a devoted follower of Sri Swami Samartha, and her unwavering faith quietly planted the
-                first seeds of spirituality within me. My father worked tirelessly to support our family, while the
-                sacrifices made by those around me taught me lessons about gratitude long before I was old enough to
-                appreciate them.</p>
-
-              <p>Like many children, I dreamed of creating a better future for my family through education. Yet beneath
-                those ordinary ambitions, another curiosity was already taking shape. From an early age, I found myself
-                drawn toward meditation, discipline, and the lives of great spiritual masters. The teachings of Swami
-                Vivekananda particularly captivated me, awakening questions that extended far beyond success,
-                achievement, or material goals.</p>
-
-              <p>While most of my friends were occupied with the distractions of childhood, I often found myself
-                fascinated by silence and introspection. I did not understand where that attraction came from, nor did I
-                realize how important it would later become.</p>
-
-              <p>Looking back, I can see that the foundations of my journey were being laid long before I understood
-                where they would lead. The lessons of family, struggle, gratitude, faith, and inner seeking would
-                eventually shape everything that followed.</p>
+              <p class="has-dropcap">I was born and raised in Nashik, a city deeply rooted in spirituality and tradition. I grew up in a modest lower-middle-class family where faith, hard work, and quiet sacrifice shaped everyday life. As a young child, I survived a serious medical condition that nearly took my life. Looking back, it feels as though life had granted me a second chance long before I understood why. My mother was a devoted follower of Sri Swami Samartha, and her unwavering faith quietly planted the first seeds of spirituality within me. My father worked tirelessly to support our family, while the sacrifices made by those around me taught me lessons about gratitude long before I was old enough to appreciate them. Like many children, I dreamed of creating a better future for my family through education. Yet beneath those ordinary ambitions, another curiosity was already taking shape. From an early age, I found myself drawn toward meditation, discipline, and the lives of great spiritual masters. The teachings of Swami Vivekananda particularly captivated me, awakening questions that extended far beyond success, achievement, or material goals. While most of my friends were occupied with the distractions of childhood, I often found myself fascinated by silence and introspection. I did not understand where that attraction came from, nor did I realize how important it would later become. Looking back, I can see that the foundations of my journey were being laid long before I understood where they would lead. The lessons of family, struggle, gratitude, faith, and inner seeking would eventually shape everything that followed.</p>
 
               <p>The boy from Nashik did not yet know his destination. But the search had already begun.</p>
 
@@ -1149,55 +1136,11 @@
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">I discovered chess by accident.</p>
+              <p class="has-dropcap">I discovered chess by accident. One afternoon, while playing cricket with friends, a powerful shot sent the ball far beyond the ground. As I went searching for it, I noticed two boys sitting beneath a tree, completely absorbed in a game I had never seen before. They were playing chess. The board, the pieces, and the intense silence between them fascinated me. I watched for a few minutes before returning to the cricket match, but something about the game stayed with me. The next day, I found myself returning to the same spot. The two boys were there again, playing another game. They did not know me, and I never asked them to teach me. Day after day, I simply stood nearby and watched. Slowly, by observing their moves, I began to understand the rules. Without realizing it, I was learning a new language—a language spoken on sixty-four squares.</p>
 
-              <p>One afternoon, while playing cricket with friends, a powerful shot sent the ball far beyond the ground.
-                As I went searching for it, I noticed two boys sitting beneath a tree, completely absorbed in a game I
-                had never seen before.</p>
+              <p>Eventually, I asked my father to buy me a chessboard. He brought home a simple board that cost twenty rupees. Inside the box was a small sheet explaining how each piece moved. That sheet became my first teacher. From that moment, I was captivated. Life, like most lower-middle-class lives, came with its share of worries and limitations. But whenever I sat in front of the board, everything else seemed to disappear. The world grew quiet. Problems faded into the background. For the first time, I found something that demanded my complete attention and rewarded patience, imagination, and discipline. Chess became more than a game. It became a place where I could lose myself and, in doing so, slowly begin to find myself.</p>
 
-              <p>They were playing chess.</p>
-
-              <p>The board, the pieces, and the intense silence between them fascinated me. I watched for a few minutes
-                before returning to the cricket match, but something about the game stayed with me.</p>
-
-              <p>The next day, I found myself returning to the same spot.</p>
-
-              <p>The two boys were there again, playing another game. They did not know me, and I never asked them to
-                teach me. Day after day, I simply stood nearby and watched. Slowly, by observing their moves, I began to
-                understand the rules. Without realizing it, I was learning a new language—a language spoken on
-                sixty-four squares.</p>
-
-              <p>Eventually, I asked my father to buy me a chessboard.</p>
-
-              <p>He brought home a simple board that cost twenty rupees. Inside the box was a small sheet explaining how
-                each piece moved. That sheet became my first teacher.</p>
-
-              <p>From that moment, I was captivated.</p>
-
-              <p>Life, like most lower-middle-class lives, came with its share of worries and limitations. But whenever
-                I sat in front of the board, everything else seemed to disappear. The world grew quiet. Problems faded
-                into the background. For the first time, I found something that demanded my complete attention and
-                rewarded patience, imagination, and discipline.</p>
-
-              <p>Chess became more than a game.</p>
-
-              <p>It became a place where I could lose myself and, in doing so, slowly begin to find myself.</p>
-
-              <p>Not long afterward, my school organized a chess tournament. I participated without any expectations. I
-                simply wanted to play.</p>
-
-              <p>To my surprise, I won.</p>
-
-              <p>The trophy itself was small, but the feeling it created was immense. It was the first time I
-                experienced the joy of succeeding at something I genuinely loved. That victory planted a seed whose
-                roots would grow far deeper than I could have imagined.</p>
-
-              <p>Looking back, I often think about that cricket ball.</p>
-
-              <p>Had it not been struck in that direction on that ordinary afternoon, my life might have unfolded very
-                differently. Some journeys begin with a plan.</p>
-
-              <p>Mine began with a lost cricket ball.</p>
+              <p>Not long afterward, my school organized a chess tournament. I participated without any expectations; I simply wanted to play. To my surprise, I won. The trophy itself was small, but the feeling it created was immense. It was the first time I experienced the joy of succeeding at something I genuinely loved. That victory planted a seed whose roots would grow far deeper than I could have imagined. Looking back, I often think about that cricket ball. Had it not been struck in that direction on that ordinary afternoon, my life might have unfolded very differently. Some journeys begin with a plan. Mine began with a lost cricket ball.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">On sixty-four</div>
@@ -1271,39 +1214,11 @@
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">While chess became a serious part of my life, another journey was unfolding quietly
-                in the background.</p>
+              <p class="has-dropcap">While chess became a serious part of my life, another journey was unfolding quietly in the background. I had begun meditating regularly. At first, it was simply a search for focus and inner peace. But over time, the experience became something far deeper. The more time I spent in silence, the more unusual things began to happen. Certain meditations felt intensely vivid. Images would appear with a clarity I could not explain. Some felt symbolic. Others felt strangely real.</p>
 
-              <p>I had begun meditating regularly.</p>
+              <p>The nights brought their own mysteries. I began having powerful dreams—dreams that stayed with me long after I woke up. In some, conversations unfolded as if they were taking place somewhere beyond the boundaries of ordinary sleep. People appeared, spoke, and disappeared, leaving behind questions I could not answer. I told very few people about these experiences, partly because I did not know how to explain them, and partly because I was still trying to understand them myself. While I continued studying chess, coaching students, and pursuing improvement on the board, another part of me was being drawn toward something invisible—something I could neither explain nor ignore.</p>
 
-              <p>At first, it was simply a search for focus and inner peace. But over time, the experience became
-                something far deeper.</p>
-
-              <p>The more time I spent in silence, the more unusual things began to happen.</p>
-
-              <p>Certain meditations felt intensely vivid. Images would appear with a clarity I could not explain. Some
-                felt symbolic. Others felt strangely real.</p>
-
-              <p>The nights brought their own mysteries.</p>
-
-              <p>I began having powerful dreams—dreams that stayed with me long after I woke up. In some, conversations
-                unfolded as if they were taking place somewhere beyond the boundaries of ordinary sleep. People
-                appeared, spoke, and disappeared, leaving behind questions I could not answer.</p>
-
-              <p>I told very few people about these experiences.</p>
-
-              <p>Partly because I did not know how to explain them.</p>
-
-              <p>Partly because I was still trying to understand them myself.</p>
-
-              <p>While I continued studying chess, coaching students, and pursuing improvement on the board, another
-                part of me was being drawn toward something invisible.</p>
-
-              <p>Something I could neither explain nor ignore.</p>
-
-              <p>Looking back, I realize those years were not about finding answers.</p>
-
-              <p>They were about learning to live with questions.</p>
+              <p>Looking back, I realize those years were not about finding answers. They were about learning to live with questions.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">I did not understand</div>
@@ -1384,32 +1299,9 @@
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">Meditation had become a part of my life, but something deeper was beginning to
-                unfold.</p>
+              <p class="has-dropcap">Meditation had become a part of my life, but something deeper was beginning to unfold. What started as subtle moments soon became impossible to dismiss. Unexplained coincidences, recurring symbols, powerful dreams, and inner experiences began appearing with unusual frequency. Certain places seemed to call me. Certain books found me at the exact moment I needed them. Questions I carried in silence were often answered before I spoke them aloud. At first, I tried to explain everything logically, telling myself they were coincidences, products of imagination, or the natural result of intense spiritual practice. But the experiences continued. The more I paid attention, the more a quiet pattern emerged—one that seemed to be guiding me toward something I could not yet understand.</p>
 
-              <p>What started as subtle moments soon became impossible to dismiss. Unexplained coincidences, recurring
-                symbols, powerful dreams, and inner experiences began appearing with unusual frequency. Certain places
-                seemed to call me. Certain books found me at the exact moment I needed them. Questions I carried in
-                silence were often answered before I spoke them aloud.</p>
-
-              <p>At first, I tried to explain everything logically. I told myself they were coincidences, products of
-                imagination, or the natural result of intense spiritual practice.</p>
-
-              <p>But the experiences continued.</p>
-
-              <p>The more I paid attention, the more a quiet pattern emerged—one that seemed to be guiding me toward
-                something I could not yet understand.</p>
-
-              <p>I was not seeking Shiva.</p>
-
-              <p>Yet somehow, every path seemed to lead in that direction.</p>
-
-              <p>Looking back, I can see that these moments were not the destination. They were signposts. Gentle nudges
-                from life itself, preparing me for a journey that would change everything.</p>
-
-              <p>A new chapter was about to begin.</p>
-
-              <p>And with it, the path of Vayu.</p>
+              <p>I was not seeking Shiva, yet somehow, every path seemed to lead in that direction. Looking back, I can see that these moments were not the destination. They were signposts—gentle nudges from life itself, preparing me for a journey that would change everything. A new chapter was about to begin, and with it, the path of Vayu.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">I was not moving</div>
@@ -1678,6 +1570,16 @@
       let wheelCooldown = false;
 
       document.querySelectorAll('.viewport-scroll-container').forEach((container, idx) => {
+        // Update progress bar on scroll
+        container.addEventListener('scroll', () => {
+          if (idx === currentTab) {
+            const winScroll = container.scrollTop;
+            const height = container.scrollHeight - container.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('readerProgressBar').style.width = scrolled + "%";
+          }
+        }, { passive: true });
+
         container.addEventListener('wheel', (e) => {
           const st = container.scrollTop;
           const sh = container.scrollHeight;
@@ -1836,6 +1738,8 @@
       }, { passive: false });
     })();
   </script>
+  <script src="asset/bg-music.js"></script>
+  <script src="asset/effects.js?v=19"></script>
 </body>
 
 </html>

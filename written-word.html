@@ -341,7 +341,7 @@
 
     .tab-nav-wrapper {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1310px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -428,7 +428,7 @@
     /* Tab Content Cards Area */
     .tab-content-container {
       width: 100%;
-      max-width: 1100px;
+      max-width: 1310px;
       position: relative;
       min-height: 400px;
     }
@@ -613,6 +613,48 @@
       box-shadow: 0 12px 28px rgba(42, 35, 24, 0.08);
     }
 
+    .articles-introduction {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #2a2318;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .article-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .article-count-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8a7355;
+      background: rgba(92, 74, 50, 0.04);
+      border: 1px solid rgba(138, 115, 85, 0.2);
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .article-card:hover .article-count-badge {
+      color: #2a2318;
+      background: rgba(92, 74, 50, 0.08);
+      border-color: rgba(42, 35, 24, 0.35);
+    }
+
     .article-meta {
       font-family: 'Inter', sans-serif;
       font-size: 0.62rem;
@@ -629,7 +671,6 @@
       font-weight: 700;
       color: #2a2318;
       line-height: 1.3;
-      margin-bottom: 15px;
       transition: color 0.3s ease;
     }
     .article-card:hover .article-card-title {
@@ -666,7 +707,7 @@
 
     /* ── Tab: Poems Content ── */
     .poems-layout {
-      max-width: 900px;
+      max-width: 1308px;
       margin: 0 auto;
     }
     
@@ -677,6 +718,10 @@
       font-size: 1.25rem;
       color: #8a7355;
       margin-bottom: 40px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
     }
 
     .poems-grid {
@@ -686,67 +731,72 @@
     }
 
     .poem-card {
-      background: rgba(42, 35, 24, 0.01);
-      border: 1px dashed rgba(92, 74, 50, 0.25);
-      border-radius: 8px;
-      padding: 35px 25px;
-      text-align: center;
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 250px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background: transparent;
+      border: none;
     }
 
     .poem-card:hover {
-      background: rgba(255, 255, 255, 0.4);
-      border-color: rgba(92, 74, 50, 0.6);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(92, 74, 50, 0.05);
+      transform: translateY(-6px);
     }
 
-    .poem-icon {
-      font-size: 1.8rem;
-      color: #8a7355;
-      margin-bottom: 15px;
+    .poem-img-wrap {
+      width: 100%;
+      aspect-ratio: 416 / 280;
+      overflow: hidden;
+      position: relative;
+      background: rgba(42, 35, 24, 0.05);
+      border-radius: 8px;
+    }
+
+    .poem-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .poem-card:hover .poem-img {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+    }
+
+    .poem-card-info {
+      padding: 12px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      align-items: flex-start;
+      text-align: left;
     }
 
     .poem-card-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #2a2318;
-      letter-spacing: 0.05em;
-      margin-bottom: 10px;
-    }
-
-    .poem-card-snippet {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      font-style: italic;
-      color: #5c4a32;
       line-height: 1.4;
-      opacity: 0.8;
-      margin-bottom: 20px;
+      margin: 8px 0 2px 0;
+      transition: color 0.3s ease;
     }
 
-    .poem-cta {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    .poem-card:hover .poem-card-title {
       color: #8a7355;
-      border-bottom: 1px solid rgba(138, 115, 85, 0.3);
-      padding-bottom: 2px;
-      transition: all 0.3s ease;
     }
-    
-    .poem-card:hover .poem-cta {
-      color: #2a2318;
-      border-color: #2a2318;
+
+    .poem-card-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #8a7355;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      margin-top: 4px;
     }
 
     /* ── Tab: Quotes Content ── */
@@ -774,16 +824,16 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: 200px;
-      cursor: pointer;
+      cursor: default;
       position: relative;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 4px 15px rgba(42, 35, 24, 0.03);
     }
     
     .quote-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(42, 35, 24, 0.08);
-      border-color: rgba(92, 74, 50, 0.35);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(42, 35, 24, 0.1);
+      border-color: rgba(92, 74, 50, 0.4);
       background: #fdfaf2;
     }
 
@@ -795,6 +845,10 @@
       font-size: 4rem;
       color: rgba(92, 74, 50, 0.08);
       line-height: 1;
+      transition: color 0.4s ease;
+    }
+    .quote-card:hover::before {
+      color: rgba(138, 115, 85, 0.18);
     }
 
     .quote-text-preview {
@@ -819,25 +873,103 @@
       text-align: right;
     }
 
-    .quote-card-cta {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #8a7355;
-      margin-top: 10px;
+    /* ── Tab: Quotes Instagram CTA ── */
+    .quotes-more-cta {
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 5px;
+      margin-top: 50px;
+      margin-bottom: 30px;
       opacity: 0;
-      transform: translateY(5px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(20px);
+      animation: fadeInUpCTA 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 0.6s;
     }
 
-    .quote-card:hover .quote-card-cta {
-      opacity: 1;
+    @keyframes fadeInUpCTA {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .instagram-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: #eee6d6;
+      border: 1px solid rgba(92, 74, 50, 0.25);
+      border-radius: 50px;
+      padding: 14px 28px;
+      text-decoration: none;
+      color: #2a2318;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(42, 35, 24, 0.05);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .instagram-cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(253, 250, 242, 0.2), rgba(138, 115, 85, 0.1));
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+
+    .instagram-cta-btn:hover::before {
       transform: translateY(0);
+    }
+
+    .instagram-cta-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(42, 35, 24, 0.15);
+      border-color: rgba(138, 115, 85, 0.6);
+      background: #fdfaf2;
+    }
+
+    .instagram-cta-btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(42, 35, 24, 0.1);
+    }
+
+    .instagram-cta-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      border-radius: 6px;
+      z-index: 2;
+      transition: transform 0.4s ease;
+    }
+
+    .instagram-cta-btn:hover .instagram-cta-icon {
+      transform: rotate(10deg) scale(1.15);
+    }
+
+    .instagram-cta-text {
+      z-index: 2;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .instagram-cta-btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+        gap: 10px;
+      }
+      .instagram-cta-icon {
+        width: 22px;
+        height: 22px;
+      }
     }
 
     /* ── FULL SCREEN / IMMERSIVE SUB-VIEWS (Agee Bhie Jana) ── */
@@ -847,26 +979,33 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: #fdfaf2;
+      background: transparent;
       z-index: 1000;
       overflow-y: auto;
-      padding: 80px 24px;
+      padding: 0;
       opacity: 0;
+    }
+
+    body.reader-open .main-wrapper,
+    body.reader-open .header {
+      display: none !important;
     }
 
     .reader-overlay::before {
       content: '';
       position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 1;
     }
 
     .reader-progress-bar {
       position: fixed;
       top: 0; left: 0;
-      width: 0; height: 4px;
-      background: #8a7355;
+      width: 0; height: 5px;
+      background: linear-gradient(90deg, #c5a880, #5c4a32);
       z-index: 1010;
+      box-shadow: 0 1px 8px rgba(138, 115, 85, 0.4);
+      transition: width 0.1s ease-out;
     }
 
     .reader-header {
@@ -874,9 +1013,15 @@
       top: 0; left: 0; width: 100%;
       padding: 15px 40px;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(253, 250, 242, 0.95);
-      border-bottom: 1px solid rgba(92, 74, 50, 0.1);
+      background: rgba(216, 207, 184, 0); /* transparent initially */
+      border-bottom: 1px solid rgba(92, 74, 50, 0);
       z-index: 1005;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reader-header .logo {
+      color: #2a2318;
+      transition: color 0.4s ease;
     }
 
     .reader-close {
@@ -886,22 +1031,74 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #5c4a32;
-      background: transparent;
-      border: 1px solid rgba(92, 74, 50, 0.2);
-      padding: 6px 16px;
-      border-radius: 4px;
+      background: rgba(92, 74, 50, 0.04);
+      border: 1px solid rgba(92, 74, 50, 0.15);
+      padding: 8px 18px;
+      border-radius: 30px;
       cursor: pointer;
       display: flex; align-items: center; gap: 6px;
       transition: all 0.3s ease;
     }
     .reader-close:hover {
-      background: rgba(92, 74, 50, 0.08);
+      background: rgba(92, 74, 50, 0.1);
       color: #2a2318;
+      border-color: rgba(92, 74, 50, 0.3);
+      box-shadow: 0 4px 12px rgba(92, 74, 50, 0.08);
+      transform: translateY(-1px);
+    }
+
+    /* On Hero Banner style (unscrolled) */
+    .reader-header.on-hero:not(.scrolled) .logo {
+      color: #fcf9f1;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    .reader-header.on-hero:not(.scrolled) .reader-close {
+      color: #fcf9f1;
+      background: rgba(42, 35, 24, 0.45);
+      border: 1px solid rgba(252, 249, 241, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .reader-header.on-hero:not(.scrolled) .reader-close:hover {
+      background: #fcf9f1;
+      color: #2a2318;
+      border-color: #fcf9f1;
+    }
+
+    /* Scrolled state */
+    .reader-header.scrolled {
+      background: rgba(216, 207, 184, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(92, 74, 50, 0.12);
+      box-shadow: 0 8px 32px rgba(92, 74, 50, 0.08);
+    }
+
+    .reader-header.scrolled .logo {
+      color: #2a2318;
+      text-shadow: none;
+    }
+
+    .reader-header.scrolled .reader-close {
+      color: #5c4a32;
+      background: rgba(92, 74, 50, 0.04);
+      border: 1px solid rgba(92, 74, 50, 0.15);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    
+    .reader-header.scrolled .reader-close:hover {
+      background: rgba(92, 74, 50, 0.1);
+      color: #2a2318;
+      border-color: rgba(92, 74, 50, 0.3);
     }
 
     .reader-content-wrap {
-      max-width: 720px;
-      margin: 40px auto 0;
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 100px 24px 60px;
       position: relative;
       z-index: 2;
     }
@@ -957,78 +1154,139 @@
       color: #5c4a32;
     }
 
-    /* 2. Minimalist Reading Overlay (Poems) */
-    .poem-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: #fbf9f3;
-      z-index: 1000;
-      overflow-y: auto;
-      padding: 100px 24px;
+    /* 2. Unified Reading Overlay Poem Customizations */
+    .modal-detail-body.is-poem {
+      text-align: left;
+      white-space: pre-line;
+      font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      line-height: 2.1;
+      color: #2a2318;
+      letter-spacing: 0.02em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .modal-detail-body.is-poem p {
+      margin-bottom: 60px;
+      text-align: left;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .modal-detail-body.is-poem p::first-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35em;
+      font-weight: 700;
+      color: #8a7355;
+      font-style: normal;
+      display: inline-block;
+      margin-right: 2px;
+    }
+
+    .modal-detail-body.is-poem p:first-of-type::first-letter {
+      font-family: 'Cinzel', serif;
+      float: none;
+      font-size: 1.35em;
+      line-height: inherit;
+      margin: 0;
+      margin-right: 2px;
+      color: #8a7355;
+      font-style: normal;
+      display: inline-block;
+    }
+
+    .poem-line {
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .poem-line:nth-child(even) {
+      transform: translateX(65px);
+    }
+
+    .poem-author-signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      color: #8a7355;
+      margin-top: 50px;
+      margin-bottom: 60px;
+      text-align: right;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
       opacity: 0;
-      transition: background-color 0.4s ease;
+      transform: translateY(15px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .poem-overlay.theme-sepia {
-      background: #f4ecd8;
-    }
-    .poem-overlay.theme-white {
-      background: #fafafa;
-    }
-
-    .poem-reader-controls {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .control-btn {
-      background: transparent;
-      border: 1px solid rgba(92, 74, 50, 0.2);
-      color: #5c4a32;
-      width: 32px;
-      height: 32px;
+    .poem-stanza-with-image {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
+      gap: 40px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+
+    .poem-stanza-with-image .stanza-text {
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .poem-stanza-with-image .stanza-text p {
+      margin-bottom: 0;
+    }
+
+    .poem-stanza-with-image .stanza-image-wrap {
+      width: 200px;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(42, 35, 24, 0.12);
+      border: 1px solid rgba(92, 74, 50, 0.15);
+    }
+
+    .poem-stanza-with-image .stanza-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .poem-stanza-with-image {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .poem-stanza-with-image .stanza-image-wrap {
+        width: 100%;
+        max-width: 220px;
+        height: 150px;
+      }
+    }
+
+    
+    /* Poem Multi-panel styles */
+    .poem-panel-wrap {
+      width: 100%;
+      max-width: 680px;
+      margin: 40px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+      background: #000;
+      line-height: 0;
       transition: all 0.3s ease;
     }
-    .control-btn:hover {
-      background: rgba(92, 74, 50, 0.08);
-      color: #2a2318;
-    }
 
-    .poem-content-wrap {
-      max-width: 580px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .poem-reader-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #2a2318;
-      margin-bottom: 40px;
-      letter-spacing: 0.05em;
-    }
-
-    .poem-reader-body {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: var(--poem-font-size, 1.35rem);
-      line-height: 1.9;
-      color: #2d241b;
-      white-space: pre-line;
-      margin-bottom: 50px;
-      letter-spacing: 0.02em;
+    .poem-panel-img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* 3. Book Details Modal (Books) */
@@ -1228,244 +1486,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* 4. Quote Customizer & Share Modal (Quotes) */
-    .quote-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(42, 35, 24, 0.6);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-    }
-
-    .quote-modal-container {
-      background: #fbf9f3;
-      width: 100%;
-      max-width: 850px;
-      border-radius: 12px;
-      border: 1px solid rgba(92, 74, 50, 0.25);
-      box-shadow: 0 25px 50px rgba(42, 35, 24, 0.3);
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 400px 1fr;
-    }
-
-    .quote-modal-left {
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-right: 1px solid rgba(92, 74, 50, 0.15);
-      background: #f3edd9;
-    }
-
-    /* Beautiful editable box size 320x320 for canvas exports */
-    .quote-export-card {
-      width: 320px;
-      height: 320px;
-      background: #2a2318;
-      color: #fcf9f1;
-      padding: 30px;
-      border-radius: 0; /* Square for clean social media looks */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(42, 35, 24, 0.2);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .quote-export-card::before {
-      content: '“';
-      position: absolute;
-      top: 10px; left: 20px;
-      font-family: 'Cinzel', serif;
-      font-size: 5rem;
-      color: rgba(255, 255, 255, 0.05);
-      line-height: 1;
-    }
-
-    .quote-export-text {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.35rem;
-      line-height: 1.5;
-      text-align: center;
-      margin-bottom: 25px;
-      z-index: 2;
-    }
-
-    .quote-export-author {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      text-align: center;
-      color: #8a7355;
-      z-index: 2;
-    }
-
-    /* Share Card Background Presets */
-    .bg-preset-gold {
-      background: linear-gradient(135deg, #423524 0%, #635037 50%, #8c7355 100%);
-      color: #fdfaf2;
-    }
-    .bg-preset-gold .quote-export-author { color: #d8cfb8; }
-    
-    .bg-preset-dark {
-      background: #1c1813;
-      border: 6px double rgba(138, 115, 85, 0.3);
-      color: #fdfaf2;
-    }
-    .bg-preset-dark .quote-export-author { color: #8a7355; }
-
-    .bg-preset-dawn {
-      background: linear-gradient(135deg, #d38d6b 0%, #9e6d7a 60%, #685077 100%);
-      color: #ffffff;
-    }
-    .bg-preset-dawn .quote-export-author { color: #ffe6d5; }
-
-    .bg-preset-parchment {
-      background: #f2ebd9;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-      border: 1px solid rgba(42, 35, 24, 0.25);
-      color: #2a2318;
-    }
-    .bg-preset-parchment .quote-export-author { color: #5c4a32; }
-    .bg-preset-parchment::before { color: rgba(42, 35, 24, 0.05); }
-
-    .bg-preset-forest {
-      background: linear-gradient(135deg, #2b4436 0%, #1e3026 100%);
-      color: #f5eedc;
-    }
-    .bg-preset-forest .quote-export-author { color: #a4c4b5; }
-
-    /* Quote Modal Right Options */
-    .quote-modal-right {
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-    }
-
-    .quote-modal-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #2a2318;
-      margin-bottom: 25px;
-      border-bottom: 1px solid rgba(92, 74, 50, 0.15);
-      padding-bottom: 10px;
-    }
-
-    .control-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #5c4a32;
-      margin-bottom: 12px;
-    }
-
-    .bg-presets-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-
-    .preset-selector {
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    .preset-selector:hover {
-      transform: scale(1.15);
-    }
-    .preset-selector.active {
-      border-color: #5c4a32;
-      transform: scale(1.15);
-    }
-    
-    .preset-selector::after {
-      content: '';
-      position: absolute;
-      inset: 2px;
-      border-radius: 50%;
-      z-index: 1;
-    }
-    
-    .preset-selector-gold::after { background: linear-gradient(135deg, #423524 0%, #8c7355 100%); }
-    .preset-selector-dark::after { background: #1c1813; }
-    .preset-selector-dawn::after { background: linear-gradient(135deg, #d38d6b 0%, #685077 100%); }
-    .preset-selector-parchment::after { background: #f2ebd9; border: 1px solid #dcd3bd; }
-    .preset-selector-forest::after { background: linear-gradient(135deg, #2b4436 0%, #1e3026 100%); }
-
-    .quote-share-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .share-btn {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .share-btn-download {
-      background: #5c4a32;
-      color: #d8cfb8;
-      border: 1px solid #5c4a32;
-    }
-    .share-btn-download:hover {
-      background: #2a2318;
-      border-color: #2a2318;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(92, 74, 50, 0.15);
-    }
-
-    .share-actions-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .share-btn-sub {
-      background: transparent;
-      color: #5c4a32;
-      border: 1px solid rgba(92, 74, 50, 0.3);
-      font-size: 0.6rem;
-      padding: 10px;
-    }
-    .share-btn-sub:hover {
-      background: rgba(92, 74, 50, 0.06);
-      color: #2a2318;
-      border-color: #5c4a32;
-      transform: translateY(-1px);
-    }
+    /* Quote Customizer Modal styles removed */
 
     /* ── Responsive Styling ── */
     @media (max-width: 1150px) {
@@ -1577,29 +1598,290 @@
         overflow-y: visible;
       }
 
-      .quote-modal-container {
-        grid-template-columns: 1fr;
-      }
-      .quote-modal-left {
-        padding: 24px;
-      }
-      .quote-export-card {
-        width: 260px;
-        height: 260px;
-        padding: 20px;
-      }
-      .quote-export-text {
-        font-size: 1.1rem;
-      }
-      .quote-modal-right {
-        padding: 24px;
-      }
+      /* Quote modal responsive styling removed */
       
       .reader-header {
         padding: 12px 20px;
       }
       .reader-content-wrap {
         margin-top: 60px;
+      }
+    }
+
+    /* Modal Articles Grid and Cards */
+    .modal-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1296px;
+      margin: 40px auto 0;
+    }
+
+    .modal-article-card {
+      background: rgba(42, 35, 24, 0.02);
+      border: 1px solid rgba(92, 74, 50, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-article-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(92, 74, 50, 0.35);
+      background: rgba(42, 35, 24, 0.04);
+      box-shadow: 0 12px 28px rgba(42, 35, 24, 0.08);
+    }
+
+    .modal-article-img-wrap {
+      width: 100%;
+      aspect-ratio: 416 / 280;
+      overflow: hidden;
+      position: relative;
+      background: rgba(42, 35, 24, 0.05);
+    }
+
+    .modal-article-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-article-card:hover .modal-article-img {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+    }
+
+    .modal-article-info {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .modal-article-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #8a7355;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .modal-article-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2a2318;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .modal-article-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #705e47;
+      line-height: 1.4;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    /* Modal Article Detail View */
+    .modal-back-btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      color: #5c4a32;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .modal-back-btn:hover {
+      color: #2a2318;
+    }
+
+    .modal-back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .detail-hero-banner-new {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .detail-hero-img-container {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: #2a2318;
+    }
+
+    .detail-hero-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .detail-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        rgba(42, 35, 24, 0.4) 0%, 
+        rgba(42, 35, 24, 0.1) 40%, 
+        rgba(42, 35, 24, 0.85) 100%
+      );
+      z-index: 2;
+    }
+
+    .detail-hero-content-inner {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .detail-back-btn {
+      align-self: flex-start;
+      margin-bottom: 16px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fcf9f1;
+      background: rgba(42, 35, 24, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(252, 249, 241, 0.25);
+      padding: 8px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .detail-back-btn:hover {
+      color: #2a2318;
+      background: #fcf9f1;
+      border-color: #fcf9f1;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .detail-back-btn svg {
+      transition: transform 0.3s ease;
+    }
+
+    .detail-back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .detail-hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #fcf9f1;
+      line-height: 1.25;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .detail-hero-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #d8cfb8;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+
+    .detail-body-container {
+      max-width: 720px;
+      margin: 60px auto 100px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-detail-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      line-height: 1.85;
+      color: #2a2318;
+      text-align: justify;
+    }
+
+    .modal-detail-body p {
+      margin-bottom: 20px;
+    }
+
+    .modal-detail-body p:first-of-type::first-letter {
+      font-family: 'Cinzel', serif;
+      float: left;
+      font-size: 3.5em;
+      line-height: 0.8;
+      margin-top: 0.1em;
+      margin-right: 0.1em;
+      color: #5c4a32;
+    }
+
+    @media (max-width: 900px) {
+      .modal-articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .detail-hero-content-inner {
+        padding: 20px 16px;
+      }
+      .detail-back-btn {
+        margin-bottom: 10px;
+        padding: 6px 14px;
+        font-size: 0.68rem;
+      }
+      .detail-hero-title {
+        font-size: 1.8rem;
+      }
+      .detail-body-container {
+        margin-top: 30px;
+        padding: 0 16px;
+      }
+      .modal-articles-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -1610,7 +1892,7 @@
   <header class="header">
     <a href="menu.html" class="logo">Ganesh Tajane</a>
     <div class="nav-links">
-      <a href="index.html?gallery=1" class="nav-link">Home</a>
+      <a href="explore.html" class="nav-link">Home</a>
       <a href="menu.html" class="nav-link">
         Menu
         <div class="nav-ham"><span></span><span></span></div>
@@ -1730,7 +2012,7 @@
               <div class="book-tagline">Every fire has an origin. This is mine.</div>
               <div class="book-author">By Ganesh Tajane</div>
               <p class="book-synopsis">
-                <em>Before I Became Fire</em> is the story of a young man whose search for meaning gradually became a journey of awakening. Through the discipline of chess, the silence of the Narmada, moments of doubt, surrender, and profound inner transformation, this book traces the path that slowly dissolved ambition into awareness. It is not a guide, nor a collection of answers—it is an honest account of the experiences that shaped the life before Vayu, before the temple, and before the fire. If these pages leave you with anything, let it be the courage to begin your own search.
+                <em>Before I Became Fire</em> is not the story of enlightenment. It is the story of becoming ready for it. Beginning with a young chess player searching for purpose, the narrative unfolds through years of quiet struggles, sacred encounters, unexpected signs, and moments that could not be explained by logic alone. Every chapter brings the reader closer to the unseen force that would eventually change the course of an ordinary life forever.
               </p>
               <div class="book-actions">
                 <button class="book-btn book-btn-primary" onclick="openBookModal('preorder')">Pre-order / Interest</button>
@@ -1742,14 +2024,19 @@
 
         <!-- Tab Panel: Articles -->
         <div class="tab-panel" id="panel-articles">
+          <p class="articles-introduction">
+            Essays exploring spirituality, chess, philosophy, purpose, and the experiences that shaped my journey. Each article is an invitation to pause, reflect, and see the world differently.
+          </p>
           <div class="articles-grid">
             <!-- Article 1 -->
             <div class="article-card" onclick="openArticle(1)">
-              <div class="article-meta">Chess &amp; Meditation</div>
-              <h3 class="article-card-title">The Silence Between Moves</h3>
-              <p class="article-excerpt">In the game of sixty-four squares, every player searches for victory. But for the seeker, the chessboard represents the battlefield of thoughts, and the true victory lies in the silence between the moves.</p>
+              <div class="article-card-header">
+                <h3 class="article-card-title">Spirituality</h3>
+                <span class="article-count-badge" data-category="spirituality">0 Articles</span>
+              </div>
+              <p class="article-excerpt">Reflections on meditation, Shiva, consciousness, silence, and the search for the eternal.</p>
               <div class="article-readmore">
-                Read Article
+                Enter Collection
                 <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 4H9M9 4L6 1M9 4L6 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1758,11 +2045,13 @@
 
             <!-- Article 2 -->
             <div class="article-card" onclick="openArticle(2)">
-              <div class="article-meta">Spirituality</div>
-              <h3 class="article-card-title">The Breath of Vayu</h3>
-              <p class="article-excerpt">We speak of wind as moving air, but Vayu is the eternal breath of consciousness. It is the formless element that unites stillness and strength, linking our physical shell to the infinite source.</p>
+              <div class="article-card-header">
+                <h3 class="article-card-title">Chess</h3>
+                <span class="article-count-badge" data-category="chess">0 Articles</span>
+              </div>
+              <p class="article-excerpt">Lessons from the sixty-four squares about strategy, discipline, patience, and life.</p>
               <div class="article-readmore">
-                Read Article
+                Enter Collection
                 <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 4H9M9 4L6 1M9 4L6 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1771,11 +2060,43 @@
 
             <!-- Article 3 -->
             <div class="article-card" onclick="openArticle(3)">
-              <div class="article-meta">Sacred Architecture</div>
-              <h3 class="article-card-title">Reclaiming the Sacred Space</h3>
-              <p class="article-excerpt">Temples are not merely stone monuments of history; they are anchors of absolute silence. They are cosmic structures designed to pull our wandering minds back into their own true, primordial center.</p>
+              <div class="article-card-header">
+                <h3 class="article-card-title">Philosophy</h3>
+                <span class="article-count-badge" data-category="philosophy">0 Articles</span>
+              </div>
+              <p class="article-excerpt">Essays exploring meaning, truth, identity, suffering, and the nature of existence.</p>
               <div class="article-readmore">
-                Read Article
+                Enter Collection
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 4H9M9 4L6 1M9 4L6 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="article-card" onclick="openArticle(4)">
+              <div class="article-card-header">
+                <h3 class="article-card-title">Personal Journey</h3>
+                <span class="article-count-badge" data-category="personal journey">0 Articles</span>
+              </div>
+              <p class="article-excerpt">Stories, failures, victories, and the experiences that shaped my path.</p>
+              <div class="article-readmore">
+                Enter Collection
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 4H9M9 4L6 1M9 4L6 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Article 5 -->
+            <div class="article-card" onclick="openArticle(5)">
+              <div class="article-card-header">
+                <h3 class="article-card-title">Purpose & Society</h3>
+                <span class="article-count-badge" data-category="purpose and society">0 Articles</span>
+              </div>
+              <p class="article-excerpt">Thoughts on education, culture, responsibility, and creating lasting change.</p>
+              <div class="article-readmore">
+                Enter Collection
                 <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 4H9M9 4L6 1M9 4L6 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1787,110 +2108,78 @@
         <!-- Tab Panel: Poems -->
         <div class="tab-panel" id="panel-poems">
           <div class="poems-layout">
-            <p class="poems-introduction">"A clean reading experience is more important than fancy design. Enter the silent lines below."</p>
+            <p class="poems-introduction">Poetry begins where ordinary language falls silent. What follows are fragments of an inner journey—moments of fire, stillness, longing, and awakening preserved in words. Read gently, and allow the silence to complete what language cannot.</p>
             <div class="poems-grid">
               <!-- Poem 1 -->
               <div class="poem-card" onclick="openPoem(1)">
-                <div class="poem-icon">🔥</div>
-                <h3 class="poem-card-title">The Flame Inside</h3>
-                <p class="poem-card-snippet">"I was not the fire,<br>I was the wood..."</p>
-                <div class="poem-cta">Read Poem</div>
+                <div class="poem-img-wrap">
+                  <img src="asset/art_poem_1.png" alt="The Flame Inside" class="poem-img" loading="lazy">
+                </div>
+                <div class="poem-card-info">
+                  <h3 class="poem-card-title">The Flame Inside</h3>
+                  <span class="poem-card-date">July 05, 2026</span>
+                </div>
               </div>
 
               <!-- Poem 2 -->
               <div class="poem-card" onclick="openPoem(2)">
-                <div class="poem-icon">♟️</div>
-                <h3 class="poem-card-title">Stillness of the Board</h3>
-                <p class="poem-card-snippet">"Sixty-four houses,<br>A kingdom of dust..."</p>
-                <div class="poem-cta">Read Poem</div>
+                <div class="poem-img-wrap">
+                  <img src="asset/art_poem_2.png" alt="Stillness of the Board" class="poem-img" loading="lazy">
+                </div>
+                <div class="poem-card-info">
+                  <h3 class="poem-card-title">Stillness of the Board</h3>
+                  <span class="poem-card-date">June 20, 2026</span>
+                </div>
               </div>
 
               <!-- Poem 3 -->
               <div class="poem-card" onclick="openPoem(3)">
-                <div class="poem-icon">🌊</div>
-                <h3 class="poem-card-title">Winds of Narmada</h3>
-                <p class="poem-card-snippet">"Flowing water, silent stone,<br>A calling heard in the dark..."</p>
-                <div class="poem-cta">Read Poem</div>
+                <div class="poem-img-wrap">
+                  <img src="asset/art_poem_3.png" alt="Winds of Narmada" class="poem-img" loading="lazy">
+                </div>
+                <div class="poem-card-info">
+                  <h3 class="poem-card-title">Winds of Narmada</h3>
+                  <span class="poem-card-date">May 12, 2026</span>
+                </div>
               </div>
+
+              <!-- Poem 4 -->
+              <div class="poem-card" onclick="openPoem(4)">
+                <div class="poem-img-wrap">
+                  <img src="asset/shadow_leads_full.png" alt="Where the Shadow Leads" class="poem-img" loading="lazy">
+                </div>
+                <div class="poem-card-info">
+                  <h3 class="poem-card-title">Where the Shadow Leads</h3>
+                  <span class="poem-card-date">July 12, 2026</span>
+                </div>
+              </div>
+
+              <!-- Poem 5 -->
+              <div class="poem-card" onclick="openPoem(5)">
+                <div class="poem-img-wrap">
+                  <img src="asset/divine_journey_full.png" alt="A Journey to the Divine" class="poem-img" loading="lazy">
+                </div>
+                <div class="poem-card-info">
+                  <h3 class="poem-card-title">A Journey to the Divine</h3>
+                  <span class="poem-card-date">July 12, 2026</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
         <!-- Tab Panel: Quotes -->
         <div class="tab-panel" id="panel-quotes">
-          <p class="quotes-intro">Click any quote to customize, download, and share it with a beautiful background.</p>
-          <div class="quotes-grid">
-            <!-- Quote 1 -->
-            <div class="quote-card" onclick="openQuoteModal(1)">
-              <p class="quote-text-preview">"Silence is not the absence of sound, but the presence of attention."</p>
-              <div class="quote-author-preview">— Ganesh Tajane</div>
-              <div class="quote-card-cta">
-                Customize &amp; Share
-                <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5H9M9 5L6 2M9 5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Quote 2 -->
-            <div class="quote-card" onclick="openQuoteModal(2)">
-              <p class="quote-text-preview">"The greatest move in chess is the one we make within our own minds."</p>
-              <div class="quote-author-preview">— Ganesh Tajane</div>
-              <div class="quote-card-cta">
-                Customize &amp; Share
-                <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5H9M9 5L6 2M9 5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Quote 3 -->
-            <div class="quote-card" onclick="openQuoteModal(3)">
-              <p class="quote-text-preview">"We do not find peace; we remember it."</p>
-              <div class="quote-author-preview">— Ganesh Tajane</div>
-              <div class="quote-card-cta">
-                Customize &amp; Share
-                <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5H9M9 5L6 2M9 5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Quote 4 -->
-            <div class="quote-card" onclick="openQuoteModal(4)">
-              <p class="quote-text-preview">"Every seeker is a river, running towards an ocean they cannot see."</p>
-              <div class="quote-author-preview">— Ganesh Tajane</div>
-              <div class="quote-card-cta">
-                Customize &amp; Share
-                <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5H9M9 5L6 2M9 5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Quote 5 -->
-            <div class="quote-card" onclick="openQuoteModal(5)">
-              <p class="quote-text-preview">"The flame does not ask where the darkness came from. It simply shines."</p>
-              <div class="quote-author-preview">— Ganesh Tajane</div>
-              <div class="quote-card-cta">
-                Customize &amp; Share
-                <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5H9M9 5L6 2M9 5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Quote 6 -->
-            <div class="quote-card" onclick="openQuoteModal(6)">
-              <p class="quote-text-preview">"In the space between two breaths, the entire universe is born and dies."</p>
-              <div class="quote-author-preview">— Ganesh Tajane</div>
-              <div class="quote-card-cta">
-                Customize &amp; Share
-                <svg width="8" height="8" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 5H9M9 5L6 2M9 5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
+          <div class="quotes-grid" id="quotesGrid">
+            <!-- Dynamic Quote Cards will be injected here by JS -->
+          </div>
+          
+          <div class="quotes-more-cta">
+            <a href="https://www.instagram.com/vayu_mahesh?igsh=d3pxNW1iaTRuZTJw" target="_blank" rel="noopener noreferrer" class="instagram-cta-btn">
+              <img src="asset/instgram%20logo.png" alt="Instagram Logo" class="instagram-cta-icon">
+              <span class="instagram-cta-text">For more quotes, visit @vayu_mahesh</span>
+            </a>
           </div>
         </div>
 
@@ -1923,7 +2212,7 @@
         <!-- Book Tab Content: Synopsis -->
         <div class="book-modal-tab-content active" id="modal-synopsis">
           <p style="margin-bottom:15px; text-align:justify;">
-            <em>Before I Became Fire</em> is the story of a young man whose search for meaning gradually became a journey of awakening. Through the discipline of chess, the silence of the Narmada, moments of doubt, surrender, and profound inner transformation, this book traces the path that slowly dissolved ambition into awareness. It is not a guide, nor a collection of answers—it is an honest account of the experiences that shaped the life before Vayu, before the temple, and before the fire. If these pages leave you with anything, let it be the courage to begin your own search.
+            <em>Before I Became Fire</em> is not the story of enlightenment. It is the story of becoming ready for it. Beginning with a young chess player searching for purpose, the narrative unfolds through years of quiet struggles, sacred encounters, unexpected signs, and moments that could not be explained by logic alone. Every chapter brings the reader closer to the unseen force that would eventually change the course of an ordinary life forever.
           </p>
         </div>
 
@@ -1966,78 +2255,57 @@
     <div class="reader-progress-bar" id="readerProgressBar"></div>
     <header class="reader-header">
       <span class="logo">Ganesh Tajane</span>
-      <button class="reader-close" onclick="closeArticle()">&times; Close Reader</button>
+      <button class="reader-close" onclick="handleCloseReader()">&times; Close Reader</button>
     </header>
-    <div class="reader-content-wrap">
-      <h1 class="reader-title" id="readerTitle">Article Title</h1>
-      <div class="reader-meta" id="readerMeta">Published on July 2026 • 5 min read</div>
-      <div class="reader-body" id="readerBody">
-        <!-- Dynmically loaded text -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Overlay: Minimalist Poem Reader (Poems Tab Click) -->
-  <div class="poem-overlay" id="poemReader">
-    <header class="reader-header" style="background: transparent; border-bottom: none;">
-      <div class="poem-reader-controls">
-        <button class="control-btn" onclick="adjustPoemFont(-1)" title="Decrease text size">A-</button>
-        <button class="control-btn" onclick="adjustPoemFont(1)" title="Increase text size">A+</button>
-        <button class="control-btn" onclick="cyclePoemTheme()" title="Switch layout colors" style="width: auto; padding: 0 10px;">Theme</button>
-      </div>
-      <button class="reader-close" onclick="closePoem()">&times; Close</button>
-    </header>
-    <div class="poem-content-wrap">
-      <h1 class="poem-reader-title" id="poemReaderTitle">Poem Title</h1>
-      <div class="poem-reader-body" id="poemReaderBody">
-        <!-- Poem verses -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal: Quote Sharing Card Customizer (Quotes Tab Click) -->
-  <div class="quote-modal" id="quoteModal" onclick="closeQuoteModal(event)">
-    <div class="quote-modal-container" onclick="event.stopPropagation()">
-      <button class="book-modal-close" onclick="closeQuoteModal(event)">&times;</button>
-      
-      <div class="quote-modal-left">
-        <!-- The actual card rendered by html2canvas -->
-        <div class="quote-export-card bg-preset-gold" id="quoteExportCard">
-          <div class="quote-export-text" id="quoteModalText">"Silence is not the absence of sound..."</div>
-          <div class="quote-export-author">— Ganesh Tajane</div>
+    <!-- 1. Category Overview View (Inside constrained width wrapper) -->
+    <div class="reader-content-wrap" id="categoryOverviewWrap">
+      <div id="categoryOverview" style="display: block; opacity: 1;">
+        <h1 class="reader-title" id="categoryTitle">Category Title</h1>
+        <div class="reader-meta" id="categoryMeta">Category Overview</div>
+        <div class="reader-body" id="categoryDesc" style="margin-bottom: 30px;">
+          <!-- Category description -->
+        </div>
+        <div class="modal-articles-grid" id="modalArticlesGrid">
+          <!-- 3 Articles will be rendered here dynamically -->
         </div>
       </div>
-      
-      <div class="quote-modal-right">
-        <h2 class="quote-modal-title">Share Quote Card</h2>
-        
-        <div class="control-label">Select Card Background</div>
-        <div class="bg-presets-grid">
-          <div class="preset-selector preset-selector-gold active" onclick="setQuoteBackground('gold', this)" title="Gold Aura"></div>
-          <div class="preset-selector preset-selector-dark" onclick="setQuoteBackground('dark', this)" title="Midnight Ink"></div>
-          <div class="preset-selector preset-selector-dawn" onclick="setQuoteBackground('dawn', this)" title="Dawn Mist"></div>
-          <div class="preset-selector preset-selector-parchment" onclick="setQuoteBackground('parchment', this)" title="Classic Parchment"></div>
-          <div class="preset-selector preset-selector-forest" onclick="setQuoteBackground('forest', this)" title="Forest Calm"></div>
+    </div>
+
+    <!-- 2. Article Detailed View -->
+    <div id="articleDetail" style="display: none; opacity: 0;">
+      <!-- Hero Banner Section -->
+      <div class="detail-hero-banner-new">
+        <div class="detail-hero-img-container">
+          <img id="detailImg" src="" alt="" class="detail-hero-img">
+          <div class="detail-hero-overlay"></div>
         </div>
         
-        <div class="quote-share-actions">
-          <button class="share-btn share-btn-download" onclick="downloadQuoteCard()">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right:2px;">
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        <div class="detail-hero-content-inner">
+          <button class="detail-back-btn" onclick="handleDetailBack()">
+            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 6H1M1 6L6 11M1 6L6 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Download as PNG
+            <span id="detailBackBtnText">Back to Category</span>
           </button>
           
-          <div class="share-actions-row">
-            <button class="share-btn share-btn-sub" onclick="copyQuoteText()">Copy Text</button>
-            <button class="share-btn share-btn-sub" onclick="shareQuote('whatsapp')">WhatsApp</button>
-            <button class="share-btn share-btn-sub" onclick="shareQuote('twitter')">Twitter/X</button>
+          <div class="detail-hero-text-wrap">
+            <h1 class="detail-hero-title" id="detailTitle">Article Title</h1>
+            <div class="detail-hero-meta" id="detailMeta">Published on July 10, 2026 • 5 min read</div>
           </div>
         </div>
       </div>
+      
+      <!-- Constrained Body Container -->
+      <div class="detail-body-container">
+        <div class="modal-detail-body" id="detailBody">
+          <!-- Article paragraphs loaded dynamically -->
+        </div>
+      </div>
     </div>
   </div>
+
+
+  <!-- Quote Modal Removed -->
 
   <!-- ==================== JAVASCRIPT CONTROLLER ==================== -->
   <script>
@@ -2048,35 +2316,187 @@
     // Articles Database
     const ARTICLES = {
       1: {
-        title: "The Silence Between Moves",
-        meta: "Philosophy & Chess • July 2026 • 6 min read",
-        body: `<p>In the quiet rooms where Chess is played, the air is thick with anticipation. Sixty-four houses stand before us, hosting thirty-two pieces of carved wood. To the spectator, it is a game of visual calculation, of moves mapped out moves in advance. But to the practitioner who looks deeper, it is something entirely different. It is a mirror of the self.</p>
-               <p>Every piece we move, every tactic we choose, arises from the current state of our inner mind. When the mind is restless, seeking validation or fearing defeat, the moves are anxious, brittle, and rushed. When the mind is centered, the game flows like water, adapting to obstacles without effort.</p>
-               <p>Yet, the most profound secret of the chessboard does not lie in the moves. It lies in the silent intervals between them. It is in those quiet moments, when the clock tick-ticks away and the board is static, that the player enters a deep space of contemplation. In that silence, we are forced to sit face-to-face with our impulses, our pride, and our fears. The board becomes a silent sanctuary where we learn the discipline of stillness.</p>
-               <p>To sit before the board without moving, to simply look, is to cultivate attention. In that attention, the distinction between the player and the game begins to fade. We realize that the game of sixty-four squares is not about conquering the opponent across the table. It is about conquering the restlessness within our own hearts. It is the practice of finding absolute stillness in the midst of conflict.</p>`
+        title: "Spirituality",
+        meta: "Spirituality • Category Overview",
+        body: `<p>Spirituality is not a belief to be adopted but a truth to be experienced. These essays explore meditation, Shiva, silence, consciousness, and the timeless wisdom that gradually transforms the way we see ourselves and the world.</p>`
       },
       2: {
-        title: "The Breath of Vayu",
-        meta: "Spiritual Inquiry • June 2026 • 4 min read",
-        body: `<p>The wind blows where it wills. We feel its coolness on our skin, we hear it rustling the leaves, and we see it carrying clouds across the sky. Yet, the wind itself remains invisible. In the ancient texts of the East, this invisible, life-giving force is called Vayu. It is not merely atmospheric air in motion; it is the vital breath of existence.</p>
-               <p>Vayu represents the bridge between the formless spirit and the world of forms. Without breath, the body is inert, a shell of clay. With breath, it becomes a temple of consciousness. Vayu is the subtle current that keeps the cosmic dance in motion. To connect with Vayu is to connect with the very rhythm of life.</p>
-               <p>Many of us spend our lives breathing shallowly, barely drawing the wind into our lungs. This shallow breath reflects a shallow engagement with life—a state of constant anxiety and superficial hurry. But when we slow down, when we consciously pull the air deep into our center, we establish a connection with the source. The breath becomes a tool to anchor the mind in the present moment.</p>
-               <p>In the silence of meditation, Vayu teaches us the ultimate lesson of surrender. We breathe in, taking what the universe gives; we breathe out, letting go of what we no longer need. In this continuous cycle of expansion and contraction, we find a quiet space. We realize that we do not have to hold on to anything. The air flows, life flows, and we are carried by the wind of grace.</p>`
+        title: "Chess",
+        meta: "Chess • Category Overview",
+        body: `<p>The chessboard is a mirror of the mind. Every move reveals intention, every mistake offers wisdom, and every game becomes a lesson in patience, discipline, and self-discovery. These essays explore the deeper philosophy hidden within sixty-four squares.</p>`
       },
       3: {
-        title: "Reclaiming the Sacred Space",
-        meta: "Spirituality & Architecture • May 2026 • 5 min read",
-        body: `<p>In our modern cities, space is optimized for utility. Buildings are built to house bodies, roads are paved to transport vehicles, and stores are opened to sell goods. Every square foot has a commercial purpose. In this environment of constant action and utility, our minds are perpetually stimulated, leaving little room for quiet reflection.</p>
-               <p>This is why we must reclaim the sacred space. A sacred space is a physical location that has no commercial or utilitarian value. It exists solely to remind us of who we are. Historically, temples, groves, and riverbanks served this purpose. They were geographic anchors of silence, constructed with geometry and intention to elevate human consciousness.</p>
-               <p>When you enter a temple built on sacred geometry, the architecture itself acts as a filter. The thick stone walls shut out the noise of the marketplace. The high domes draw the eyes upward, creating a sense of scale and humility. The symmetry of the layout brings a sense of order to our chaotic thoughts. You do not go there to perform a task; you go there to simply *be*.</p>
-               <p>We do not need to travel to ancient ruins to find these spaces. We can build them in our homes, or find them in the quiet corners of nature. By dedicating a corner of a room to stillness—placing a single candle, a clean mat, or a silent symbol—we create a portal. Every time we sit in that space, we signal to our mind that it is safe to drop the armor of the world and rest in the sacred silence within.</p>`
+        title: "Philosophy",
+        meta: "Philosophy • Category Overview",
+        body: `<p>Every question has the power to transform the one who asks it. These essays explore philosophy as a way of living—through reflection, reason, and the quiet pursuit of truth.</p>`
+      },
+      4: {
+        title: "Personal Journey",
+        meta: "Personal Journey • Category Overview",
+        body: `<p>The path to becoming is rarely straight. These writings trace the moments of doubt, courage, loss, and transformation that gradually shaped the person I continue to become.</p>`
+      },
+      5: {
+        title: "Purpose & Society",
+        meta: "Purpose & Society • Category Overview",
+        body: `<p>Purpose gives direction to a life; society gives it meaning. These essays explore how individual transformation and collective responsibility come together to shape a better world.</p>`
       }
+    };
+
+    // Category Articles Database (3 unique articles per category)
+    const CATEGORY_ARTICLES = {
+      "spirituality": [
+        {
+          title: "The Breath of Vayu",
+          date: "July 10, 2026",
+          image: "asset/art_spirituality_1.png",
+          tagline: "Where breath becomes the bridge between the finite and the infinite.",
+          body: `<p>The wind blows where it wills. We feel its coolness on our skin, we hear it rustling the leaves, and we see it carrying clouds across the sky. Yet, the wind itself remains invisible. In the ancient texts of the East, this invisible, life-giving force is called Vayu. It is not merely atmospheric air in motion; it is the vital breath of existence.</p>
+                 <p>Vayu represents the bridge between the formless spirit and the world of forms. Without breath, the body is inert, a shell of clay. With breath, it becomes a temple of consciousness. Vayu is the subtle current that keeps the cosmic dance in motion. To connect with Vayu is to connect with the very rhythm of life.</p>
+                 <p>In the silence of meditation, Vayu teaches us the ultimate lesson of surrender. We breathe in, taking what the universe gives; we breathe out, letting go of what we no longer need. In this continuous cycle of expansion and contraction, we find a quiet space. We realize that we do not have to hold on to anything. The air flows, life flows, and we are carried by the wind of grace.</p>`
+        },
+        {
+          title: "The Inner Temple",
+          date: "June 24, 2026",
+          image: "asset/art_spirituality_2.png",
+          tagline: "Every sacred journey ends where it truly began—within.",
+          body: `<p>We search for the sacred in distant lands, climbing mountains and visiting ancient shrines. We look for holy men and sacred symbols, hoping that something outside of ourselves will bring us peace. But the ultimate truth is far simpler: the only temple that truly matters is the one within.</p>
+                 <p>The inner temple is not built of stone, wood, or gold. It is built of quiet attention, devotion, and stillness. It is a space inside the heart where the noise of the world cannot enter. In this space, there is no past to regret, no future to fear, and no identity to defend. There is only the simple, radiant presence of being.</p>
+                 <p>To enter this temple, we do not need to travel. We only need to turn our attention inward, quiet the chatter of the mind, and rest in the silence. In that silence, we discover that the peace we were seeking in the outer world was already waiting for us within.</p>`
+        },
+        {
+          title: "The Sound of Silence",
+          date: "May 15, 2026",
+          image: "asset/art_spirituality_3.png",
+          tagline: "Beyond every word lies the language of silence.",
+          body: `<p>Silence is not merely the absence of sound; it is a presence in its own right. It is the canvas upon which all sounds are painted, the background from which all words arise and to which they eventually return. In our loud and busy lives, we have come to fear silence, filling it with constant distractions.</p>
+                 <p>But for the seeker, silence is a sacred gateway. It is the language of the soul. In the quiet intervals between our thoughts, we can hear the subtle guidance of our inner voice. We begin to realize that our true nature is not the changing thoughts or emotions, but the vast, quiet space of awareness in which they occur.</p>
+                 <p>By cultivating silence in our daily lives—sitting quietly for a few minutes each morning, walking in nature without devices—we restore our connection to this source. We find a quiet anchor that keeps us steady, no matter how chaotic the outer world becomes.</p>`
+        }
+      ],
+      "chess": [
+        {
+          title: "The Silence Between Moves",
+          date: "July 08, 2026",
+          image: "asset/art_chess_1.png",
+          tagline: "True mastery lives in the pause before every decision.",
+          body: `<p>In the quiet rooms where Chess is played, the air is thick with anticipation. Sixty-four houses stand before us, hosting thirty-two pieces of carved wood. To the spectator, it is a game of visual calculation, of moves mapped out in advance. But to the practitioner who looks deeper, it is a mirror of the self.</p>
+                 <p>Every piece we move, every tactic we choose, arises from the current state of our inner mind. When the mind is restless, seeking validation or fearing defeat, the moves are anxious, brittle, and rushed. When the mind is centered, the game flows like water, adapting to obstacles without effort.</p>
+                 <p>Yet, the most profound secret of the chessboard does not lie in the moves. It lies in the silent intervals between them. It is in those quiet moments, when the clock tick-ticks away and the board is static, that the player enters a deep space of contemplation. In that silence, we sit face-to-face with our impulses, our pride, and our fears. The board becomes a silent sanctuary where we learn the discipline of stillness.</p>`
+        },
+        {
+          title: "The Sixty-Four Squares",
+          date: "June 15, 2026",
+          image: "asset/art_chess_2.png",
+          tagline: "An endless journey of strategy, imagination, and growth.",
+          body: `<p>The chessboard is a micro-universe of sixty-four squares, alternating light and dark. It represents the duality of life—the light and the shadow, the ups and the downs, the victories and the defeats. On this limited grid, an infinite number of paths can unfold, mirroring the complexity of the human journey.</p>
+                 <p>As we navigate the board, we learn the value of boundaries and rules. Every piece has its own unique movement, its strengths and its limitations. The knight leaps in unexpected angles, the bishop glides diagonally, the rook charges straight, and the king moves one step at a time. Wisdom lies in understanding these natures and coordinating them in harmony.</p>
+                 <p>Ultimately, the game teaches us that we cannot control the opponent's moves; we can only control our response. By accepting the state of the board as it is, without denial or frustration, we learn the art of presence. We make the best move possible in the moment, and accept the consequences with grace.</p>`
+        },
+        {
+          title: "The Mind of the Player",
+          date: "May 20, 2026",
+          image: "asset/art_chess_3.png",
+          tagline: "The greatest battles are fought within the mind.",
+          body: `<p>The greatest battle in chess is not fought on the board, but within the mind of the player. It is a psychological struggle against impatience, doubt, and overconfidence. A single moment of distraction or emotional reaction can dismantle hours of careful preparation.</p>
+                 <p>To master the game, one must first master the mind. This requires cultivating a state of detached alertness. We must see the board as it is, not as we wish it to be. We must observe our own emotional reactions—the surge of excitement when we see a winning line, the sting of panic when we make a mistake—and let them pass without taking over.</p>
+                 <p>This discipline of mental clarity is highly valuable beyond the board. It translates directly into daily life, allowing us to make decisions from a place of calm rationality rather than emotional impulse. The chessboard becomes our training ground for a centered life.</p>`
+        }
+      ],
+      "philosophy": [
+        {
+          title: "The Old Door",
+          date: "July 05, 2026",
+          image: "asset/art_philosophy_1.png",
+          tagline: "Some doors open only when we are ready to walk through them.",
+          body: `<p>An old door stands slightly ajar, leading from a dimly lit room into a bright, misty landscape. It is a classic philosophical metaphor for the search for truth. Many of us are content to stay within the familiar walls of our current beliefs, fearing what lies beyond.</p>
+                 <p>But philosophy is the act of stepping through that door. It is the willingness to question our assumptions, to challenge our prejudices, and to look at the world with fresh eyes. It is the realization that the world is far larger and more mysterious than our small minds can grasp.</p>
+                 <p>Stepping through the door requires courage, as it means letting go of the comfort of certainty. But it is only in the open, misty landscape of inquiry that we can truly grow. By embracing the unknown, we open ourselves to new perspectives, deeper understanding, and a more meaningful life.</p>`
+        },
+        {
+          title: "The Shadow and the Light",
+          date: "June 12, 2026",
+          image: "asset/art_philosophy_2.png",
+          tagline: "Wholeness begins when we embrace both darkness and light.",
+          body: `<p>Light and shadow are inseparable companions. A tree standing in a sunlit field casts a long, dark shadow on the earth. We cannot have the light without the shadow, nor the shadow without the light. They are two sides of the same coin, defining and highlighting each other.</p>
+                 <p>In philosophy, this duality helps us understand the nature of human experience. We cannot truly know joy without having felt sorrow; we cannot appreciate peace without having known conflict. Our struggles and difficulties are not mistakes; they are the shadows that give depth and meaning to our light.</p>
+                 <p>By accepting both light and shadow in our lives, we achieve a state of wholeness. We stop running from the dark times and stop clinging desperately to the bright ones. We flow with the natural rhythm of life, finding peace in the integration of all its aspects.</p>`
+        },
+        {
+          title: "The Flow of Time",
+          date: "May 18, 2026",
+          image: "asset/art_philosophy_3.png",
+          tagline: "The river of time flows endlessly; wisdom lies in flowing with it.",
+          body: `<p>A river flows steadily through a quiet autumn forest. Dry leaves float gently on its surface, carried away by the current. The river never stops; it is in a state of constant motion and change. You can never step into the same river twice, for the water is always moving.</p>
+                 <p>This flow of the river is a powerful reminder of the impermanent nature of existence. Everything in this world—our thoughts, our bodies, our relationships, our societies—is in a state of constant transition. Nothing remains static. To cling to anything, expecting it to last forever, is to invite suffering.</p>
+                 <p>Wisdom lies in flowing with the current of time, rather than fighting against it. Like the leaves on the water, we must learn the art of letting go. By accepting the transient nature of all things, we can appreciate the beauty of each moment without the fear of loss, resting in the eternal now.</p>`
+        }
+      ],
+      "personal journey": [
+        {
+          title: "The Curse of Hindsight",
+          date: "June 17, 2026",
+          image: "asset/art_journey_1.png",
+          tagline: "We often understand life only after we've already lived it.",
+          body: `<p>We often look back at our lives with regret, wishing we had made different choices. "If only I knew then what I know now," we say to ourselves. We analyze our past mistakes with the benefit of hindsight, blaming ourselves for our lack of wisdom in the moment. This is the curse of hindsight.</p>
+                 <p>But this regret is based on a fundamental misunderstanding of the personal journey. The wisdom we have now was not available to us then; it was forged <i>through</i> the very mistakes we regret. We had to make those choices, suffer those consequences, and learn those lessons in order to become the person we are today.</p>
+                 <p>True healing begins when we forgive our past selves. We must realize that we did the best we could with the level of awareness we had at the time. By accepting our past without judgment, we free ourselves to make wiser choices in the present, transforming our regrets into stepping stones of growth.</p>`
+        },
+        {
+          title: "The First Step",
+          date: "May 28, 2026",
+          image: "asset/art_journey_2.png",
+          tagline: "Every extraordinary journey begins with one uncertain step.",
+          body: `<p>A journey of a thousand miles begins with a single step. We often stare at the distant peak of our goals, feeling overwhelmed by the massive distance we must cover. We hesitate to begin, waiting for the perfect conditions or the perfect plan, staying stuck in the comfort of inaction.</p>
+                 <p>But the secret of progress is simple: just take the first step. The step does not have to be large or perfect; it only has to be in the right direction. Once we move, the path ahead begins to reveal itself. Action creates momentum, and momentum builds confidence.</p>
+                 <p>The first step is often the hardest, as it requires breaking the inertia of comfort and facing the fear of failure. But it is also the most courageous. By stepping onto the path, we signal to ourselves and the universe that we are ready for change, initiating the process of self-transformation.</p>`
+        },
+        {
+          title: "The Mountain and the Valley",
+          date: "April 26, 2026",
+          image: "asset/art_journey_3.png",
+          tagline: "Life's greatest lessons are found in both the climb and the fall.",
+          body: `<p>The personal journey is not a straight, upward climb. It is a landscape of mountains and valleys. There are moments of peak experience when we stand on the summit, feeling clear, inspired, and connected. And there are times when we walk through the dark valley, feeling lost, confused, and isolated.</p>
+                 <p>Both the mountain and the valley are essential parts of the journey. The mountain gives us vision and perspective, showing us what is possible. The valley gives us depth and resilience, forcing us to look within and find our inner strength. It is in the quiet struggles of the valley that our character is truly tested and refined.</p>
+                 <p>By understanding this cycle, we develop a deep sense of equanimity. We enjoy the peaks without clinging to them, and we navigate the valleys without despair. We trust that every valley eventually leads to a new mountain, and that the entire journey is working for our ultimate good.</p>`
+        }
+      ],
+      "purpose and society": [
+        {
+          title: "The Quiet Lion",
+          date: "July 01, 2026",
+          image: "asset/art_leadership_1.png",
+          tagline: "True purpose speaks through quiet strength, not loud ambition.",
+          body: `<p>A majestic lion walks calmly through a misty forest, accompanied by a small cub. The lion does not need to roar or show its claws to prove its authority; its strength is quiet, steady, and protective. It leads by example, guiding the next generation with patience and wisdom.</p>
+                 <p>This is the essence of conscious leadership. True leaders do not dominate or control others through fear or manipulation. They lead through service, integrity, and inspiration. Their focus is not on accumulating power for themselves, but on empowering others and contributing to the common good.</p>
+                 <p>In our modern society, we desperately need this style of leadership. We need leaders who can look beyond short-term interests and work for the long-term well-being of all. By cultivating quiet strength, empathy, and vision in our own lives, we can become guides for others, creating a more compassionate society.</p>`
+        },
+        {
+          title: "The Gathering of Minds",
+          date: "June 10, 2026",
+          image: "asset/art_leadership_2.png",
+          tagline: "Great visions become reality when thoughtful minds unite.",
+          body: `<p>A small group of people sits around a warm campfire under a starry night sky. The firelight flickers on their faces as they talk and listen to one another. There is no hierarchy, no competition, only a shared space of trust, respect, and mutual understanding.</p>
+                 <p>This campfire gathering is a model for healthy community and society. True progress is not achieved by isolated individuals, but through collaboration and open dialogue. When we create spaces where people feel safe to share their thoughts and listen to different perspectives, we tap into a collective intelligence.</p>
+                 <p>By fostering this spirit of connection and dialogue in our organizations, families, and communities, we can bridge divides and solve complex problems. We realize that we are all travelers on the same journey, and that we are stronger when we walk together.</p>`
+        },
+        {
+          title: "The Beacon of Hope",
+          date: "May 05, 2026",
+          image: "asset/art_leadership_3.png",
+          tagline: "Every lasting change begins with someone willing to carry the light.",
+          body: `<p>A small lighthouse stands firm on a rocky shore, casting a steady beam of light across a dark and stormy sea. The lighthouse does not try to stop the storm; it simply stands tall and shines its light, guiding ships safely to the harbor.</p>
+                 <p>In times of social uncertainty and change, conscious leaders must act as lighthouses. They must remain grounded in their core values, offering a steady beacon of hope and clarity amidst the confusion. They do not get swept away by the panic or division; they simply stand firm and shine their light.</p>
+                 <p>Shining our light means living our truth, acting with kindness, and working for what is right, even when it is difficult. By being a source of stability and hope for those around us, we can help navigate society through the storms of change towards a brighter future.</p>`
+        }
+      ]
     };
 
     // Poems Database
     const POEMS = {
       1: {
         title: "The Flame Inside",
+        date: "July 05, 2026",
+        image: "asset/art_poem_1.png",
         body: `I was not the fire,
                I was the wood.
                I burned in the dark,
@@ -2094,6 +2514,8 @@
       },
       2: {
         title: "Stillness of the Board",
+        date: "June 20, 2026",
+        image: "asset/art_poem_2.png",
         body: `Sixty-four houses,
                A kingdom of dust.
                King and pawn alike,
@@ -2111,6 +2533,8 @@
       },
       3: {
         title: "Winds of Narmada",
+        date: "May 12, 2026",
+        image: "asset/art_poem_3.png",
         body: `Flowing water, silent stone,
                A calling heard in the dark alone.
                The river speaks in ancient tongue,
@@ -2121,18 +2545,169 @@
                
                The wind that ripples across the deep,
                Is the only promise you need to keep.`
+      },
+      4: {
+        title: "Where the Shadow Leads",
+        date: "July 12, 2026",
+        image: "asset/shadow_leads_full.png",
+        body: `This path is not to be the blazing sun,
+               but to know you're the moon—both
+               shadow and one.
+               
+               Not to escape the night, but to
+               bloom in its grace,
+               growing full by embracing what you
+               cannot face.
+               
+               Between what we show and what we hide,
+               truth drowns in the silence between both sides.
+               
+               Between the words we speak and the ones we swallow,
+               the soul is heard the least, yet feels the most hollow.
+               
+               We wear light like armor, but the cracks still show,
+               where our hidden wounds continue to glow.
+               
+               We long to be seen, yet fear the mirror,
+               divided inside between truth and terror.
+               
+               But healing begins when we choose to stay,
+               not run from the night, nor chase the day.
+               
+               And in the silence, when all masks fall,
+               you’ll find His shadow was guiding it all.`
+      },
+      5: {
+        title: "A Journey to the Divine",
+        date: "July 12, 2026",
+        image: "asset/divine_journey_full.png",
+        body: `I wandered far through fire and rain,
+               In search of God, through joy and pain.
+               
+               I prayed, I wept, I bowed my head,
+               But He stayed hidden, and silence spread.
+               
+               I vanished in stillness to hear the Divine,
+               No voice to my name, yet all stars aligned.
+               
+               I carried the fire, and was burned by the flame,
+               I lost who I was, yet still bore my name.
+               
+               When I fell to the ground, I stood at the peak,
+               No need to shout, yet still I speak.
+               
+               To know the Divine, I let go of the way,
+               No step to take, yet I didn’t stray.
+               
+               Then came the dream, Shiva’s soft call,
+               A whisper of truth that silenced it all.
+               
+               The less I became, the more I was seen,
+               I was lost in the dark, yet bathed in the beam.
+               
+               When I stopped seeking, I finally arrived,
+               I died in the truth, yet somehow survived.
+               
+               The moment I knelt, I began to rise,
+               No wings on my back, yet I touched the skies.
+               
+               In giving my all, I found myself whole,
+               No hand to hold, yet complete was my soul.
+               
+               I shattered to dust, yet there I stood,
+               Less than a breath, and greater than good.
+               
+               I saw His sign in the river’s grace,
+               A Shivling resting in sacred space.
+               
+               Not by chance, but by fate’s clear design,
+               I woke to the flame that burns the Divine.
+               
+               And now I rise, with the cosmos inside,
+               Awakening the world, with Shiva as my guide.`
       }
     };
 
-    // Quotes Database
-    const QUOTES = {
-      1: "Silence is not the absence of sound, but the presence of attention.",
-      2: "The greatest move in chess is the one we make within our own minds.",
-      3: "We do not find peace; we remember it.",
-      4: "Every seeker is a river, running towards an ocean they cannot see.",
-      5: "The flame does not ask where the darkness came from. It simply shines.",
-      6: "In the space between two breaths, the entire universe is born and dies."
-    };
+    // Quotes Database (Seeded with 50 Quotes)
+    const DEFAULT_QUOTES = [
+      { text: "You are not walking towards the divine—you are the divine remembering how to walk.", author: "Ganesh Tajane" },
+      { text: "Faith is tested before the Divine arrives.", author: "Ganesh Tajane" },
+      { text: "If you are closing the door to the devil, you are also closing it to God.", author: "Ganesh Tajane" },
+      { text: "The one who carries nothing often carries the most.", author: "Ganesh Tajane" },
+      { text: "I asked God, 'Why are you so slow with giving?' He replied, 'Why are you so impatient with your asking?'", author: "Ganesh Tajane" },
+      { text: "You are not a part of the light, you are the reason light exists.", author: "Ganesh Tajane" },
+      { text: "The road to hell feels like heaven; the road to heaven feels like hell.", author: "Ganesh Tajane" },
+      { text: "If you want to find God, look at yourself; if you want to find yourself, look at God.", author: "Ganesh Tajane" },
+      { text: "There is no way to find God unless you become the way.", author: "Ganesh Tajane" },
+      { text: "The divine is not above me; it is rising within me.", author: "Ganesh Tajane" },
+      { text: "Shiva: the stillness in my storm, the storm in my stillness.", author: "Ganesh Tajane" },
+      { text: "When you're attached to too many things, people, and situations, you lose your dynamism.", author: "Ganesh Tajane" },
+      { text: "If you start avoiding pain, suffering becomes inevitable; if you start facing it, suffering becomes optional.", author: "Ganesh Tajane" },
+      { text: "You are not seeking the truth—you are what the truth seeks.", author: "Ganesh Tajane" },
+      { text: "You are not just made of stars—you are the sky that holds them all.", author: "Ganesh Tajane" },
+      { text: "Do not make the pain of your voice greater than the voice of your pain.", author: "Ganesh Tajane" },
+      { text: "I asked Shiva, 'Why is this weight so heavy?' He said, 'It's not the weight—it's how you carry it.'", author: "Ganesh Tajane" },
+      { text: "He is not bound by beginnings or endings. He is what remains when both collapse.", author: "Ganesh Tajane" },
+      { text: "Past and future are shadows. He is the light that cast them.", author: "Ganesh Tajane" },
+      { text: "Alone, yet not lonely. You have found him. Lonely, yet not alone. He has found you.", author: "Ganesh Tajane" },
+      { text: "He is absent in presence and present in absence. He meets you where the world disappears and you appear.", author: "Ganesh Tajane" },
+      { text: "Alone I face the storm. With him I become the storm.", author: "Ganesh Tajane" },
+      { text: "Place your life in his hands and you will see his hand in your life.", author: "Ganesh Tajane" },
+      { text: "Those who are meant to move mountains... are first buried beneath them.", author: "Ganesh Tajane" },
+      { text: "The moment you trust Shiva with all, He becomes all you can truly trust.", author: "Ganesh Tajane" },
+      { text: "Shiva isn't the destination. Shiva is what awakens when the traveler disappears.", author: "Ganesh Tajane" },
+      { text: "You are asking questions to his silence, but he is the answer to your silence.", author: "Ganesh Tajane" },
+      { text: "The cosmos is His breath—creation rises as He inhales, and dissolves as He exhales.", author: "Ganesh Tajane" },
+      { text: "He gave you night so you could see the sun within.", author: "Ganesh Tajane" },
+      { text: "The more you become yourself, the less of 'you' remains.", author: "Ganesh Tajane" },
+      { text: "When you speak, silence listens—when silence speaks, you listen.", author: "Ganesh Tajane" },
+      { text: "Through fire, I forge. Through death, I rise. Through pain, I become. Nothing shall stand between me and my becoming.", author: "Ganesh Tajane" },
+      { text: "When you walk with Shiva, you don't reach Him—you vanish into Him.", author: "Ganesh Tajane" },
+      { text: "The fire you run from is the same flame meant to set you free.", author: "Ganesh Tajane" },
+      { text: "If your own life is mortgaged, how can you offer it to someone else?", author: "Ganesh Tajane" },
+      { text: "We do not love ourselves; we love the idea of ourselves.", author: "Ganesh Tajane" },
+      { text: "People who are about to find God will meet themselves, and people who are about to find themselves will meet God.", author: "Ganesh Tajane" },
+      { text: "Life is a play of prana. If you know how to handle it, life becomes play and then you can play whichever way you want.", author: "Ganesh Tajane" },
+      { text: "The more you think about yourself, the less space God has to think through you.", author: "Ganesh Tajane" },
+      { text: "God doesn't give you something because it's heavy, but because you can carry it well. And God doesn't give you something because you're carrying it well, but because it's heavy.", author: "Ganesh Tajane" },
+      { text: "Pain is carrying everything you want to get rid of, and it always has something to offer you.", author: "Ganesh Tajane" },
+      { text: "Chasing quick pleasure is the slowest way to happiness.", author: "Ganesh Tajane" },
+      { text: "The divine isn't above me. It's rising within me.", author: "Ganesh Tajane" },
+      { text: "The hand that holds on remains empty; the hand that gives becomes full.", author: "Ganesh Tajane" },
+      { text: "In searching for God, we forget to become like God.", author: "Ganesh Tajane" },
+      { text: "Because there is no clarity in our minds, there is no clarity in our lives.", author: "Ganesh Tajane" },
+      { text: "We should live for today and accept that we will die tomorrow. However, people often live as if they are dying today and hope to live tomorrow.", author: "Ganesh Tajane" }
+    ];
+
+    let quotes = [];
+
+    function loadQuotes() {
+      quotes = [...DEFAULT_QUOTES];
+      renderQuotes();
+    }
+
+    function renderQuotes() {
+      const grid = document.getElementById('quotesGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      
+      quotes.forEach((q) => {
+        const card = document.createElement('div');
+        card.className = 'quote-card';
+        
+        const textPreview = document.createElement('p');
+        textPreview.className = 'quote-text-preview';
+        textPreview.innerText = `"${q.text}"`;
+        
+        const authorPreview = document.createElement('div');
+        authorPreview.className = 'quote-author-preview';
+        authorPreview.innerText = `— ${q.author || 'Ganesh Tajane'}`;
+        
+        card.appendChild(textPreview);
+        card.appendChild(authorPreview);
+        grid.appendChild(card);
+      });
+    }
 
     let activePoemSize = 1.35; // default em
     let currentPoemThemeIndex = 0;
@@ -2187,7 +2762,21 @@
       if (['books', 'articles', 'poems', 'quotes'].includes(hash.toLowerCase())) {
         switchToTabbedView(hash.toLowerCase());
       }
+
+      // Initialize and render quotes database
+      loadQuotes();
+
+      // Update article counts dynamically
+      updateArticleCounts();
     });
+
+    function updateArticleCounts() {
+      document.querySelectorAll('.article-count-badge').forEach(badge => {
+        const cat = badge.getAttribute('data-category');
+        const count = CATEGORY_ARTICLES[cat] ? CATEGORY_ARTICLES[cat].length : 0;
+        badge.innerText = count === 1 ? '1 Article' : `${count} Articles`;
+      });
+    }
 
     // ── NAVIGATION CONTROLLERS ──
     
@@ -2318,26 +2907,157 @@
       document.getElementById('preorderEmail').value = '';
     }
 
-    // ── ARTICLES TAB ACTIONS ──
+    // ── ARTICLES & POEMS TAB ACTIONS ──
+    let currentCategoryKey = null;
+    let currentReaderType = null; // 'article' or 'poem'
 
     function openArticle(id) {
-      const article = ARTICLES[id];
-      if (!article) return;
+      currentReaderType = 'article';
+      
+      const readerHeader = document.querySelector('.reader-header');
+      if (readerHeader) readerHeader.classList.remove('on-hero');
 
-      document.getElementById('readerTitle').innerText = article.title;
-      document.getElementById('readerMeta').innerHTML = article.meta;
-      document.getElementById('readerBody').innerHTML = article.body;
+      const categoryKeys = {
+        1: "spirituality",
+        2: "chess",
+        3: "philosophy",
+        4: "personal journey",
+        5: "purpose and society"
+      };
+      const key = categoryKeys[id];
+      currentCategoryKey = key;
+      const category = ARTICLES[id];
+      if (!category) return;
 
+      const articlesList = CATEGORY_ARTICLES[key];
+      const articlesCount = articlesList ? articlesList.length : 0;
+
+      // Set category overview details
+      document.getElementById('categoryTitle').innerText = category.title;
+      document.getElementById('categoryMeta').innerHTML = `${category.meta} &bull; ${articlesCount} ${articlesCount === 1 ? 'Article' : 'Articles'}`;
+      document.getElementById('categoryDesc').innerHTML = category.body;
+
+      // Render the 3 articles grid
+      const grid = document.getElementById('modalArticlesGrid');
+      grid.innerHTML = '';
+      
+      if (articlesList) {
+        articlesList.forEach((art, index) => {
+          const card = document.createElement('div');
+          card.className = 'modal-article-card';
+          card.onclick = () => openArticleDetail(key, index);
+          
+          card.innerHTML = `
+            <div class="modal-article-img-wrap">
+              <img src="${art.image}" alt="${art.title}" class="modal-article-img" loading="lazy">
+            </div>
+            <div class="modal-article-info">
+              <span class="modal-article-date">${art.date}</span>
+              <h4 class="modal-article-title">${art.title}</h4>
+              ${art.tagline ? `<p class="modal-article-tagline">${art.tagline}</p>` : ''}
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      // Reset scroll of modal and view toggles
       const overlay = document.getElementById('articleReader');
+      overlay.scrollTop = 0;
+      
+      // Reset layout opacity for fresh animation
+      document.getElementById('categoryOverviewWrap').style.display = 'block';
+      document.getElementById('categoryOverview').style.display = 'block';
+      document.getElementById('categoryOverview').style.opacity = 1;
+      document.getElementById('articleDetail').style.display = 'none';
+      document.getElementById('articleDetail').style.opacity = 0;
+      
       overlay.style.display = 'block';
-      document.body.style.overflow = 'hidden'; // Stop background scrolling
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('reader-open');
+      document.body.setAttribute('data-reader-category', key);
 
       gsap.to('#articleReader', { opacity: 1, duration: 0.5 });
-      gsap.fromTo('.reader-content-wrap', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.1 });
+      gsap.fromTo('#categoryOverviewWrap', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.1 });
 
-      // Track reading progress
+      // Track progress
+      overlay.removeEventListener('scroll', updateReadingProgress);
       overlay.addEventListener('scroll', updateReadingProgress);
       updateReadingProgress();
+    }
+
+    function openArticleDetail(categoryKey, articleIndex) {
+      currentReaderType = 'article';
+      const art = CATEGORY_ARTICLES[categoryKey][articleIndex];
+      if (!art) return;
+
+      document.getElementById('detailImg').src = art.image;
+      document.getElementById('detailImg').alt = art.title;
+      document.getElementById('detailTitle').innerText = art.title;
+      document.getElementById('detailMeta').innerHTML = `Published on ${art.date} • 5 min read`;
+      
+      const detailBody = document.getElementById('detailBody');
+      detailBody.innerHTML = art.body;
+      detailBody.classList.remove('is-poem');
+      document.getElementById('detailBackBtnText').innerText = "Back to Category";
+
+      // Animate out category overview and animate in details
+      gsap.to('#categoryOverview', { opacity: 0, duration: 0.3, onComplete: () => {
+        document.getElementById('categoryOverviewWrap').style.display = 'none';
+        document.getElementById('categoryOverview').style.display = 'none';
+        
+        const detailDiv = document.getElementById('articleDetail');
+        detailDiv.style.display = 'block';
+
+        // Add hero header style
+        const readerHeader = document.querySelector('.reader-header');
+        if (readerHeader) readerHeader.classList.add('on-hero');
+
+        // Dynamic scroll fade/slide-up animation for paragraphs
+        const paragraphs = document.querySelectorAll('#detailBody p');
+        paragraphs.forEach((p) => {
+          p.style.opacity = 0;
+          p.style.transform = 'translateY(25px)';
+          p.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                p.style.opacity = 1;
+                p.style.transform = 'translateY(0)';
+                observer.unobserve(p);
+              }
+            });
+          }, { threshold: 0.05 });
+          observer.observe(p);
+        });
+
+        gsap.fromTo('#articleDetail', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+        gsap.fromTo('.detail-hero-img', { scale: 1.12, filter: 'blur(4px)' }, { scale: 1.0, filter: 'blur(0px)', duration: 1.0, ease: 'power2.out' });
+        
+        // Reset scroll position to top of reader
+        document.getElementById('articleReader').scrollTop = 0;
+        updateReadingProgress();
+      }});
+    }
+
+    function backToCategory() {
+      // Remove hero header style
+      const readerHeader = document.querySelector('.reader-header');
+      if (readerHeader) readerHeader.classList.remove('on-hero');
+
+      gsap.to('#articleDetail', { opacity: 0, duration: 0.3, onComplete: () => {
+        document.getElementById('articleDetail').style.display = 'none';
+        
+        document.getElementById('categoryOverviewWrap').style.display = 'block';
+        const overviewDiv = document.getElementById('categoryOverview');
+        overviewDiv.style.display = 'block';
+        gsap.fromTo('#categoryOverview', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 });
+        
+        // Reset scroll position to top of reader
+        document.getElementById('articleReader').scrollTop = 0;
+        updateReadingProgress();
+      }});
     }
 
     function updateReadingProgress() {
@@ -2346,11 +3066,25 @@
       const height = overlay.scrollHeight - overlay.clientHeight;
       const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
       document.getElementById('readerProgressBar').style.width = scrolled + "%";
+
+      const header = document.querySelector('.reader-header');
+      if (header) {
+        if (winScroll > 15) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
     }
 
     function closeArticle() {
       const overlay = document.getElementById('articleReader');
       document.body.style.overflow = ''; // Restore scrolling
+      document.body.classList.remove('reader-open');
+      document.body.removeAttribute('data-reader-category');
+      
+      const readerHeader = document.querySelector('.reader-header');
+      if (readerHeader) readerHeader.classList.remove('on-hero');
 
       gsap.to('#articleReader', { 
         opacity: 0, 
@@ -2364,89 +3098,116 @@
     // ── POEMS TAB ACTIONS ──
 
     function openPoem(id) {
+      currentReaderType = 'poem';
       const poem = POEMS[id];
       if (!poem) return;
 
-      document.getElementById('poemReaderTitle').innerText = poem.title;
-      document.getElementById('poemReaderBody').innerText = poem.body;
-
-      // Reset sizing and themes
-      activePoemSize = 1.35;
-      document.getElementById('poemReaderBody').style.setProperty('--poem-font-size', activePoemSize + 'rem');
-      currentPoemThemeIndex = 0;
+      document.getElementById('detailImg').src = poem.image;
+      document.getElementById('detailImg').alt = poem.title;
+      document.getElementById('detailTitle').innerText = poem.title;
+      document.getElementById('detailMeta').innerHTML = `Published on ${poem.date} • 3 min read`;
       
-      const overlay = document.getElementById('poemReader');
-      overlay.className = 'poem-overlay'; // remove other theme classes
+      const detailBody = document.getElementById('detailBody');
+      detailBody.classList.add('is-poem');
+      document.getElementById('detailBackBtnText').innerText = "Back to Poems";
+
+      if (poem.panels) {
+        // Render panels
+        const formattedBody = poem.panels.map((pUrl, index) => `
+          <div class="poem-panel-wrap">
+            <img src="${pUrl}" alt="Stanza ${index + 1}" class="poem-panel-img" loading="lazy">
+          </div>
+        `).join('') + '<div class="poem-author-signature">— Ganesh Tajane</div>';
+        detailBody.innerHTML = formattedBody;
+      } else {
+        // Split the poem body by double line-breaks to get stanzas
+        const stanzas = poem.body.split('\n\n');
+        const formattedBody = stanzas.map((stanza, stanzaIndex) => {
+          const linesHtml = stanza.trim().split('\n')
+            .map(line => `<span class="poem-line">${line.trim()}</span>`)
+            .join('');
+          
+          // Special case: Poem 2 ("Stillness of the Board") - Stanza 2 (index 1) gets an inline image on the right
+          if (id === 2 && stanzaIndex === 1) {
+            return `
+              <div class="poem-stanza-with-image">
+                <div class="stanza-text">
+                  <p>${linesHtml}</p>
+                </div>
+                <div class="stanza-image-wrap">
+                  <img src="asset/chess_poem_illustration.png" alt="Poem Illustration" class="stanza-image" loading="lazy">
+                </div>
+              </div>
+            `;
+          }
+          
+          return `<p>${linesHtml}</p>`;
+        }).join('') + '<div class="poem-author-signature">— Ganesh Tajane</div>';
+        detailBody.innerHTML = formattedBody;
+      }
+
+      // Set reader view setup (similar to openArticleDetail but without category overview toggle)
+      document.getElementById('categoryOverviewWrap').style.display = 'none';
+      document.getElementById('categoryOverview').style.display = 'none';
+      
+      const detailDiv = document.getElementById('articleDetail');
+      detailDiv.style.display = 'block';
+      detailDiv.style.opacity = 1;
+
+      // Add hero header style
+      const readerHeader = document.querySelector('.reader-header');
+      if (readerHeader) readerHeader.classList.add('on-hero');
+
+      // Scroll observer animations for poem stanzas, panels, or block layouts
+      const animElements = document.querySelectorAll('#detailBody p, #detailBody .poem-panel-wrap, #detailBody .poem-stanza-with-image, #detailBody .poem-author-signature');
+      animElements.forEach((el) => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              el.style.opacity = 1;
+              el.style.transform = 'translateY(0)';
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.05 });
+        observer.observe(el);
+      });
+
+      const overlay = document.getElementById('articleReader');
+      overlay.scrollTop = 0;
       overlay.style.display = 'block';
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('reader-open');
+      document.body.setAttribute('data-reader-category', 'poem');
 
-      gsap.to('#poemReader', { opacity: 1, duration: 0.4 });
-      gsap.fromTo('.poem-content-wrap', { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5 });
+      gsap.to('#articleReader', { opacity: 1, duration: 0.5 });
+      gsap.fromTo('#articleDetail', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+      gsap.fromTo('.detail-hero-img', { scale: 1.12, filter: 'blur(4px)' }, { scale: 1.0, filter: 'blur(0px)', duration: 1.0, ease: 'power2.out' });
+
+      // Track progress
+      overlay.removeEventListener('scroll', updateReadingProgress);
+      overlay.addEventListener('scroll', updateReadingProgress);
+      updateReadingProgress();
     }
 
-    function adjustPoemFont(direction) {
-      activePoemSize += (direction * 0.1);
-      if (activePoemSize < 1.0) activePoemSize = 1.0;
-      if (activePoemSize > 2.0) activePoemSize = 2.0;
-      document.getElementById('poemReaderBody').style.setProperty('--poem-font-size', activePoemSize + 'rem');
-    }
-
-    function cyclePoemTheme() {
-      currentPoemThemeIndex = (currentPoemThemeIndex + 1) % poemThemes.length;
-      const themeClass = poemThemes[currentPoemThemeIndex];
-      const overlay = document.getElementById('poemReader');
-      
-      overlay.className = 'poem-overlay'; // Reset
-      if (themeClass) {
-        overlay.classList.add(themeClass);
+    function handleDetailBack() {
+      if (currentReaderType === 'poem') {
+        closeArticle();
+      } else {
+        backToCategory();
       }
     }
 
-    function closePoem() {
-      const overlay = document.getElementById('poemReader');
-      document.body.style.overflow = '';
-
-      gsap.to('#poemReader', { 
-        opacity: 0, 
-        duration: 0.3, 
-        onComplete: () => {
-          overlay.style.display = 'none';
-        } 
-      });
-    }
-
-    // ── QUOTES TAB ACTIONS (CARD SHARING ENGINE) ──
-
-    let activeBackgroundPreset = 'gold';
-
-    function openQuoteModal(id) {
-      const quote = QUOTES[id];
-      if(!quote) return;
-
-      document.getElementById('quoteModalText').innerText = `"${quote}"`;
-      
-      const modal = document.getElementById('quoteModal');
-      modal.style.display = 'flex';
-
-      // Reset to default Gold Preset
-      setQuoteBackground('gold', document.querySelector('.preset-selector-gold'));
-
-      gsap.fromTo('.quote-modal-container', { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.2)' });
-      gsap.fromTo('#quoteModal', { opacity: 0 }, { opacity: 1, duration: 0.3 });
-    }
-
-    function closeQuoteModal(e) {
-      if (e) e.stopPropagation();
-      const modal = document.getElementById('quoteModal');
-      
-      gsap.to('.quote-modal-container', { scale: 0.95, opacity: 0, duration: 0.3 });
-      gsap.to('#quoteModal', { 
-        opacity: 0, 
-        duration: 0.3, 
-        onComplete: () => {
-          modal.style.display = 'none';
-        } 
-      });
+    function handleCloseReader() {
+      if (currentReaderType === 'article' && document.getElementById('articleDetail').style.display === 'block') {
+        backToCategory();
+      } else {
+        closeArticle();
+      }
     }
 
     // Interactive card tilt effect for deskop
@@ -2467,81 +3228,6 @@
           card.style.transform = '';
         });
       });
-    }
-
-    function setQuoteBackground(preset, element) {
-      activeBackgroundPreset = preset;
-      
-      // Update selector UI
-      document.querySelectorAll('.preset-selector').forEach(sel => sel.classList.remove('active'));
-      if(element) element.classList.add('active');
-
-      // Update export card styling
-      const card = document.getElementById('quoteExportCard');
-      card.className = 'quote-export-card'; // clear previous
-      card.classList.add(`bg-preset-${preset}`);
-    }
-
-    function downloadQuoteCard() {
-      const card = document.getElementById('quoteExportCard');
-      
-      // Add loading state or feedback
-      const downloadBtn = document.querySelector('.share-btn-download');
-      const originalText = downloadBtn.innerHTML;
-      downloadBtn.innerText = "Generating PNG...";
-      downloadBtn.disabled = true;
-
-      // Fix size rendering issues on mobile by forcing layout dimensions in html2canvas
-      html2canvas(card, {
-        scale: 2, // Double quality
-        backgroundColor: null,
-        logging: false,
-        useCORS: true
-      }).then(canvas => {
-        const image = canvas.toDataURL("image/png");
-        
-        // Trigger file download
-        const link = document.createElement('a');
-        link.download = `ganesh_tajane_quote_${activeBackgroundPreset}.png`;
-        link.href = image;
-        link.click();
-        
-        // Reset button
-        downloadBtn.innerHTML = originalText;
-        downloadBtn.disabled = false;
-      }).catch(err => {
-        console.error("Canvas export failed: ", err);
-        downloadBtn.innerHTML = originalText;
-        downloadBtn.disabled = false;
-        alert("Could not generate card image. You can copy the quote text instead!");
-      });
-    }
-
-    function copyQuoteText() {
-      const rawText = document.getElementById('quoteModalText').innerText;
-      navigator.clipboard.writeText(rawText + " — Ganesh Tajane")
-        .then(() => {
-          alert("Quote copied to clipboard!");
-        })
-        .catch(err => {
-          console.error("Copy failed: ", err);
-        });
-    }
-
-    function shareQuote(platform) {
-      const rawText = encodeURIComponent(document.getElementById('quoteModalText').innerText + " — Ganesh Tajane");
-      const url = encodeURIComponent(window.location.origin + window.location.pathname);
-      let shareUrl = "";
-
-      if(platform === 'whatsapp') {
-        shareUrl = `https://wa.me/?text=${rawText}%20${url}`;
-      } else if (platform === 'twitter') {
-        shareUrl = `https://twitter.com/intent/tweet?text=${rawText}&url=${url}`;
-      }
-
-      if(shareUrl) {
-        window.open(shareUrl, '_blank');
-      }
     }
   </script>
   
@@ -2576,6 +3262,7 @@
       }, { passive: false });
     })();
   </script>
-
+  <script src="asset/bg-music.js"></script>
+  <script src="asset/effects.js?v=19"></script>
 </body>
 </html>

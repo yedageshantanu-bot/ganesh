@@ -407,7 +407,7 @@
       line-height: 1.95;
       color: #2D241B;
       margin-bottom: 1.8em;
-      text-align: justify;
+      text-align: left;
     }
 
     .reading-body p:last-child {
@@ -833,6 +833,16 @@
         opacity: 1;
       }
     }
+    
+    .reader-progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0; height: 5px;
+      background: linear-gradient(90deg, #c5a880, #5c4a32);
+      z-index: 1010;
+      box-shadow: 0 1px 8px rgba(138, 115, 85, 0.4);
+      transition: width 0.1s ease-out;
+    }
 
     /* ── Mobile Layout Adaptations ── */
     @media (max-width: 992px) {
@@ -960,11 +970,14 @@
 
 <body>
 
+  <!-- Top Scroll Progress Bar -->
+  <div class="reader-progress-bar" id="readerProgressBar"></div>
+
   <!-- Header -->
   <header class="header">
-    <a href="index.html?gallery=1" class="logo">Ganesh Tajane</a>
+    <a href="explore.html" class="logo">Ganesh Tajane</a>
     <div style="display:flex;gap:12px;align-items:center;">
-      <a href="index.html?gallery=1" class="back-btn" style="text-decoration:none;">
+      <a href="explore.html" class="back-btn" style="text-decoration:none;">
         <span>Home</span>
       </a>
       <a href="menu.html" class="back-btn">
@@ -1039,118 +1052,13 @@
               <div class="full-screen-image-container">
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
-              <p class="has-dropcap">At first, it arrived quietly.</p>
+              <p class="has-dropcap">At first, the transition arrived quietly—not as a sudden vision, a dramatic revelation, or a moment that announced itself as important, but as a subtle, persistent restlessness. On the surface, my life continued exactly as it always had. I taught chess, pursued my personal goals, spent time with family and friends, and tried to move forward in the way the world expects. Yet beneath these ordinary daily routines, a profound question had taken root inside my consciousness: <em>What am I really here for?</em> This question refused to leave, growing stronger with each passing day. Every attempt to distract myself or return to normalcy only seemed to feed the flame, as if an invisible force was slowly, inevitably pulling me toward an unseen destination I could not yet comprehend.</p>
 
-              <p>Not as a vision. Not as a revelation. Not as a moment that announced itself as important.</p>
+              <p>Then, the dreams began. Initially scattered and fleeting, they gradually became more frequent, vivid, and intense until they felt far more real than waking reality itself. I would wake up in the dead of night with my heart racing, carrying deep emotions and energetic currents that lingered for hours. Some nights, I found myself dancing—not as Ganesh, but as something ancient and elemental. I would experience myself moving with an overwhelming, inexplicable force, immersed in a fierce and sacred dance that felt like Tandava itself. Other nights, I would encounter silent yogis and ancient beings whose faces I could not fully recall after waking, yet whose presence felt deeply familiar. Without a word being spoken, I knew that the mysteries they were showing me were of vital importance; I was not merely watching these dreams, I was living them.</p>
 
-              <p>It came as a restlessness.</p>
+              <p>As the months passed, the boundary between my inner world and outer reality grew thin. My thoughts carried unusual weight, and my awareness became continuously drawn inward, dominated by the constant rhythm of my breath. Whether during the busyness of the day, the silence of the night, or in moments of deep contemplation, my breath seemed tethered to a deeper intelligence. The closer I moved toward this invisible turning point, the more the inner pressure and the feeling of being called intensified. There were times when I wondered if I was losing control, not out of fear, but because the scale of these experiences exceeded anything I had ever known. My life was no longer moving according to my own plans; a powerful, patient, and ancient force had entered the story, determined to guide me onward.</p>
 
-              <p>On the surface, life continued as it always had. I taught chess, pursued my goals, spent time with
-                family and friends, and tried to move forward like everyone else. But beneath the routines of daily
-                life, something had begun to change.</p>
-
-              <p>A question had taken root inside me.</p>
-
-              <p>What am I really here for?</p>
-
-              <p>The question refused to leave. Every day it grew stronger. Every attempt to distract myself only seemed
-                to feed it. It was as if an invisible force was slowly pulling me toward something I could not see and
-                could not understand.</p>
-
-              <p>Then the dreams began.</p>
-
-              <p>At first they were scattered and difficult to remember. But as the months passed, they became more
-                frequent, more vivid, and more intense.</p>
-
-              <p>These were not ordinary dreams.</p>
-
-              <p>They felt more real than reality itself.</p>
-
-              <p>I would wake up with my heart racing, carrying emotions that stayed with me long after the dream had
-                ended. Sometimes it felt as though I had not been dreaming at all, but had stepped into another world
-                and returned before dawn.</p>
-
-              <p>Some nights I found myself dancing.</p>
-
-              <p>Not as Ganesh.</p>
-
-              <p>Something else.</p>
-
-              <p>Something ancient.</p>
-
-              <p>I would experience myself moving with a force I could not explain, immersed in a fierce and
-                overwhelming dance that felt like Tandava itself. The intensity of those moments was difficult to put
-                into words. Even after waking, the energy remained in my body for hours.</p>
-
-              <p>Other nights, I would encounter figures I had never seen before.</p>
-
-              <p>Yogis.</p>
-
-              <p>Silent beings.</p>
-
-              <p>Men whose faces I could not fully remember after waking, yet whose presence felt deeply familiar.</p>
-
-              <p>Sometimes they spoke.</p>
-
-              <p>Sometimes they simply looked at me.</p>
-
-              <p>And somehow, without fully understanding why, I knew that what they were showing me was important.</p>
-
-              <p>The strange part was not the dreams themselves.</p>
-
-              <p>The strange part was how real they felt.</p>
-
-              <p>I was not watching them.</p>
-
-              <p>I was living them.</p>
-
-              <p>As time passed, the experiences became stronger.</p>
-
-              <p>The boundary between my inner world and outer world seemed to grow thinner. Thoughts that once came and
-                went now carried unusual weight. My awareness became increasingly drawn inward.</p>
-
-              <p>And then there was the breath.</p>
-
-              <p>The breath began to dominate everything.</p>
-
-              <p>I noticed it constantly.</p>
-
-              <p>During the day.</p>
-
-              <p>Late at night.</p>
-
-              <p>In moments of silence.</p>
-
-              <p>In moments of activity. It was as though my attention was being pulled toward it against my will. The
-                rhythm of my breathing seemed connected to something deeper that I could not yet understand.</p>
-
-              <p>The closer I moved toward a moment I could not see, the stronger everything became.</p>
-
-              <p>The dreams intensified.</p>
-
-              <p>The inner pressure intensified.</p>
-
-              <p>The feeling of being called intensified.</p>
-
-              <p>There were times when I wondered if I was losing control. Not because I was afraid, but because the
-                experiences felt larger than anything I had encountered before. Life was no longer moving according to
-                my plans. Something else had entered the story.</p>
-
-              <p>Something powerful.</p>
-
-              <p>Something patient.</p>
-
-              <p>Something that seemed determined to guide me whether I was ready or not.</p>
-
-              <p>I did not know where it was leading.</p>
-
-              <p>I did not know what awaited me.</p>
-
-              <p>I only knew one thing.</p>
-
-              <p>The fire had been lit.</p>
-
-              <p>And once it was lit, it would not let me sleep.</p>
+              <p>I did not know where this path was leading, nor what awaited me in the shadows. I only knew that a sacred fire had been lit within my soul—and once lit, it would not let me sleep.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">I thought I was</div>
@@ -1232,51 +1140,11 @@
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">Some moments divide a life into two parts: before and after.</p>
+              <p class="has-dropcap">Certain moments divide a life into two distinct parts: the before and the after. For me, that definitive boundary line was crossed on an ordinary night, initiated by a dream unlike anything I had ever experienced. At the time, I was living a relatively standard life, where chess occupied most of my waking thoughts and my focus was set on competition, self-improvement, and building a secure future. While spirituality existed quietly in the background, it was far from the center of my universe. Yet, when I opened my eyes the morning after that dream, the vision did not fade. Days turned into weeks, and instead of dissolving like normal dreams, its presence grew stronger and more vivid. It occupied my mind during the hours of daylight and hovered over me as I fell asleep, leaving me with a profound feeling that I could not dismiss.</p>
 
-              <p>For me, that moment arrived quietly.</p>
+              <p>Compelled to understand the dream's meaning, I began to notice a strong, magnetic inner pull. Glimpses of intuition and subtle synchronicities emerged in my daily life, pointing me toward a specific path. Though I did not fully understand what was happening, I surrendered to this guidance and allowed myself to follow it. Within just a few days, this search led me to a discovery I had never anticipated—something that would quietly but permanently alter the trajectory of my existence. At that early stage, I could not have grasped the true magnitude of what I had found. I only knew that the questions had begun, and they refused to be ignored.</p>
 
-              <p>At the time, I was living what appeared to be an ordinary life. Chess occupied most of my thoughts. I
-                was focused on improvement, competition, and building a future. Spirituality was present in the
-                background, but it was not yet the center of my world.</p>
-
-              <p>Then came a dream.</p>
-
-              <p>It was unlike anything I had experienced before.</p>
-
-              <p>When I opened my eyes the next morning, the dream remained with me. Days passed, yet it refused to
-                leave. Most dreams fade with time; this one only grew stronger. I found myself thinking about it
-                constantly. It occupied my mind during the day and followed me into the night.</p>
-
-              <p>There was something about it that I could not dismiss.</p>
-
-              <p>I felt compelled to understand it.</p>
-
-              <p>In the days that followed, I began experiencing an unusual inner pull—subtle impressions, glimpses, and
-                intuitions that seemed to point me in a particular direction. I did not fully understand what was
-                happening, but I felt drawn to follow them.</p>
-
-              <p>Within a few days, that search led me to something I had never expected to find.</p>
-
-              <p>Something that would quietly alter the course of my life.</p>
-
-              <p>At the time, I could not have imagined the significance of that discovery. I only knew that the
-                questions had begun, and they were not going away.</p>
-
-              <p>Why had this happened?</p>
-
-              <p>Why now?</p>
-
-              <p>And why did it feel as though an unseen hand had gently redirected my path?</p>
-
-              <p>The answers did not arrive immediately. In fact, they would take years to unfold.</p>
-
-              <p>Looking back, I can see that the dream was not the destination.</p>
-
-              <p>It was the first knock on a door that had been waiting for me all along.</p>
-
-              <p>The full story of that dream, the search that followed, and everything it set into motion is told in
-                Before I Became Fire.</p>
+              <p>I wondered why this had occurred, why it had happened at this specific moment, and how an unseen hand had so gently yet firmly redirected my path. The answers did not arrive immediately; in truth, they would take years of reflection to fully reveal themselves. Looking back, I can see that the dream was never the destination itself, but rather the first knock on a door that had been waiting for me all along. The full story of that dream, the search that followed, and the spiritual awakening it set into motion is told in detail within the pages of <em>Before I Became Fire</em>.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">I thought I had</div>
@@ -1350,59 +1218,11 @@
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">Finding the Shivling did not bring an end to the questions.</p>
+              <p class="has-dropcap">Finding the physical Shivling did not bring an end to the questions; if anything, it deepened them. The dream that had consumed my days and disturbed my nights had guided me exactly where it wanted me to go, leading me to find what I had seen in my mind's eye. Yet, instead of immediate clarity, this discovery opened a new, mysterious chapter. The spiritual experiences only intensified. My meditations grew deeper, and the dreams became increasingly vivid, sometimes feeling far more real than waking life itself. I would awaken in the quiet hours carrying intense emotions, profound insights, and memories that seemed to originate from somewhere beyond ordinary human understanding.</p>
 
-              <p>If anything, it deepened them.</p>
+              <p>I began to perceive that my search for Shiva had not truly started with that single dream. It felt older—older than my questions, older than my ambitions, and perhaps even older than this life itself. I cannot prove these things, nor do I ask anyone to believe them; I can only describe the reality of what I experienced. There was an unmistakable feeling that this journey was not starting, but continuing. Something ancient was unfolding through me, revealing itself layer by layer. In the midst of this inner transformation, another name began to emerge within my consciousness: <em>Vayu</em>. I did not choose it, nor did I invent it. It arrived silently and persisted with a quiet, undeniable certainty.</p>
 
-              <p>The dream that had consumed my days and disturbed my nights had led me exactly where it wanted me to
-                go. Within days, I found what I had seen. Yet instead of clarity, a new chapter began to unfold.</p>
-
-              <p>The experiences continued.</p>
-
-              <p>Meditations became deeper. Dreams became more vivid. At times they felt more real than waking life
-                itself. There were nights when I would awaken carrying emotions, insights, and memories that seemed to
-                come from somewhere beyond ordinary understanding.</p>
-
-              <p>Something was changing within me.</p>
-
-              <p>I began to feel that my search for Shiva had not truly begun with that dream. It felt older than that.
-                Older than my questions, older than my ambitions, perhaps even older than this life itself.</p>
-
-              <p>I cannot prove such things, nor do I ask anyone to believe them.</p>
-
-              <p>I can only describe what I experienced.</p>
-
-              <p>There was an unmistakable feeling that this journey was not starting—it was continuing. Something
-                ancient seemed to be unfolding through me, revealing itself layer by layer. The more I surrendered to
-                it, the more I realized that I was not creating the path. I was simply walking a road that had been
-                waiting for me all along.</p>
-
-              <p>During this period, another name began to emerge within my consciousness.</p>
-
-              <p>Vayu.</p>
-
-              <p>I did not choose it. I did not invent it. It arrived quietly and persisted with a certainty I could not
-                ignore.</p>
-
-              <p>At first, I did not understand its meaning.</p>
-
-              <p>But the more I sat with it, the more it felt less like a name and more like a remembrance. It carried a
-                strange familiarity, as though it belonged to a story that had begun long before I became aware of it.
-              </p>
-
-              <p>I cannot fully explain why that name appeared, nor can I explain why it stayed.</p>
-
-              <p>I only know that over time, I stopped resisting it.</p>
-
-              <p>The name became a marker of an inner transformation—a reminder that something deeper than personality,
-                ambition, or identity was awakening within me.</p>
-
-              <p>I did not become someone new.</p>
-
-              <p>I became more aware of something that had always been there.</p>
-
-              <p>And so the journey continued—not toward a destination, but toward a deeper recognition of what had been
-                calling me all along.</p>
+              <p>At first, I did not understand the meaning of the name. But the more I sat with it in silence, the more it felt less like a name and more like a remembrance. It carried a strange, comforting familiarity, as though it belonged to a sacred story that began long before my birth. I cannot fully explain why the name appeared or why it stayed, but over time, I stopped resisting it. The name Vayu became the marker of an inner rebirth—a reminder that something deeper than my personality, ambitions, or social identity was awakening. I did not become someone new; I simply became aware of a presence that had always been there, continuing the journey toward a deeper recognition of the Divine.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">I was not becoming</div>
@@ -1476,64 +1296,11 @@
                 <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">After understanding where the name Vayu had come from, I expected answers.</p>
+              <p class="has-dropcap">After discovering where the name Vayu had come from, I expected answers. Instead, I was given responsibility. The outward search that had consumed me for months had reached its physical conclusion—the dreams had led me to the Shivling and the signs had revealed the name. Yet, these experiences did not mark the end of the road; they were the beginning of a far deeper commitment. A quiet devotion took shape within me, emerging naturally from the depths of everything I had lived through. The more I reflected on the path behind me, the more I realized that none of it was accidental. The dreams, the visions, the synchronicities, and the people who appeared at the exact moments they were needed were all threads of a single tapestry, guiding me toward a purpose I could not yet fully see.</p>
 
-              <p>Instead, I was given responsibility.</p>
+              <p>Gradually, my outer life began to shift. The ambitions that once felt so critical began to fade into the background as my attention turned permanently inward. I found myself drawn to silence, contemplation, and a deeper understanding of my experiences. The mystical occurrences did not cease; if anything, they grew more profound. Along the way, I crossed paths with seekers, saints, yogis, and ordinary people carrying extraordinary wisdom. Some stayed in my life, while others vanished as quickly as they had arrived, but every single encounter deepened my conviction that an unseen intelligence was shaping my path.</p>
 
-              <p>The search that had consumed me for months was over. The dreams had led me to the Shivling. The signs
-                had revealed the name. Yet rather than bringing an end to the journey, these experiences marked the
-                beginning of something much deeper.</p>
-
-              <p>A quiet commitment began to take shape within me.</p>
-
-              <p>Not a commitment forced upon me, but one that emerged naturally from everything I had experienced.</p>
-
-              <p>The more I reflected on the path behind me, the more I felt that none of it had been accidental. The
-                dreams, the visions, the synchronicities, the people who appeared at unexpected moments—each seemed to
-                be guiding me toward something I could not yet fully see.</p>
-
-              <p>Life gradually began to change.</p>
-
-              <p>The ambitions that once felt important started fading into the background. My attention turned inward.
-                I found myself drawn toward silence, contemplation, and a deeper understanding of why these experiences
-                had entered my life in the first place.</p>
-
-              <p>The mystical experiences did not stop.</p>
-
-              <p>If anything, they became more profound.</p>
-
-              <p>Along the way, I met seekers, saints, yogis, and ordinary people carrying extraordinary wisdom. Some
-                remained in my life. Others crossed my path briefly before disappearing. Yet every encounter deepened
-                the feeling that an unseen intelligence was shaping the journey.</p>
-
-              <p>And through it all, a single purpose began appearing again and again.</p>
-
-              <p>At first it was only a feeling.</p>
-
-              <p>Then it became a possibility.</p>
-
-              <p>Then it became something impossible to ignore.</p>
-
-              <p>The vision of a temple had entered my life.</p>
-
-              <p>I did not know how it would happen.</p>
-
-              <p>I did not know when.</p>
-
-              <p>I only knew that the idea carried a strange certainty, as though it had already been decided somewhere
-                beyond my understanding.</p>
-
-              <p>The path ahead remained hidden.</p>
-
-              <p>But for the first time, I could sense its direction.</p>
-
-              <p>And so I continued—not searching for answers anymore, but learning to trust the road itself.</p>
-
-              <p>One step.</p>
-
-              <p>One lesson.</p>
-
-              <p>One act of surrender at a time.</p>
+              <p>Through all of this, a single purpose began to manifest itself repeatedly. What began as a faint feeling evolved into a possibility, and eventually became a calling impossible to ignore: the vision of a temple had entered my life. I did not know how it would happen, nor when, but the idea carried a strange, absolute certainty, as though it had already been decided in some higher realm. The path ahead remained hidden in mist, but for the first time, I knew its direction. And so I continued, no longer searching for answers, but learning to trust the road itself—taking one step, one lesson, and one act of surrender at a time.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">Sometimes the next chapter</div>
@@ -1661,6 +1428,19 @@
         // Scroll current active viewport back to top instantly
         const prevContainer = viewports[prevTab].querySelector('.viewport-scroll-container');
 
+        // Update progress bar for the new tab immediately
+        setTimeout(() => {
+          const targetContainer = viewports[currentTab].querySelector('.viewport-scroll-container');
+          if (targetContainer) {
+            const winScroll = targetContainer.scrollTop;
+            const height = targetContainer.scrollHeight - targetContainer.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('readerProgressBar').style.width = scrolled + "%";
+          } else {
+            document.getElementById('readerProgressBar').style.width = "0%";
+          }
+        }, 50);
+
         // Transition views using GSAP
         const currentViewport = viewports[currentTab];
         const previousViewport = viewports[prevTab];
@@ -1747,6 +1527,16 @@
       let wheelCooldown = false;
 
       document.querySelectorAll('.viewport-scroll-container').forEach((container, idx) => {
+        // Update progress bar on scroll
+        container.addEventListener('scroll', () => {
+          if (idx === currentTab) {
+            const winScroll = container.scrollTop;
+            const height = container.scrollHeight - container.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('readerProgressBar').style.width = scrolled + "%";
+          }
+        }, { passive: true });
+
         container.addEventListener('wheel', (e) => {
           const st = container.scrollTop;
           const sh = container.scrollHeight;
@@ -1905,8 +1695,9 @@
       }, { passive: false });
     })();
   </script>
-</body>
 
+  <!-- Ambient Falling Leaves Effect -->
+  <script src="asset/bg-music.js"></script>
+  <script src="asset/effects.js"></script>
 </body>
-
 </html>

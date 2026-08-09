@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,10 +8,24 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { display: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    body { min-height: 100vh; background: #d8cfb8; font-family: 'Inter', sans-serif; color: #2a2318; overflow-x: hidden; position: relative; }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #d8cfb8;
+      font-family: 'Inter', sans-serif;
+      color: #2a2318;
+      overflow-x: hidden;
+      position: relative;
+    }
 
     /* Parchment noise texture overlay */
     body::before {
@@ -32,28 +47,155 @@
       z-index: 0;
     }
 
-    ::-webkit-scrollbar { display: none; }
+    ::-webkit-scrollbar {
+      display: none;
+    }
 
-    .header { position: fixed; top: 0; left: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: linear-gradient(180deg, rgba(208,199,178,0.95) 0%, transparent 100%); opacity: 0; animation: fadeIn 0.8s ease 0.2s forwards; }
-    .logo { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; color: #2a2318; text-decoration: none; transition: all 0.3s ease; }
-    .logo:hover { color: #8a7355; }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-link { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5c4a32; text-decoration: none; padding: 8px 16px; border: 1px solid rgba(42,35,24,0.2); border-radius: 4px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-    .nav-link:hover { color: #2a2318; border-color: #5c4a32; background: rgba(92,74,50,0.1); }
-    .nav-ham span { display: block; width: 13px; height: 1.5px; background: #5c4a32; margin: 2.5px 0; transition: background 0.3s; }
-    .nav-link:hover .nav-ham span { background: #2a2318; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 30px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(208, 199, 178, 0.95) 0%, transparent 100%);
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.2s forwards;
+    }
 
-    .page-content { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 40px 80px; position: relative; z-index: 1; }
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #2a2318;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
 
-    .connect-container { max-width: 800px; width: 100%; }
+    .logo:hover {
+      color: #8a7355;
+    }
 
-    .section-subtitle { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: #5c4a32; margin-bottom: 16px; opacity: 0; animation: slideUp 0.6s ease 0.3s forwards; }
-    .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #2a2318; margin-bottom: 30px; opacity: 0; animation: slideUp 0.6s ease 0.4s forwards; }
-    .divider { width: 80px; height: 2px; background: linear-gradient(90deg, #5c4a32, transparent); margin-bottom: 50px; opacity: 0; animation: expandLine 0.8s ease 0.5s forwards; }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
 
-    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes expandLine { from { width: 0; opacity: 0; } to { width: 80px; opacity: 1; } }
+    .nav-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5c4a32;
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid rgba(42, 35, 24, 0.2);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link:hover {
+      color: #2a2318;
+      border-color: #5c4a32;
+      background: rgba(92, 74, 50, 0.1);
+    }
+
+    .nav-ham span {
+      display: block;
+      width: 13px;
+      height: 1.5px;
+      background: #5c4a32;
+      margin: 2.5px 0;
+      transition: background 0.3s;
+    }
+
+    .nav-link:hover .nav-ham span {
+      background: #2a2318;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .page-content {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .connect-container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .section-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #5c4a32;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: slideUp 0.6s ease 0.3s forwards;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #2a2318;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: slideUp 0.6s ease 0.4s forwards;
+    }
+
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, #5c4a32, transparent);
+      margin-bottom: 50px;
+      opacity: 0;
+      animation: expandLine 0.8s ease 0.5s forwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes expandLine {
+      from {
+        width: 0;
+        opacity: 0;
+      }
+
+      to {
+        width: 80px;
+        opacity: 1;
+      }
+    }
 
     .social-grid {
       display: grid;
@@ -62,56 +204,145 @@
     }
 
     .social-card {
-      background: rgba(42,35,24,0.02);
-      border: 1px solid rgba(42,35,24,0.1); border-radius: 10px; padding: 40px 30px;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      text-decoration: none; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative; overflow: hidden; opacity: 0; animation: cardIn 0.6s ease forwards;
+      background: rgba(42, 35, 24, 0.02);
+      border: 1px solid rgba(42, 35, 24, 0.1);
+      border-radius: 10px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: cardIn 0.6s ease forwards;
     }
 
-    .social-card:nth-child(1) { animation-delay: 0.6s; }
-    .social-card:nth-child(2) { animation-delay: 0.7s; }
-    .social-card:nth-child(3) { animation-delay: 0.8s; }
-    .social-card:nth-child(4) { animation-delay: 0.9s; }
+    .social-card:nth-child(1) {
+      animation-delay: 0.6s;
+    }
 
-    @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .social-card:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+
+    .social-card:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    .social-card:nth-child(4) {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
     .social-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at center, var(--card-glow, rgba(92,74,50,0.08)), transparent);
-      opacity: 0; transition: opacity 0.5s ease;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, var(--card-glow, rgba(92, 74, 50, 0.08)), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .social-card:hover::before { opacity: 1; }
+    .social-card:hover::before {
+      opacity: 1;
+    }
 
     .social-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
       background: var(--card-color, linear-gradient(90deg, transparent, #5c4a32, transparent));
-      transform: scaleX(0); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scaleX(0);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .social-card:hover::after { transform: scaleX(1); }
+    .social-card:hover::after {
+      transform: scaleX(1);
+    }
 
     .social-card:hover {
       transform: translateY(-10px) scale(1.02);
-      border-color: rgba(92,74,50,0.3);
-      box-shadow: 0 25px 50px rgba(42,35,24,0.15), 0 0 40px var(--card-shadow, rgba(92,74,50,0.1));
+      border-color: rgba(92, 74, 50, 0.3);
+      box-shadow: 0 25px 50px rgba(42, 35, 24, 0.15), 0 0 40px var(--card-shadow, rgba(92, 74, 50, 0.1));
     }
 
-    .social-icon { width: 60px; height: 60px; margin-bottom: 18px; display: block; object-fit: contain; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(20%); }
-    .social-card:hover .social-icon { transform: scale(1.15) translateY(-5px); filter: grayscale(0%); }
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 18px;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: grayscale(20%);
+    }
 
-    .social-name { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 600; color: #2a2318; letter-spacing: 0.05em; margin-bottom: 6px; }
-    .social-handle { font-size: 0.85rem; color: #5c4a32; opacity: 0.8; transition: opacity 0.3s ease; }
-    .social-card:hover .social-handle { opacity: 1; }
+    .social-card:hover .social-icon {
+      transform: scale(1.15) translateY(-5px);
+      filter: grayscale(0%);
+    }
 
-    .social-card.instagram { --card-glow: rgba(225, 48, 108, 0.08); --card-shadow: rgba(225, 48, 108, 0.15); }
-    .social-card.youtube { --card-glow: rgba(255, 0, 0, 0.08); --card-shadow: rgba(255, 0, 0, 0.15); }
-    .social-card.twitter { --card-glow: rgba(29, 161, 242, 0.08); --card-shadow: rgba(29, 161, 242, 0.15); }
-    .social-card.email { --card-glow: rgba(92, 74, 50, 0.08); --card-shadow: rgba(92, 74, 50, 0.15); }
+    .social-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #2a2318;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .social-handle {
+      font-size: 0.85rem;
+      color: #5c4a32;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .social-card:hover .social-handle {
+      opacity: 1;
+    }
+
+    .social-card.instagram {
+      --card-glow: rgba(225, 48, 108, 0.08);
+      --card-shadow: rgba(225, 48, 108, 0.15);
+    }
+
+    .social-card.youtube {
+      --card-glow: rgba(255, 0, 0, 0.08);
+      --card-shadow: rgba(255, 0, 0, 0.15);
+    }
+
+    .social-card.twitter {
+      --card-glow: rgba(29, 161, 242, 0.08);
+      --card-shadow: rgba(29, 161, 242, 0.15);
+    }
+
+    .social-card.email {
+      --card-glow: rgba(92, 74, 50, 0.08);
+      --card-shadow: rgba(92, 74, 50, 0.15);
+    }
 
     .connect-quote {
-      text-align: center; margin-top: 50px; opacity: 0; animation: slideUp 0.6s ease 1s forwards;
+      text-align: center;
+      margin-top: 50px;
+      opacity: 0;
+      animation: slideUp 0.6s ease 1s forwards;
     }
 
     .connect-quote p {
@@ -158,7 +389,10 @@
       letter-spacing: 0.01em;
     }
 
-    .connect-tagline p span.bold { font-weight: 700; color: #2a2318; }
+    .connect-tagline p span.bold {
+      font-weight: 700;
+      color: #2a2318;
+    }
 
     .connect-tagline .drop-cap {
       font-family: 'Playfair Display', serif;
@@ -173,22 +407,45 @@
     }
 
     @media (max-width: 768px) {
-      .header { padding: 20px 24px; }
-      .nav-links { gap: 10px; }
-      .nav-link { padding: 6px 12px; font-size: 0.65rem; }
-      .page-content { padding: 100px 24px 60px; }
-      .social-grid { grid-template-columns: 1fr; gap: 16px; }
-      .social-card { padding: 30px 24px; }
-      .section-title { font-size: 1.6rem; }
+      .header {
+        padding: 20px 24px;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-link {
+        padding: 6px 12px;
+        font-size: 0.65rem;
+      }
+
+      .page-content {
+        padding: 100px 24px 60px;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .social-card {
+        padding: 30px 24px;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header class="header">
     <a href="menu.html" class="logo">Ganesh Tajane</a>
     <div class="nav-links">
-      <a href="index.html?gallery=1" class="nav-link">Home</a>
+      <a href="explore.html" class="nav-link">Home</a>
       <a href="menu.html" class="nav-link">
         Menu
         <div class="nav-ham"><span></span><span></span></div>
@@ -203,7 +460,8 @@
 
       <!-- Tagline below Connect heading -->
       <div class="connect-tagline">
-        <p><span class="drop-cap">E</span>very traveler walks alone <span class="bold">for a while.</span><br>Yet no traveler walks <span class="bold">entirely alone.</span></p>
+        <p><span class="drop-cap">E</span>very traveler walks alone <span class="bold">for a while.</span><br>Yet no
+          traveler walks <span class="bold">entirely alone.</span></p>
       </div>
 
       <div class="social-grid">
@@ -252,9 +510,9 @@
   </script>
   <script>
     // Prevent browser zoom (pinch-to-zoom and keyboard/mousewheel shortcuts)
-    (function() {
+    (function () {
       // Prevent pinch-to-zoom on touch devices
-      document.addEventListener('touchstart', function(e) {
+      document.addEventListener('touchstart', function (e) {
         if (e.touches.length > 1) {
           e.preventDefault();
         }
@@ -262,7 +520,7 @@
 
       // Prevent double-tap to zoom
       let lastTouchEnd = 0;
-      document.addEventListener('touchend', function(e) {
+      document.addEventListener('touchend', function (e) {
         const now = new Date().getTime();
         if (now - lastTouchEnd <= 300) {
           e.preventDefault();
@@ -271,19 +529,22 @@
       }, false);
 
       // Prevent Ctrl + Plus / Ctrl + Minus / Ctrl + 0 keyboard shortcuts
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0' || e.keyCode === 187 || e.keyCode === 189 || e.keyCode === 48 || e.keyCode === 96)) {
           e.preventDefault();
         }
       });
 
       // Prevent Ctrl + Mouse Wheel zoom
-      document.addEventListener('wheel', function(e) {
+      document.addEventListener('wheel', function (e) {
         if (e.ctrlKey) {
           e.preventDefault();
         }
       }, { passive: false });
     })();
   </script>
+  <script src="asset/bg-music.js"></script>
+  <script src="asset/effects.js"></script>
 </body>
+
 </html>
