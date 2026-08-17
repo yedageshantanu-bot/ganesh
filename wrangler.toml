@@ -1,3 +1,8 @@
 name = "ganesh-tajne-world"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "./"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ganesh_reflections_db"
+database_id = "ed7c75a7-f415-416f-aca2-875e6b4447e7"

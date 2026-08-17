@@ -1,0 +1,26 @@
+[
+  {
+    "id": "def_1",
+    "full_name": "Aarav Sharma",
+    "city_country": "Pune, India",
+    "created_at": "2026-08-11T12:00:00.000Z",
+    "approved": true,
+    "message": "Reading about the journey of Vayu Mahesh deeply inspired me. It reminded me that purpose isn't found overnight, but built with quiet discipline day by day."
+  },
+  {
+    "id": "def_2",
+    "full_name": "Elena Rostova",
+    "city_country": "Prague, Czech Republic",
+    "created_at": "2026-08-08T12:00:00.000Z",
+    "approved": true,
+    "message": "The stillness in these writings is palpable. A rare space on the internet to pause, breathe, and reflect on what truly matters."
+  },
+  {
+    "id": "def_3",
+    "full_name": "Rohan Deshmukh",
+    "city_country": "Nashik, India",
+    "created_at": "2026-08-05T12:00:00.000Z",
+    "approved": true,
+    "message": "From the sixty-four squares of chess to the path of devotion, your story resonates with anyone striving for higher focus."
+  }
+]

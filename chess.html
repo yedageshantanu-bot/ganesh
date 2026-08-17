@@ -402,9 +402,9 @@
     }
 
     .reading-body p {
-      font-family: 'Source Serif 4', serif;
-      font-size: clamp(1.12rem, 1.48vw, 1.32rem);
-      line-height: 1.95;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 1.58vw, 1.4rem);
+      line-height: 1.85;
       color: #2D241B;
       margin-bottom: 1.8em;
       text-align: left;
@@ -500,9 +500,9 @@
 
     /* Pull Quotes */
     .pull-quote {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+      font-size: clamp(1.3rem, 1.9vw, 1.7rem);
       line-height: 1.65;
       color: #5c4a32;
       padding: 30px 40px;
@@ -588,18 +588,50 @@
       left: 0;
       right: 0;
       margin-top: 45px;
-      margin-bottom: 50px;
-      border-top: 1.5px solid rgba(42, 35, 24, 0.2);
-      border-bottom: 1.5px solid rgba(42, 35, 24, 0.2);
-      background: #392f25;
+      margin-bottom: 55px;
+      border-top: none !important;
+      border-bottom: none !important;
+      border: none !important;
+      background: transparent;
       overflow: hidden;
+      box-shadow: 0 15px 45px rgba(42, 35, 24, 0.08);
+    }
+
+    .full-screen-image-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(216, 204, 191, 0.95) 0%, rgba(216, 204, 191, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .full-screen-image-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(216, 204, 191, 0.95) 0%, rgba(216, 204, 191, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
     }
 
     .full-screen-image {
       width: 100%;
       height: auto;
+      max-height: 85vh;
+      object-fit: cover;
       display: block;
-      filter: none;
+      border: none !important;
+      filter: contrast(1.04) brightness(1.02);
+      transform: scale(1.04);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+      will-change: transform;
     }
 
     .clear-both {
@@ -1006,7 +1038,7 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/chess_ch1_firstmove.png" alt="The First Move - Ganesh Tajane First Chess Tournament Victory Watercolor" class="full-screen-image">
               </div>
 
               <p class="has-dropcap">Every life has a moment that quietly changes its direction. Mine began on an ordinary evening during my tenth standard. Like most boys my age, I spent my evenings playing cricket with friends. One day, while waiting for my turn to bat, I noticed two boys sitting nearby with a small chessboard between them. They played in complete silence, absorbed in a world that seemed untouched by the noise of the cricket ground. I stood beside them and watched.</p>
@@ -1095,7 +1127,7 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/chess_ch2_duty.png" alt="Between Duty and a Dream - Ganesh Tajane Mechanical Engineering & Chess Study Watercolor" class="full-screen-image">
               </div>
 
               <p class="has-dropcap">Winning my first tournament gave me certainty, but it did not make the path ahead any easier. I had discovered what I wanted to dedicate my life to, yet I had no idea how a chess player was supposed to build a career. I didn't know where tournaments were held, whether professional coaching even existed in Nashik, or what it truly meant to pursue the game seriously.</p>
@@ -1104,7 +1136,7 @@
 
               <p>Respecting their wishes, I enrolled in a mechanical diploma. I understood the sacrifices my parents were making to pay my fees, and I never wanted their efforts to go to waste. Academically, I always performed well, earning strong grades and reinforcing their belief that education would eventually provide the stability our family needed. Yet even while pursuing my studies, chess never left my mind.</p>
 
-              <p>Slowly, I began discovering the chess community in Nashik. I learned that only a handful of tournaments were organized each year, and those events became milestones that I eagerly waited for. Whenever I had the opportunity, I played, though most of the time I was defeated by players far stronger and more experienced than I was. Those losses taught me an important lesson: playing alone would never be enough. If I truly wanted to improve, I had to study the game.</p>
+              <p>Slowly, I began discovering the chess community in Nashik. I learned that only a handful of tournaments were organized each year, and those events became milestones that I eagerly waited for. Whenever I had the opportunity, I played, though, most of the time I was defeated by players far stronger and more experienced than I was. Those losses taught me an important lesson: playing alone would never be enough. If I truly wanted to improve, I had to study the game.</p>
 
               <p>Through the kindness of a fellow chess enthusiast, I was introduced to my first serious chess books. Those pages opened a completely different world. I began studying positions, analysing games, and understanding that mastery was built long before a tournament ever began. Three years after discovering chess, I played my first All India Open Rating Chess Tournament and earned my initial FIDE rating. It was only the beginning, but it felt like a step into the larger world I had dreamed about.</p>
 
@@ -1180,14 +1212,14 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/chess_ch3_impossible.png" alt="Choosing the Impossible - Ganesh Tajane Pro Chess Academy Coaching Watercolor" class="full-screen-image">
               </div>
 
               <p class="has-dropcap">When I completed my engineering, the same question returned with even greater force: "Now what?" For my family, the answer was obvious. I had earned a good degree, performed well academically, and it was finally time to build a stable career. They encouraged me to take a job and continue playing chess only in my free time or on weekends. It was sensible advice, but by then, I understood something that I hadn't understood as a teenager.</p>
 
               <p>Chess was not a hobby that could be pursued after office hours. It was an ocean without an end. If I wanted to discover how far I could truly go, I had to dedicate my life to it. Playing one or two tournaments a year while working a full-time job would never allow me to become the player I dreamed of becoming. I shared my thoughts with my parents. They listened patiently, but reality stood firmly on their side.</p>
 
-              <p>Our family was still struggling financially. My father worked tirelessly, yet his income was just enough to keep the household running. My parents reminded me that I was now an engineer, and with that degree came responsibility—not only toward my own future, but toward the family that had sacrificed so much for my education. My mother finally said something that changed everything: "If you want to pursue chess, do it. But you must earn your own money, contribute to the family, and fund your own tournaments."</p>
+              <p>Our family was still struggling financially. My father worked tirelessly, yet his income was just enough to keep the household running. My parents reminded me that I was now an engineer, and with that degree came responsibility—not only towards my own future, but towards the family that had sacrificed so much for my education. My mother finally said something that changed everything: "If you want to pursue chess, do it. But you must earn your own money, contribute to the family, and fund your own tournaments."</p>
 
               <p>It was a challenge, but also an opportunity. Instead of searching for a job unrelated to the game I loved, I decided to build my life around chess itself. In 2018, soon after completing my engineering, I started my first academy—Pro Chess Academy. It began with only three students. During the day, I taught; at night, I studied chess. Every lesson I prepared made me a better coach, and every position I analysed made me a stronger player. I realised that teaching was not taking me away from chess—it was deepening my understanding of it.</p>
 
@@ -1270,16 +1302,14 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/chess_ch4_beyond.png" alt="Beyond the Board - Ganesh Tajane Chess & Spiritual Awakening Watercolor" class="full-screen-image">
               </div>
 
               <p class="has-dropcap">After years of waiting, rebuilding, and postponing my dreams, I finally reached the moment I had imagined for so long. In 2023, I was ready to begin my journey as a competitive chess player with complete commitment. The academy had become stable, my family no longer depended entirely on uncertainty, and for the first time, I felt that the path ahead was finally clear. Life, however, had another plan.</p>
 
-              <p>Around that time, a series of profound spiritual experiences began to unfold—experiences unlike anything I had ever encountered before. Meditation, which had once been a quiet part of my daily life, became something far deeper. My connection with Lord Shiva intensified in ways I could neither explain nor ignore. Looking back, I realised these experiences had not appeared suddenly. Throughout my chess journey, there had been countless moments of unusual stillness, intuition, and inner guidance. I had always felt drawn toward meditation and spirituality, but I treated them as something secondary. Whenever they appeared, I acknowledged them briefly and returned my full attention to chess.</p>
+              <p>Around that time, a series of profound spiritual experiences began to unfold—experiences unlike anything I had ever encountered before. Meditation, which had once been a quiet part of my daily life, became something far deeper. My connection with Lord Shiva intensified in ways I could neither explain nor ignore. Looking back, I realised these experiences had not appeared suddenly. Throughout my chess journey, there had been countless moments of unusual stillness, intuition, and inner guidance. I had always felt drawn towards meditation and spirituality, but I treated them as something secondary. Whenever they appeared, I acknowledged them briefly and returned my full attention to chess.</p>
 
-              <p>This time was different. The experiences became impossible to dismiss. They demanded my attention with a force that changed the direction of my life. Questions that had once seemed distant suddenly became more important than any tournament or rating: Why was I here? What was I truly meant to build? What was the purpose behind everything I had lived through?</p>
-
-              <p>While my coaching continued and I remained committed to supporting my family, much of my inner life shifted toward meditation, self-inquiry, and the worship of Lord Shiva. During this period, I experienced a depth of silence and clarity that words can barely describe. What had begun years earlier as a passion for chess slowly became part of a much larger journey—one that extended far beyond competition. I came to understand that life was asking something different of me. There was a purpose waiting beyond personal success—a responsibility that felt older than ambition itself, a calling I could neither fully explain nor walk away from.</p>
+              <p>While my coaching continued and I remained committed to supporting my family, much of my inner life shifted towards meditation, self-inquiry, and the worship of Lord Shiva. During this period, I experienced a depth of silence and clarity that words can barely describe. What had begun years earlier as a passion for chess slowly became part of a much larger journey—one that extended far beyond competition. I came to understand that life was asking something different of me. There was a purpose waiting beyond personal success—a responsibility that felt older than ambition itself, a calling I could neither fully explain nor walk away from.</p>
 
               <p>Yet one thing never changed: my love for chess did not disappear. Chess had shaped my mind, taught me discipline, patience, resilience, and the ability to remain calm in uncertainty. Those lessons became invaluable as I stepped into this new chapter of my life. The board had prepared me for a journey I never expected to take.</p>
 
@@ -1440,21 +1470,32 @@
       }
 
       // ── Navigation between Tabs (Sub-tabs) ──
-      function switchTab(targetIndex) {
-        if (animating || targetIndex === currentTab || targetIndex < 0 || targetIndex >= viewports.length) return;
+      function switchTab(targetIndex, updateHistory = true) {
+        if (targetIndex === currentTab || targetIndex < 0 || targetIndex >= viewports.length) return;
+
+        if (updateHistory) {
+          const hashName = '#chapter-' + (targetIndex + 1);
+          history.pushState({ tab: targetIndex }, '', hashName);
+        }
+
+        if (animating) return;
         animating = true;
 
         const prevTab = currentTab;
         currentTab = targetIndex;
 
+        // Update active sub-navigation item
         subTabs.forEach(t => t.classList.remove('active'));
         subTabs[currentTab].classList.add('active');
 
+        // Scroll current active viewport back to top instantly
         const prevContainer = viewports[prevTab].querySelector('.viewport-scroll-container');
 
+        // Transition views using GSAP
         const currentViewport = viewports[currentTab];
         const previousViewport = viewports[prevTab];
 
+        // Animate out previous
         gsap.to(previousViewport, {
           opacity: 0,
           scale: 0.96,
@@ -1462,10 +1503,11 @@
           ease: 'power2.inOut',
           onComplete: () => {
             previousViewport.classList.remove('active');
-            if (prevContainer) prevContainer.scrollTop = 0;
+            if (prevContainer) prevContainer.scrollTop = 0; // reset scroll
           }
         });
 
+        // Animate in current
         currentViewport.classList.add('active');
         gsap.fromTo(currentViewport,
           { opacity: 0, scale: 1.04 },
@@ -1481,6 +1523,7 @@
           }
         );
 
+        // Character/line staggers for the title and text of new active tab
         const titleWords = currentViewport.querySelectorAll('.word-inner');
         const desc = currentViewport.querySelector('.landing-desc');
         const eyebrow = currentViewport.querySelector('.landing-eyebrow');
@@ -1511,6 +1554,24 @@
         );
       }
 
+      // Handle browser back / forward navigation (popstate & hashchange)
+      window.addEventListener('popstate', (e) => {
+        let targetIndex = 0;
+        if (e.state && typeof e.state.tab === 'number') {
+          targetIndex = e.state.tab;
+        } else {
+          const hash = window.location.hash;
+          if (hash.startsWith('#chapter-')) {
+            const num = parseInt(hash.replace('#chapter-', ''), 10) - 1;
+            if (!isNaN(num) && num >= 0 && num < viewports.length) targetIndex = num;
+          }
+        }
+        if (targetIndex !== currentTab) {
+          switchTab(targetIndex, false);
+        }
+      });
+
+      // Sub-tab button clicks
       subTabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const index = parseInt(tab.getAttribute('data-tab'));
@@ -1518,6 +1579,7 @@
         });
       });
 
+      // Sub-tab navigation arrows (Bottom bar)
       subPrevBtn.addEventListener('click', () => {
         const prevIdx = (currentTab - 1 + viewports.length) % viewports.length;
         switchTab(prevIdx);
@@ -1527,6 +1589,15 @@
         const nextIdx = (currentTab + 1) % viewports.length;
         switchTab(nextIdx);
       });
+
+      // Check URL hash on page load for direct chapter entry
+      const initialHash = window.location.hash;
+      if (initialHash.startsWith('#chapter-')) {
+        const num = parseInt(initialHash.replace('#chapter-', ''), 10) - 1;
+        if (!isNaN(num) && num >= 0 && num < viewports.length && num !== 0) {
+          switchTab(num, false);
+        }
+      }
 
       // ── Scroll Transition Engine ──
       let wheelCooldown = false;
@@ -1681,6 +1752,33 @@
           e.preventDefault();
         }
       }, { passive: false });
+    })();
+  </script>
+  <script>
+    // Smooth Image Parallax Motion on Scroll
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const containers = document.querySelectorAll('.full-screen-image-container');
+        
+        function updateParallax() {
+          const viewHeight = window.innerHeight;
+          containers.forEach(container => {
+            const rect = container.getBoundingClientRect();
+            if (rect.top < viewHeight && rect.bottom > 0) {
+              const progress = (viewHeight - rect.top) / (viewHeight + rect.height);
+              const translateY = (progress - 0.5) * -28;
+              const img = container.querySelector('.full-screen-image');
+              if (img) {
+                img.style.transform = `scale(1.04) translateY(${translateY}px)`;
+              }
+            }
+          });
+        }
+
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        window.addEventListener('resize', updateParallax, { passive: true });
+        updateParallax();
+      });
     })();
   </script>
   <script src="asset/bg-music.js"></script>

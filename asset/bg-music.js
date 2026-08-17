@@ -2,44 +2,48 @@
   if (window.__globalBgMusicInitialized) return;
   window.__globalBgMusicInitialized = true;
 
-  const AUDIO_SRC = 'asset/background-music.mp3';
+  const AUDIO_SRC = 'WhatsApp Audio 2026-08-12 at 11.13.34 AM.mpeg';
 
   // Inject equalizer CSS if not already present
   if (!document.getElementById('global-bg-music-styles')) {
     const style = document.createElement('style');
     style.id = 'global-bg-music-styles';
     style.textContent = `
-      .global-sound-toggle {
-        position: fixed;
-        top: 24px;
-        right: 120px;
-        z-index: 9999;
-        display: flex;
-        align-items: flex-end;
-        gap: 3.5px;
-        cursor: pointer;
-        height: 20px;
-        padding: 5px 10px;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 20px;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        transition: all 0.3s ease;
+      .global-sound-toggle, .sound-toggle {
+        display: inline-flex !important;
+        align-items: flex-end !important;
+        gap: 3.5px !important;
+        cursor: pointer !important;
+        height: 18px !important;
+        padding: 0 4px !important;
+        margin-left: 14px !important;
+        vertical-align: middle !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transition: transform 0.3s ease, opacity 0.3s ease;
       }
-      .global-sound-toggle:hover {
-        background: rgba(0, 0, 0, 0.7);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: scale(1.05);
+      .global-sound-toggle.is-fixed {
+        position: fixed !important;
+        top: 24px !important;
+        right: 90px !important;
+        left: auto !important;
+        margin-left: 0 !important;
+        z-index: 99999 !important;
       }
-      .global-sound-toggle .eq-bar,
-      .sound-toggle .eq-bar {
+      .global-sound-toggle:hover, .sound-toggle:hover {
+        transform: scale(1.15);
+      }
+      .global-sound-toggle .eq-bar, .sound-toggle .eq-bar {
         width: 3px;
         height: 100%;
-        background: #ffffff;
+        background: currentColor;
         transform-origin: bottom;
         animation: globalBounceEq 1.2s ease-in-out infinite alternate;
-        opacity: 0.9;
+        opacity: 0.85;
         border-radius: 1px;
       }
       .global-sound-toggle .eq-bar:nth-child(1), .sound-toggle .eq-bar:nth-child(1) { animation-duration: 0.8s; }
@@ -60,11 +64,9 @@
         100% { transform: scaleY(1); }
       }
       @media (max-width: 768px) {
-        .global-sound-toggle {
-          top: 18px;
-          right: 80px;
-          height: 18px;
-          padding: 4px 8px;
+        .global-sound-toggle, .sound-toggle {
+          height: 15px !important;
+          margin-left: 8px !important;
         }
       }
     `;
@@ -92,6 +94,35 @@
     }
   }
 
+  // Restore saved playback position seamlessly across page navigations
+  function applySavedTime() {
+    const savedTime = sessionStorage.getItem('bgMusicCurrentTime');
+    if (savedTime) {
+      const t = parseFloat(savedTime);
+      if (!isNaN(t) && isFinite(t) && t > 0) {
+        try {
+          if (Math.abs(audio.currentTime - t) > 1.5) {
+            audio.currentTime = t;
+          }
+        } catch (e) {}
+      }
+    }
+  }
+
+  audio.addEventListener('loadedmetadata', applySavedTime);
+  audio.addEventListener('canplay', applySavedTime);
+  applySavedTime();
+
+  function saveCurrentTime() {
+    if (!audio.paused && audio.currentTime > 0) {
+      sessionStorage.setItem('bgMusicCurrentTime', audio.currentTime.toString());
+    }
+  }
+
+  audio.addEventListener('timeupdate', saveCurrentTime);
+  window.addEventListener('beforeunload', saveCurrentTime);
+  window.addEventListener('pagehide', saveCurrentTime);
+
   let toggleBtn = document.getElementById('soundToggle') || document.querySelector('.sound-toggle');
   if (!toggleBtn) {
     toggleBtn = document.createElement('div');
@@ -104,7 +135,30 @@
       <div class="eq-bar"></div>
       <div class="eq-bar"></div>
     `;
-    document.body.appendChild(toggleBtn);
+
+    // Attach inline into header next to logo if present
+    const logoEl = document.querySelector('.logo-group') || document.querySelector('.gallery-logo') || document.querySelector('.logo') || document.querySelector('.brand-wrap') || document.querySelector('.header-logo');
+    if (logoEl) {
+      if (logoEl.classList.contains('logo-group')) {
+        logoEl.appendChild(toggleBtn);
+      } else if (logoEl.parentElement) {
+        let wrap = logoEl.parentElement.querySelector('.logo-wrapper');
+        if (!wrap) {
+          wrap = document.createElement('div');
+          wrap.className = 'logo-wrapper';
+          wrap.style.cssText = 'display: inline-flex; align-items: center; gap: 12px;';
+          logoEl.parentElement.insertBefore(wrap, logoEl);
+          wrap.appendChild(logoEl);
+        }
+        wrap.appendChild(toggleBtn);
+      } else {
+        toggleBtn.classList.add('is-fixed');
+        document.body.appendChild(toggleBtn);
+      }
+    } else {
+      toggleBtn.classList.add('is-fixed');
+      document.body.appendChild(toggleBtn);
+    }
   }
 
   function updateToggleState(isPlaying) {

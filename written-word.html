@@ -381,20 +381,20 @@
 
     .tabs-bar {
       display: flex;
-      gap: 30px;
+      gap: 40px;
     }
 
     .tab-btn {
       font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       background: none;
       border: none;
       color: #8a7355;
       cursor: pointer;
-      padding: 8px 0;
+      padding: 10px 0;
       position: relative;
       transition: color 0.3s ease;
     }
@@ -591,137 +591,112 @@
     .articles-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
+      gap: 32px;
     }
 
     .article-card {
-      background: rgba(42, 35, 24, 0.02);
-      border: 1px solid rgba(92, 74, 50, 0.12);
-      border-radius: 8px;
-      padding: 30px;
+      background: rgba(42, 35, 24, 0.035);
+      border: 1px solid rgba(92, 74, 50, 0.18);
+      border-radius: 12px;
+      padding: 36px 32px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      height: 100%;
+      justify-content: space-between;
+      min-height: 240px;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .article-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(92, 74, 50, 0.35);
-      background: rgba(42, 35, 24, 0.04);
-      box-shadow: 0 12px 28px rgba(42, 35, 24, 0.08);
-    }
-
-    .articles-introduction {
-      text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      color: #2a2318;
-      margin-bottom: 40px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+      transform: translateY(-8px);
+      border-color: rgba(92, 74, 50, 0.45);
+      background: rgba(42, 35, 24, 0.07);
+      box-shadow: 0 16px 36px rgba(42, 35, 24, 0.12);
     }
 
     .article-card-header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 15px;
-      margin-bottom: 15px;
-    }
-
-    .article-count-badge {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #8a7355;
-      background: rgba(92, 74, 50, 0.04);
-      border: 1px solid rgba(138, 115, 85, 0.2);
-      padding: 3px 9px;
-      border-radius: 20px;
-      white-space: nowrap;
-      transition: all 0.3s ease;
-    }
-
-    .article-card:hover .article-count-badge {
-      color: #2a2318;
-      background: rgba(92, 74, 50, 0.08);
-      border-color: rgba(42, 35, 24, 0.35);
-    }
-
-    .article-meta {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #8a7355;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .article-card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
+      font-family: 'Cinzel', 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
       font-weight: 700;
       color: #2a2318;
-      line-height: 1.3;
-      transition: color 0.3s ease;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      margin: 0;
     }
-    .article-card:hover .article-card-title {
-      color: #8a7355;
+
+    .article-count-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #7a6548;
+      background: rgba(92, 74, 50, 0.08);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(92, 74, 50, 0.15);
+      white-space: nowrap;
     }
 
     .article-excerpt {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #5c4a32;
-      margin-bottom: 25px;
-      flex: 1;
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: #4a3e2c;
+      margin-bottom: 24px;
+      flex-grow: 1;
     }
 
     .article-readmore {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #5c4a32;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      margin-top: auto;
-      transition: gap 0.3s ease;
-    }
-    
-    .article-card:hover .article-readmore {
-      gap: 12px;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: #2a2318;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: gap 0.3s ease, color 0.3s ease;
     }
 
-    /* ── Tab: Poems Content ── */
-    .poems-layout {
-      max-width: 1308px;
-      margin: 0 auto;
+    .article-card:hover .article-readmore {
+      gap: 14px;
+      color: #5c4a32;
     }
-    
-    .poems-introduction {
+
+    .article-readmore svg {
+      width: 14px;
+      height: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .article-card:hover .article-readmore svg {
+      transform: translateX(4px);
+    }
+
+    .articles-introduction,
+    .articles-introduction *,
+    .poems-introduction,
+    .poems-introduction * {
       text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      color: #8a7355;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-style: normal !important;
+      font-weight: 800 !important;
+      font-size: 1.15rem !important;
+      color: #2a2318 !important;
       margin-bottom: 40px;
-      max-width: 680px;
+      max-width: 840px;
       margin-left: auto;
       margin-right: auto;
-      line-height: 1.6;
+      line-height: 1.7;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
     }
 
     .poems-grid {
@@ -2025,7 +2000,7 @@
         <!-- Tab Panel: Articles -->
         <div class="tab-panel" id="panel-articles">
           <p class="articles-introduction">
-            Essays exploring spirituality, chess, philosophy, purpose, and the experiences that shaped my journey. Each article is an invitation to pause, reflect, and see the world differently.
+            <strong>ESSAYS EXPLORING SPIRITUALITY, CHESS, PHILOSOPHY, PURPOSE, AND THE EXPERIENCES THAT SHAPED MY JOURNEY. EACH ARTICLE IS AN INVITATION TO PAUSE, REFLECT, AND SEE THE WORLD DIFFERENTLY.</strong>
           </p>
           <div class="articles-grid">
             <!-- Article 1 -->
@@ -2108,7 +2083,7 @@
         <!-- Tab Panel: Poems -->
         <div class="tab-panel" id="panel-poems">
           <div class="poems-layout">
-            <p class="poems-introduction">Poetry begins where ordinary language falls silent. What follows are fragments of an inner journey—moments of fire, stillness, longing, and awakening preserved in words. Read gently, and allow the silence to complete what language cannot.</p>
+            <p class="poems-introduction"><strong>POETRY BEGINS WHERE ORDINARY LANGUAGE FALLS SILENT. WHAT FOLLOWS ARE FRAGMENTS OF AN INNER JOURNEY—MOMENTS OF FIRE, STILLNESS, LONGING, AND AWAKENING PRESERVED IN WORDS. READ GENTLY, AND ALLOW THE SILENCE TO COMPLETE WHAT LANGUAGE CANNOT.</strong></p>
             <div class="poems-grid">
               <!-- Poem 1 -->
               <div class="poem-card" onclick="openPoem(1)">
@@ -2318,27 +2293,27 @@
       1: {
         title: "Spirituality",
         meta: "Spirituality • Category Overview",
-        body: `<p>Spirituality is not a belief to be adopted but a truth to be experienced. These essays explore meditation, Shiva, silence, consciousness, and the timeless wisdom that gradually transforms the way we see ourselves and the world.</p>`
+        body: `<p><strong>Spirituality is not a belief to be adopted but a truth to be experienced. These essays explore meditation, Shiva, silence, consciousness, and the timeless wisdom that gradually transforms the way we see ourselves and the world.</strong></p>`
       },
       2: {
         title: "Chess",
         meta: "Chess • Category Overview",
-        body: `<p>The chessboard is a mirror of the mind. Every move reveals intention, every mistake offers wisdom, and every game becomes a lesson in patience, discipline, and self-discovery. These essays explore the deeper philosophy hidden within sixty-four squares.</p>`
+        body: `<p><strong>The chessboard is a mirror of the mind. Every move reveals intention, every mistake offers wisdom, and every game becomes a lesson in patience, discipline, and self-discovery. These essays explore the deeper philosophy hidden within sixty-four squares.</strong></p>`
       },
       3: {
         title: "Philosophy",
         meta: "Philosophy • Category Overview",
-        body: `<p>Every question has the power to transform the one who asks it. These essays explore philosophy as a way of living—through reflection, reason, and the quiet pursuit of truth.</p>`
+        body: `<p><strong>Every question has the power to transform the one who asks it. These essays explore philosophy as a way of living—through reflection, reason, and the quiet pursuit of truth.</strong></p>`
       },
       4: {
         title: "Personal Journey",
         meta: "Personal Journey • Category Overview",
-        body: `<p>The path to becoming is rarely straight. These writings trace the moments of doubt, courage, loss, and transformation that gradually shaped the person I continue to become.</p>`
+        body: `<p><strong>The path to becoming is rarely straight. These writings trace the moments of doubt, courage, loss, and transformation that gradually shaped the person I continue to become.</strong></p>`
       },
       5: {
         title: "Purpose & Society",
         meta: "Purpose & Society • Category Overview",
-        body: `<p>Purpose gives direction to a life; society gives it meaning. These essays explore how individual transformation and collective responsibility come together to shape a better world.</p>`
+        body: `<p><strong>Purpose gives direction to a life; society gives it meaning. These essays explore how individual transformation and collective responsibility come together to shape a better world.</strong></p>`
       }
     };
 
@@ -2537,7 +2512,7 @@
         image: "asset/art_poem_3.png",
         body: `Flowing water, silent stone,
                A calling heard in the dark alone.
-               The river speaks in ancient tongue,
+               The river speaks in the ancient tongue,
                Of songs that were, and songs unsung.
                
                O traveler, wash your hands and feet,
@@ -2551,29 +2526,22 @@
         date: "July 12, 2026",
         image: "asset/shadow_leads_full.png",
         body: `This path is not to be the blazing sun,
-               but to know you're the moon—both
-               shadow and one.
-               
-               Not to escape the night, but to
-               bloom in its grace,
-               growing full by embracing what you
-               cannot face.
-               
-               Between what we show and what we hide,
-               truth drowns in the silence between both sides.
-               
-               Between the words we speak and the ones we swallow,
-               the soul is heard the least, yet feels the most hollow.
-               
+               but to know you're the moon—both shadow and one.
+               Not to escape the night, but to bloom in its grace,
+               growing full by embracing what you cannot face.
+
                We wear light like armor, but the cracks still show,
                where our hidden wounds continue to glow.
-               
                We long to be seen, yet fear the mirror,
                divided inside between truth and terror.
-               
+
+               Between what we show and what we hide,
+               truth drowns in the silence between both sides.
+               Between the words we speak and the ones we swallow,
+               the soul is heard the least, yet feels the most hollow.
+
                But healing begins when we choose to stay,
                not run from the night, nor chase the day.
-               
                And in the silence, when all masks fall,
                you’ll find His shadow was guiding it all.`
       },
@@ -2581,49 +2549,42 @@
         title: "A Journey to the Divine",
         date: "July 12, 2026",
         image: "asset/divine_journey_full.png",
-        body: `I wandered far through fire and rain,
-               In search of God, through joy and pain.
-               
-               I prayed, I wept, I bowed my head,
-               But He stayed hidden, and silence spread.
-               
-               I vanished in stillness to hear the Divine,
-               No voice to my name, yet all stars aligned.
-               
-               I carried the fire, and was burned by the flame,
-               I lost who I was, yet still bore my name.
-               
-               When I fell to the ground, I stood at the peak,
-               No need to shout, yet still I speak.
-               
-               To know the Divine, I let go of the way,
-               No step to take, yet I didn’t stray.
-               
-               Then came the dream, Shiva’s soft call,
-               A whisper of truth that silenced it all.
-               
-               The less I became, the more I was seen,
+        body: `The less I became, the more I was seen.
                I was lost in the dark, yet bathed in the beam.
-               
-               When I stopped seeking, I finally arrived,
+               When I stopped seeking, I finally arrived.
                I died in the truth, yet somehow survived.
-               
-               The moment I knelt, I began to rise,
+
+               I wandered far through fire and rain.
+               In search of God, through joy and pain.
+               I prayed, I wept, I bowed my head.
+               But He stayed hidden, and silence spread.
+
+               I vanished in stillness to hear the Divine.
+               No voice to my name, yet all stars aligned.
+               I carried the fire, and was burned by the flame.
+               I lost who I was, yet still bore my name.
+
+               The moment I knelt, I began to rise.
                No wings on my back, yet I touched the skies.
-               
-               In giving my all, I found myself whole,
+               In giving my all, I found myself whole.
                No hand to hold, yet complete was my soul.
-               
-               I shattered to dust, yet there I stood,
+
+               I shattered to dust, yet there I stood.
                Less than a breath, and greater than good.
-               
-               I saw His sign in the river’s grace,
+               When I fell to the ground, I stood at the peak.
+               No need to shout, yet still I speak.
+
+               To know the Divine, I let go of the way.
+               No step to take, yet I didn’t stray.
+               Then came the dream, Shiva’s soft call.
+               A whisper of truth that silenced it all.
+
+               I saw His sign in the river’s grace.
                A Shivling resting in sacred space.
-               
-               Not by chance, but by fate’s clear design,
+               Not by chance, but by fate’s clear design.
                I woke to the flame that burns the Divine.
-               
-               And now I rise, with the cosmos inside,
+
+               And now I rise, with the cosmos inside.
                Awakening the world, with Shiva as my guide.`
       }
     };
@@ -2757,11 +2718,38 @@
         });
       });
 
-      // Handle URL hashes if any (e.g. written-word.html#poems)
+      // Handle URL hashes on load and handle browser back / forward buttons
       const hash = window.location.hash.substring(1);
       if (['books', 'articles', 'poems', 'quotes'].includes(hash.toLowerCase())) {
         switchToTabbedView(hash.toLowerCase());
       }
+
+      window.addEventListener('popstate', (e) => {
+        const readerOverlay = document.getElementById('articleReader');
+        const bookModal = document.getElementById('bookModal');
+        
+        if (readerOverlay && readerOverlay.style.display === 'block') {
+          closeArticle();
+          return;
+        }
+        if (bookModal && bookModal.style.display === 'flex') {
+          closeBookModal();
+          return;
+        }
+
+        const currentHash = window.location.hash.substring(1).toLowerCase();
+        if (['books', 'articles', 'poems', 'quotes'].includes(currentHash)) {
+          if (TABBED_VIEW.style.display === 'none' || TABBED_VIEW.style.display === '') {
+            PILLARS_VIEW.style.display = 'none';
+            TABBED_VIEW.style.display = 'flex';
+          }
+          activateTab(currentHash);
+        } else if (!currentHash) {
+          if (TABBED_VIEW.style.display === 'flex') {
+            switchToPillarsView();
+          }
+        }
+      });
 
       // Initialize and render quotes database
       loadQuotes();

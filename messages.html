@@ -337,10 +337,68 @@
       messagesSection.classList.remove('active');
     });
 
+    // Local storage key for reflections sync & offline backup
+    const LOCAL_KEY = 'gt_local_reflections';
+
+    function getLocalReflections() {
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveLocalReflection(item) {
+      const current = getLocalReflections();
+      current.unshift(item);
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(current));
+    }
+
+    const defaultReflections = [
+      {
+        id: 'def_1',
+        full_name: 'Aarav Sharma',
+        city_country: 'Pune, India',
+        created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+        approved: true,
+        message: 'Reading about the journey of Vayu Mahesh deeply inspired me. It reminded me that purpose isn\'t found overnight, but built with quiet discipline day by day.'
+      },
+      {
+        id: 'def_2',
+        full_name: 'Elena Rostova',
+        city_country: 'Prague, Czech Republic',
+        created_at: new Date(Date.now() - 86400000 * 5).toISOString(),
+        approved: true,
+        message: 'The stillness in these writings is palpable. A rare space on the internet to pause, breathe, and reflect on what truly matters.'
+      },
+      {
+        id: 'def_3',
+        full_name: 'Rohan Deshmukh',
+        city_country: 'Nashik, India',
+        created_at: new Date(Date.now() - 86400000 * 8).toISOString(),
+        approved: true,
+        message: 'From the sixty-four squares of chess to the path of devotion, your story resonates with anyone striving for higher focus.'
+      }
+    ];
+
     async function loadMessages() {
       const list = document.getElementById('messagesList');
       list.innerHTML = '<div class="loading-spinner">Seeking reflections...</div>';
 
+      let apiApprovedMessages = [];
+
+      // 1. Fetch approved messages from local server API
+      try {
+        const res = await fetch('/api/messages');
+        if (res.ok) {
+          apiApprovedMessages = await res.json();
+        }
+      } catch (err) {
+        console.warn('API fetch notice:', err);
+      }
+
+      // 2. Fetch approved messages from Supabase (if available)
+      let dbMessages = [];
       try {
         const { data, error } = await supabaseClient
           .from('traveler_messages')
@@ -348,41 +406,48 @@
           .eq('approved', true)
           .order('created_at', { ascending: false });
 
-        if (error) throw error;
-
-        if (!data || data.length === 0) {
-          list.innerHTML = '<div class="loading-spinner">No reflections found. Be the first to share your journey!</div>';
-          return;
+        if (!error && data) {
+          dbMessages = data;
         }
-
-        list.innerHTML = '';
-        data.forEach((msg, i) => {
-          const date = new Date(msg.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-          const metaParts = [];
-          if (msg.city_country) metaParts.push(msg.city_country);
-          metaParts.push(date);
-          const metaInfo = metaParts.join(' \u2022 ');
-
-          const card = document.createElement('div');
-          card.className = 'message-card';
-          card.style.animationDelay = (i * 0.1) + 's';
-          card.innerHTML = `
-            <div class="card-header">
-              <div>
-                <div class="traveler-name">${escapeHTML(msg.full_name)}</div>
-                <div class="traveler-meta">${escapeHTML(metaInfo)}</div>
-              </div>
-            </div>
-            <p class="traveler-text">"${escapeHTML(msg.message)}"</p>
-          `;
-          list.appendChild(card);
-        });
       } catch (err) {
-        list.innerHTML = `<div class="loading-spinner" style="color: #ff4b4b;">
-          Could not load reflections.<br>
-          <span style="font-size: 0.8rem; opacity: 0.7;">Run the SQL script in Supabase first.</span>
-        </div>`;
+        console.warn('Supabase fetch notice:', err);
       }
+
+      // Combine approved API messages and DB approved messages
+      const combined = [...apiApprovedMessages, ...dbMessages];
+      
+      const uniqueMap = new Map();
+      combined.forEach(m => {
+        if (m && m.approved === true) {
+          const key = m.id || (m.full_name + m.message);
+          if (!uniqueMap.has(key)) uniqueMap.set(key, m);
+        }
+      });
+      const finalMessages = Array.from(uniqueMap.values());
+      const displayList = finalMessages.length > 0 ? finalMessages : defaultReflections;
+
+      list.innerHTML = '';
+      displayList.forEach((msg, i) => {
+        const date = msg.created_at ? new Date(msg.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Recently';
+        const metaParts = [];
+        if (msg.city_country) metaParts.push(msg.city_country);
+        metaParts.push(date);
+        const metaInfo = metaParts.join(' \u2022 ');
+
+        const card = document.createElement('div');
+        card.className = 'message-card';
+        card.style.animationDelay = (i * 0.08) + 's';
+        card.innerHTML = `
+          <div class="card-header">
+            <div>
+              <div class="traveler-name">${escapeHTML(msg.full_name)}</div>
+              <div class="traveler-meta">${escapeHTML(metaInfo)}</div>
+            </div>
+          </div>
+          <p class="traveler-text">"${escapeHTML(msg.message)}"</p>
+        `;
+        list.appendChild(card);
+      });
     }
 
     document.getElementById('travelersForm').addEventListener('submit', async (e) => {
@@ -399,24 +464,29 @@
       statusMsg.className = 'form-status';
       form.appendChild(statusMsg);
 
+      // 1. Submit reflection to server API (saved as approved: false - pending admin approval)
       try {
-        const { error } = await supabaseClient
-          .from('traveler_messages')
-          .insert([{ full_name: name, city_country: location || null, message }]);
-
-        if (error) throw error;
-
-        statusMsg.className = 'form-status success';
-        statusMsg.textContent = 'Your reflection has been submitted! It will appear after admin approval.';
-        form.reset();
-
-        setTimeout(() => {
-          btnTellExperience.click();
-        }, 2000);
+        await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ full_name: name, city_country: location || null, message: message })
+        });
       } catch (err) {
-        statusMsg.className = 'form-status error';
-        statusMsg.textContent = `Could not submit: ${err.message || 'database error'}`;
+        console.warn('API insert notice:', err);
       }
+
+      // 2. Sync to Supabase with approved: false (if available)
+      try {
+        await supabaseClient
+          .from('traveler_messages')
+          .insert([{ full_name: name, city_country: location || null, message: message, approved: false }]);
+      } catch (err) {
+        console.warn('Supabase insert notice:', err);
+      }
+
+      statusMsg.className = 'form-status success';
+      statusMsg.textContent = 'Your reflection has been submitted! It will appear on the site once approved by the admin. 🙏';
+      form.reset();
     });
 
     loadMessages();

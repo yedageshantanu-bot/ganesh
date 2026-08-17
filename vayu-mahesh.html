@@ -402,12 +402,12 @@
     }
 
     .reading-body p {
-      font-family: 'Source Serif 4', serif;
-      font-size: clamp(1.12rem, 1.48vw, 1.32rem);
-      line-height: 1.95;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 1.58vw, 1.4rem);
+      line-height: 1.85;
       color: #2D241B;
       margin-bottom: 1.8em;
-      text-align: justify;
+      text-align: left;
     }
 
     .reading-body p:last-child {
@@ -500,9 +500,9 @@
 
     /* Pull Quotes */
     .pull-quote {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+      font-size: clamp(1.3rem, 1.9vw, 1.7rem);
       line-height: 1.65;
       color: #5c4a32;
       padding: 30px 40px;
@@ -589,11 +589,35 @@
       left: 0;
       right: 0;
       margin-top: 45px;
-      margin-bottom: 50px;
-      border-top: 1.5px solid rgba(42, 35, 24, 0.2);
-      border-bottom: 1.5px solid rgba(42, 35, 24, 0.2);
-      background: #392f25;
+      margin-bottom: 55px;
+      border: none !important;
+      background: transparent;
       overflow: hidden;
+      box-shadow: 0 15px 45px rgba(42, 35, 24, 0.08);
+    }
+
+    .full-screen-image-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(216, 207, 184, 0.85) 0%, rgba(216, 207, 184, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .full-screen-image-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to top, rgba(216, 207, 184, 0.85) 0%, rgba(216, 207, 184, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
     }
 
     .full-screen-image {
@@ -1071,15 +1095,15 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/vayu_mahesh_ch1_temple.png" alt="Why Temple? - Ganesh Tajane Cosmic Shiva Vision Artwork" class="full-screen-image">
               </div>
-              <p class="has-dropcap">Why do we build temples? If the Divine is everywhere, why create a sacred place? Why spend centuries carving mountains into shrines, raising towering temples, and preserving them generation after generation? Surely, it is not because God needs a home. Temples were never built for stone; they were built for the human being.</p>
+              <p class="has-dropcap">Why do we build temples? If the Divine is everywhere, why create a sacred place? Why spend centuries carving mountains into shrines, raising towering temples, and preserving them generation after generation? Surely, it is not because God needs a home. Temples were never built for stone; they were built for the human beings.</p>
 
               <p>Life constantly pulls us outward. Every day, we chase success, responsibilities, relationships, ambitions, and countless distractions. In that endless movement, it is easy to lose the one thing that matters most—ourselves. A temple exists to reverse that journey. It invites us to turn inward before stepping back into the world.</p>
 
               <p>A temple is not merely a place to pray. It is a carefully created space where the mind can become quiet, where the heart can become receptive, and where one can behold the form of the Divine with complete attention. The purpose is not simply to see the deity; the purpose is to allow the deity to become alive within you.</p>
 
-              <p>When you leave the temple, you are meant to carry that presence into your thoughts, your words, and your actions. The silence you experienced inside should walk with you outside. The grace you felt before the deity should become the way you treat another human being. The clarity you discovered within should guide every decision you make. Then every action becomes meaningful, every word carries awareness, and every step becomes an offering toward the well-being of others.</p>
+              <p>When you leave the temple, you are meant to carry that presence into your thoughts, your words, and your actions. The silence you experienced inside should walk with you outside. The grace you felt before the deity should become the way you treat another human being. The clarity you discovered within should guide every decision you make. Then every action becomes meaningful, every word carries awareness, and every step becomes an offering towards the well-being of others.</p>
 
               <p>That is why a temple matters. Not because the Divine is confined within its walls, but because the human mind often needs a sacred space to remember what it truly is. A temple is not an escape from life; it is where we prepare ourselves to live life consciously. Perhaps that is why our ancestors built temples with such devotion. They were not only preserving faith; they were preserving a way of transforming human consciousness.</p>
 
@@ -1163,7 +1187,7 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/vayu_mahesh_ch2_why.png" alt="Why Vayu Mahesh? - Ganesh Tajane Shivling under Banyan Tree Artwork" class="full-screen-image">
               </div>
               <p class="has-dropcap">When the idea of Vayu Mahesh first began to take shape within me, my first response was not excitement. It was resistance. I never dreamed of building a temple. I never sat down with a plan to create a spiritual movement or establish another sacred place. I was simply searching for truth—trying to understand life, existence, and my own purpose. And the deeper I searched, the louder one question became: Why another temple?</p>
 
@@ -1258,13 +1282,13 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/vayu_mahesh_ch3_vow.png" alt="The Vow of 108 Moons - Ganesh Tajane Jala Sankalpa Full Moon Water Offering Ritual Artwork" class="full-screen-image">
               </div>
               <p class="has-dropcap">Every dream has a beginning, but only a few become a destiny. The difference is commitment. As the vision of Vayu Mahesh became clearer, I also began to understand the scale of what I had been called to do. This wasn't a project that could be completed in a year or two. It wasn't something I could pursue only when life was convenient. If this temple was ever going to exist, it would demand years of unwavering commitment.</p>
 
               <p>Around that time, my dreams became more vivid than ever. Sometimes I would find myself in the presence of yogis. Sometimes there would be no words, only a deep knowing. And somehow, the same message kept returning in different forms: A work of this magnitude needs a Sankalp—not a wish, not motivation, but a Sankalp.</p>
 
-              <p>Again and again, one number began appearing within me: 108. I never sat down and decided that I would choose 108 Purnimas. It wasn't an intellectual decision. If someone had asked me why 108, I wouldn't have been able to explain it. I simply knew. There was a pull toward that number that I couldn't ignore.</p>
+              <p>Again and again, one number began appearing within me: 108. I never sat down and decided that I would choose 108 Purnimas. It wasn't an intellectual decision. If someone had asked me why 108, I wouldn't have been able to explain it. I simply knew. There was a pull towards that number that I couldn't ignore.</p>
 
               <p>And then came one particular Purnima. Even today, I cannot fully explain what was different about that full moon. Outwardly, it looked no different from the countless Purnimas that had come before it. But inwardly, everything had changed. It felt as though that night had been waiting for me. People often say that we choose our vows; my experience was the opposite: I did not choose that Purnima, that Purnima chose me.</p>
 
@@ -1369,7 +1393,7 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/vayu_mahesh_ch4_temple_sunset.png" alt="Legacy Beyond a Lifetime - Ganesh Tajane Sacred Temple at Sunset Artwork" class="full-screen-image">
               </div>
               <p class="has-dropcap">There came a moment when I stopped asking whether I would be able to build this temple. A different question quietly took its place: What remains when I am no longer here? Everything we chase in life eventually fades. Wealth changes hands. Names are forgotten. Buildings become ruins. Even the strongest bodies return to dust. Time humbles everything that is built only for ourselves.</p>
 
@@ -1461,8 +1485,28 @@
       const subPrevBtn = document.getElementById('subPrevBtn');
       const subNextBtn = document.getElementById('subNextBtn');
 
-      let currentTab = 0;
+      // Read initial chapter from URL hash on page load
+      function getInitialTabFromHash() {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#chapter-')) {
+          const num = parseInt(hash.replace('#chapter-', ''), 10) - 1;
+          if (!isNaN(num) && num >= 0 && num < viewports.length) {
+            return num;
+          }
+        }
+        return 0;
+      }
+
+      let currentTab = getInitialTabFromHash();
       let animating = false;
+
+      // Sync active classes on page load if starting on chapter > 1
+      if (currentTab !== 0) {
+        viewports.forEach(vp => vp.classList.remove('active'));
+        subTabs.forEach(st => st.classList.remove('active'));
+        if (viewports[currentTab]) viewports[currentTab].classList.add('active');
+        if (subTabs[currentTab]) subTabs[currentTab].classList.add('active');
+      }
 
       // Dynamic Word Wrapper for Premium Reveals
       document.querySelectorAll('.landing-title').forEach(title => {
@@ -1582,6 +1626,23 @@
         );
       }
 
+      // Handle browser back / forward navigation (popstate & hashchange)
+      window.addEventListener('popstate', (e) => {
+        let targetIndex = 0;
+        if (e.state && typeof e.state.tab === 'number') {
+          targetIndex = e.state.tab;
+        } else {
+          const hash = window.location.hash;
+          if (hash.startsWith('#chapter-')) {
+            const num = parseInt(hash.replace('#chapter-', ''), 10) - 1;
+            if (!isNaN(num) && num >= 0 && num < viewports.length) targetIndex = num;
+          }
+        }
+        if (targetIndex !== currentTab) {
+          switchTab(targetIndex, false);
+        }
+      });
+
       // Sub-tab button clicks
       subTabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -1600,6 +1661,15 @@
         const nextIdx = (currentTab + 1) % viewports.length;
         switchTab(nextIdx);
       });
+
+      // Check URL hash on page load for direct chapter entry
+      const initialHash = window.location.hash;
+      if (initialHash.startsWith('#chapter-')) {
+        const num = parseInt(initialHash.replace('#chapter-', ''), 10) - 1;
+        if (!isNaN(num) && num >= 0 && num < viewports.length && num !== 0) {
+          switchTab(num, false);
+        }
+      }
 
       // ── Scroll Transition Engine (Continuous scroll flow) ──
       let wheelCooldown = false;

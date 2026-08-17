@@ -402,9 +402,9 @@
     }
 
     .reading-body p {
-      font-family: 'Source Serif 4', serif;
-      font-size: clamp(1.12rem, 1.48vw, 1.32rem);
-      line-height: 1.95;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 1.58vw, 1.4rem);
+      line-height: 1.85;
       color: #2D241B;
       margin-bottom: 1.8em;
       text-align: left;
@@ -500,9 +500,9 @@
 
     /* Pull Quotes */
     .pull-quote {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+      font-size: clamp(1.3rem, 1.9vw, 1.7rem);
       line-height: 1.65;
       color: #5c4a32;
       padding: 30px 40px;
@@ -589,18 +589,50 @@
       left: 0;
       right: 0;
       margin-top: 45px;
-      margin-bottom: 50px;
-      border-top: 1.5px solid rgba(42, 35, 24, 0.2);
-      border-bottom: 1.5px solid rgba(42, 35, 24, 0.2);
-      background: #392f25;
+      margin-bottom: 55px;
+      border-top: none !important;
+      border-bottom: none !important;
+      border: none !important;
+      background: transparent;
       overflow: hidden;
+      box-shadow: 0 15px 45px rgba(42, 35, 24, 0.08);
+    }
+
+    .full-screen-image-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(216, 204, 191, 0.95) 0%, rgba(216, 204, 191, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .full-screen-image-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(216, 204, 191, 0.95) 0%, rgba(216, 204, 191, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
     }
 
     .full-screen-image {
       width: 100%;
       height: auto;
+      max-height: 85vh;
+      object-fit: cover;
       display: block;
-      filter: none;
+      border: none !important;
+      filter: contrast(1.04) brightness(1.02);
+      transform: scale(1.04);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+      will-change: transform;
     }
 
     .full-bleed-banner {
@@ -1047,9 +1079,9 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/nashik_watercolor.png" alt="The Boy from Nashik - Ramkund Nashik Ghats Sunrise Watercolor Artwork" class="full-screen-image">
               </div>
-              <p class="has-dropcap">I was born and raised in Nashik, a city deeply rooted in spirituality and tradition. I grew up in a modest lower-middle-class family where faith, hard work, and quiet sacrifice shaped everyday life. As a young child, I survived a serious medical condition that nearly took my life. Looking back, it feels as though life had granted me a second chance long before I understood why. My mother was a devoted follower of Sri Swami Samartha, and her unwavering faith quietly planted the first seeds of spirituality within me. My father worked tirelessly to support our family, while the sacrifices made by those around me taught me lessons about gratitude long before I was old enough to appreciate them. Like many children, I dreamed of creating a better future for my family through education. Yet beneath those ordinary ambitions, another curiosity was already taking shape. From an early age, I found myself drawn toward meditation, discipline, and the lives of great spiritual masters. The teachings of Swami Vivekananda particularly captivated me, awakening questions that extended far beyond success, achievement, or material goals. While most of my friends were occupied with the distractions of childhood, I often found myself fascinated by silence and introspection. I did not understand where that attraction came from, nor did I realize how important it would later become. Looking back, I can see that the foundations of my journey were being laid long before I understood where they would lead. The lessons of family, struggle, gratitude, faith, and inner seeking would eventually shape everything that followed.</p>
+              <p class="has-dropcap">I was born and raised in Nashik, a city deeply rooted in spirituality and tradition. I grew up in a modest lower-middle-class family where faith, hard work, and quiet sacrifice shaped everyday life. As a young child, I survived a serious medical condition that nearly took my life. Looking back, it feels as though life had granted me a second chance long before I understood why. My mother was a devoted follower of Sri Swami Samartha, and her unwavering faith quietly planted the first seeds of spirituality within me. My father worked tirelessly to support our family, while the sacrifices made by those around me taught me lessons about gratitude long before I was old enough to appreciate them. Like many children, I dreamed of creating a better future for my family through education. Yet beneath those ordinary ambitions, another curiosity was already taking shape. From an early age, I found myself drawn towards meditation, discipline, and the lives of great spiritual masters. The teachings of Swami Vivekananda particularly captivated me, awakening questions that extended far beyond success, achievement, or material goals. While most of my friends were occupied with the distractions of childhood, I often found myself fascinated by silence and introspection. I did not understand where that attraction came from, nor did I realize how important it would later become. Looking back, I can see that the foundations of my journey were being laid long before I understood where they would lead. The lessons of family, struggle, gratitude, faith, and inner seeking would eventually shape everything that followed.</p>
 
               <p>The boy from Nashik did not yet know his destination. But the search had already begun.</p>
 
@@ -1067,7 +1099,7 @@
                   <div class="quote-line-divider"></div>
                   <span>the traveler knows</span>
                 </div>
-                <div class="massive-quote-line">he is walking it.</div>
+                <div class="massive-quote-line">he is walking towards it.</div>
               </div>
               <div style="height: 200px; clear: both;"></div>
             </div>
@@ -1133,14 +1165,14 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/chess_watercolor.png" alt="The Language of Sixty-Four Squares - Ganesh Tajane Playing Chess at Sunset Ghats Watercolor" class="full-screen-image">
               </div>
 
               <p class="has-dropcap">I discovered chess by accident. One afternoon, while playing cricket with friends, a powerful shot sent the ball far beyond the ground. As I went searching for it, I noticed two boys sitting beneath a tree, completely absorbed in a game I had never seen before. They were playing chess. The board, the pieces, and the intense silence between them fascinated me. I watched for a few minutes before returning to the cricket match, but something about the game stayed with me. The next day, I found myself returning to the same spot. The two boys were there again, playing another game. They did not know me, and I never asked them to teach me. Day after day, I simply stood nearby and watched. Slowly, by observing their moves, I began to understand the rules. Without realizing it, I was learning a new language—a language spoken on sixty-four squares.</p>
 
-              <p>Eventually, I asked my father to buy me a chessboard. He brought home a simple board that cost twenty rupees. Inside the box was a small sheet explaining how each piece moved. That sheet became my first teacher. From that moment, I was captivated. Life, like most lower-middle-class lives, came with its share of worries and limitations. But whenever I sat in front of the board, everything else seemed to disappear. The world grew quiet. Problems faded into the background. For the first time, I found something that demanded my complete attention and rewarded patience, imagination, and discipline. Chess became more than a game. It became a place where I could lose myself and, in doing so, slowly begin to find myself.</p>
+              <p>Eventually, I asked my father to buy me a chessboard. He brought home a simple board that cost twenty rupees. Inside the box was a small sheet explaining how each piece moved. That sheet became my first teacher. From that moment, I was captivated. Life, like most lower-middle-class lives, came with its share of worries and limitations. But whenever I sat in front of the board, everything else seemed to disappear. The world grew quiet. Problems faded into the background. For the first time, I found something that demanded my complete attention and rewarded patience, imagination, and discipline. Chess became more than a game. It became a place where I could lose myself and, in doing so, slowly began to find myself.</p>
 
-              <p>Not long afterward, my school organized a chess tournament. I participated without any expectations; I simply wanted to play. To my surprise, I won. The trophy itself was small, but the feeling it created was immense. It was the first time I experienced the joy of succeeding at something I genuinely loved. That victory planted a seed whose roots would grow far deeper than I could have imagined. Looking back, I often think about that cricket ball. Had it not been struck in that direction on that ordinary afternoon, my life might have unfolded very differently. Some journeys begin with a plan. Mine began with a lost cricket ball.</p>
+              <p>Not long afterwords, my school organized a chess tournament. I participated without any expectations; I simply wanted to play. To my surprise, I won. The trophy itself was small, but the feeling it created was immense. It was the first time I experienced the joy of succeeding at something I genuinely loved. That victory planted a seed whose roots would grow far deeper than I could have imagined. Looking back, I often think about that cricket ball. Had it not been struck in that direction on that ordinary afternoon, my life might have unfolded very differently. Some journeys begin with a plan. Mine began with a lost cricket ball.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">On sixty-four</div>
@@ -1211,12 +1243,12 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/stillness_watercolor.png" alt="The Pursuit of Stillness - Ganesh Tajane Meditation at Sunset Ghats Watercolor" class="full-screen-image">
               </div>
 
               <p class="has-dropcap">While chess became a serious part of my life, another journey was unfolding quietly in the background. I had begun meditating regularly. At first, it was simply a search for focus and inner peace. But over time, the experience became something far deeper. The more time I spent in silence, the more unusual things began to happen. Certain meditations felt intensely vivid. Images would appear with a clarity I could not explain. Some felt symbolic. Others felt strangely real.</p>
 
-              <p>The nights brought their own mysteries. I began having powerful dreams—dreams that stayed with me long after I woke up. In some, conversations unfolded as if they were taking place somewhere beyond the boundaries of ordinary sleep. People appeared, spoke, and disappeared, leaving behind questions I could not answer. I told very few people about these experiences, partly because I did not know how to explain them, and partly because I was still trying to understand them myself. While I continued studying chess, coaching students, and pursuing improvement on the board, another part of me was being drawn toward something invisible—something I could neither explain nor ignore.</p>
+              <p>The nights brought their own mysteries. I began having powerful dreams—dreams that stayed with me long after I woke up. In some, conversations unfolded as if they were taking place somewhere beyond the boundaries of ordinary sleep. People appeared, spoke, and disappeared, leaving behind questions I could not answer. I told very few people about these experiences, partly because I did not know how to explain them, and partly because I was still trying to understand them myself. While I continued studying chess, coaching students, and pursuing improvement on the board, another part of me was being drawn towards something invisible—something I could neither explain nor ignore.</p>
 
               <p>Looking back, I realize those years were not about finding answers. They were about learning to live with questions.</p>
 
@@ -1224,12 +1256,12 @@
                 <div class="massive-quote-line">I did not understand</div>
                 <div class="massive-quote-line">what was happening</div>
                 <div class="massive-quote-line flex-line-right">
-                  <span>to me. I</span>
+                  <span>to me.</span>
                   <div class="quote-line-divider"></div>
                 </div>
                 <div class="massive-quote-line flex-line-left">
                   <div class="quote-line-divider"></div>
-                  <span>only knew I could</span>
+                  <span>I only knew I could</span>
                 </div>
                 <div class="massive-quote-line">no longer ignore it.</div>
               </div>
@@ -1296,16 +1328,16 @@
             </div>
             <div class="reading-body">
               <div class="full-screen-image-container">
-                <img src="asset/ganesh_portrait.png" alt="Ganesh Tajane" class="full-screen-image">
+                <img src="asset/ignore_watercolor.png" alt="The Things I Could Not Ignore - Ganesh Tajane Reading Scripture at Sunset Ghats Watercolor" class="full-screen-image">
               </div>
 
-              <p class="has-dropcap">Meditation had become a part of my life, but something deeper was beginning to unfold. What started as subtle moments soon became impossible to dismiss. Unexplained coincidences, recurring symbols, powerful dreams, and inner experiences began appearing with unusual frequency. Certain places seemed to call me. Certain books found me at the exact moment I needed them. Questions I carried in silence were often answered before I spoke them aloud. At first, I tried to explain everything logically, telling myself they were coincidences, products of imagination, or the natural result of intense spiritual practice. But the experiences continued. The more I paid attention, the more a quiet pattern emerged—one that seemed to be guiding me toward something I could not yet understand.</p>
+              <p class="has-dropcap">Meditation had become a part of my life, but something deeper was beginning to unfold. What started as subtle moments soon became impossible to dismiss. Unexplained coincidences, recurring symbols, powerful dreams, and inner experiences began appearing with unusual frequency. Certain places seemed to call me. Certain books found me at the exact moment I needed them. Questions I carried in silence were often answered before I spoke them aloud. At first, I tried to explain everything logically, telling myself they were coincidences, products of imagination, or the natural result of intense spiritual practice. But the experiences continued. The more I paid attention, the more a quiet pattern emerged—one that seemed to be guiding me towards something I could not yet understand.</p>
 
               <p>I was not seeking Shiva, yet somehow, every path seemed to lead in that direction. Looking back, I can see that these moments were not the destination. They were signposts—gentle nudges from life itself, preparing me for a journey that would change everything. A new chapter was about to begin, and with it, the path of Vayu.</p>
 
               <div class="massive-quote-container">
                 <div class="massive-quote-line">I was not moving</div>
-                <div class="massive-quote-line">toward Shiva.</div>
+                <div class="massive-quote-line">towards Shiva.</div>
                 <div class="massive-quote-line flex-line-right">
                   <span>Yet everything</span>
                   <div class="quote-line-divider"></div>
@@ -1314,7 +1346,7 @@
                   <div class="quote-line-divider"></div>
                   <span>that mattered was</span>
                 </div>
-                <div class="massive-quote-line">moving me toward Him.</div>
+                <div class="massive-quote-line">moving me towards Him.</div>
               </div>
               <div style="height: 200px; clear: both;"></div>
             </div>
@@ -1384,8 +1416,28 @@
       const subPrevBtn = document.getElementById('subPrevBtn');
       const subNextBtn = document.getElementById('subNextBtn');
 
-      let currentTab = 0;
+      // Read initial chapter from URL hash on page load
+      function getInitialTabFromHash() {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#chapter-')) {
+          const num = parseInt(hash.replace('#chapter-', ''), 10) - 1;
+          if (!isNaN(num) && num >= 0 && num < viewports.length) {
+            return num;
+          }
+        }
+        return 0;
+      }
+
+      let currentTab = getInitialTabFromHash();
       let animating = false;
+
+      // Sync active classes on page load if starting on chapter > 1
+      if (currentTab !== 0) {
+        viewports.forEach(vp => vp.classList.remove('active'));
+        subTabs.forEach(st => st.classList.remove('active'));
+        if (viewports[currentTab]) viewports[currentTab].classList.add('active');
+        if (subTabs[currentTab]) subTabs[currentTab].classList.add('active');
+      }
 
       // Dynamic Word Wrapper for Premium Reveals
       document.querySelectorAll('.landing-title').forEach(title => {
@@ -1466,8 +1518,15 @@
       }
 
       // ── Navigation between Tabs (Sub-tabs) ──
-      function switchTab(targetIndex) {
-        if (animating || targetIndex === currentTab || targetIndex < 0 || targetIndex >= viewports.length) return;
+      function switchTab(targetIndex, updateHistory = true) {
+        if (targetIndex === currentTab || targetIndex < 0 || targetIndex >= viewports.length) return;
+
+        if (updateHistory) {
+          const hashName = '#chapter-' + (targetIndex + 1);
+          history.pushState({ tab: targetIndex }, '', hashName);
+        }
+
+        if (animating) return;
         animating = true;
 
         const prevTab = currentTab;
@@ -1479,8 +1538,6 @@
 
         // Scroll current active viewport back to top instantly
         const prevContainer = viewports[prevTab].querySelector('.viewport-scroll-container');
-
-
 
         // Transition views using GSAP
         const currentViewport = viewports[currentTab];
@@ -1544,6 +1601,23 @@
           { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.6 }
         );
       }
+
+      // Handle browser back / forward navigation (popstate & hashchange)
+      window.addEventListener('popstate', (e) => {
+        let targetIndex = 0;
+        if (e.state && typeof e.state.tab === 'number') {
+          targetIndex = e.state.tab;
+        } else {
+          const hash = window.location.hash;
+          if (hash.startsWith('#chapter-')) {
+            const num = parseInt(hash.replace('#chapter-', ''), 10) - 1;
+            if (!isNaN(num) && num >= 0 && num < viewports.length) targetIndex = num;
+          }
+        }
+        if (targetIndex !== currentTab) {
+          switchTab(targetIndex, false);
+        }
+      });
 
       // Sub-tab button clicks
       subTabs.forEach(tab => {
@@ -1736,6 +1810,33 @@
           e.preventDefault();
         }
       }, { passive: false });
+    })();
+  </script>
+  <script>
+    // Smooth Image Parallax Motion on Scroll
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const containers = document.querySelectorAll('.full-screen-image-container');
+        
+        function updateParallax() {
+          const viewHeight = window.innerHeight;
+          containers.forEach(container => {
+            const rect = container.getBoundingClientRect();
+            if (rect.top < viewHeight && rect.bottom > 0) {
+              const progress = (viewHeight - rect.top) / (viewHeight + rect.height);
+              const translateY = (progress - 0.5) * -28;
+              const img = container.querySelector('.full-screen-image');
+              if (img) {
+                img.style.transform = `scale(1.04) translateY(${translateY}px)`;
+              }
+            }
+          });
+        }
+
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        window.addEventListener('resize', updateParallax, { passive: true });
+        updateParallax();
+      });
     })();
   </script>
   <script src="asset/bg-music.js"></script>

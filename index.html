@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Welcome - Ganesh Tajane World</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&family=Rock+Salt&family=Rubik+Dirt&family=Special+Elite&display=swap');
 
     :root {
       --bg-primary: #050506;
@@ -15,6 +15,9 @@
       --grad-gold-text: linear-gradient(135deg, #ffffff 10%, #ffd700 60%, #cca43b 100%);
       --font-cinzel: 'Cinzel', serif;
       --font-cinzel-dec: 'Cinzel Decorative', serif;
+      --font-charcoal-dirt: 'Rubik Dirt', cursive;
+      --font-charcoal-salt: 'Rock Salt', cursive;
+      --font-charcoal-sketch: 'Cabin Sketch', cursive;
       --font-montserrat: 'Montserrat', sans-serif;
       --transition-fast: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -129,14 +132,12 @@
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Center circle formatting & sizing */
+    /* Center text content (No background circle) */
     .center-content {
-      width: 90vw;
-      max-width: 520px;
-      height: 90vw;
-      max-height: 520px;
-      border-radius: 50%;
-      padding: 25px;
+      width: 100%;
+      max-width: 650px;
+      height: auto;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -145,9 +146,9 @@
       opacity: 0;
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 75%);
-      box-shadow: 0 0 80px rgba(255, 255, 255, 0.12), inset 0 0 50px rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      box-shadow: none;
+      border: none;
     }
 
     .center-content.show {
@@ -185,29 +186,40 @@
       transform: translateY(60px);
     }
 
-    /* Golden Gradient Title */
+    /* Majestic Shimmering Gold & Fire Title */
     .intro-title {
       font-family: var(--font-cinzel);
       font-weight: 700;
-      color: var(--text-primary);
+      color: #FBEFCD;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      line-height: 1.35;
+      letter-spacing: 0.25em;
+      line-height: 1.4;
       font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      margin-bottom: 0.4rem;
-      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.95), 0 0 25px rgba(212, 175, 55, 0.3);
     }
 
     .intro-title .highlight {
-      font-family: var(--font-cinzel-dec);
-      font-weight: 800;
+      font-family: var(--font-cinzel-dec), 'Cinzel Decorative', serif;
+      font-weight: 900;
       display: block;
-      font-size: clamp(1.8rem, 4.8vw, 3.2rem);
-      color: #ffffff;
-      -webkit-text-fill-color: #ffffff;
-      text-shadow: 0 0 25px rgba(255, 255, 255, 0.5), 0 3px 12px rgba(0, 0, 0, 0.8);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
       margin-top: 0.4rem;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      background: linear-gradient(110deg, #F3C444 0%, #FFFFFF 25%, #E5A93B 50%, #FFF4D0 75%, #F3C444 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldSheen 7s linear infinite;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px rgba(243, 196, 68, 0.4));
+      position: relative;
+    }
+
+    @keyframes goldSheen {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
     }
 
     .intro-subtitle {
@@ -215,11 +227,11 @@
       font-style: italic;
       font-weight: 500;
       font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-      color: rgba(255, 255, 255, 0.92);
+      color: #CBD5E1;
       margin-bottom: 1.6rem;
       letter-spacing: 0.05em;
       line-height: 1.5;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 0, 0, 0.5);
       max-width: 460px;
     }
 
@@ -998,6 +1010,18 @@
 </head>
 
 <body>
+
+  <!-- Charcoal SVG Filters -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+    <filter id="charcoal-edge" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+    <filter id="charcoal-heavy" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="4" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.8" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
 
   <!-- Welcome Page View -->
   <div class="video-wrap" id="videoWrap">

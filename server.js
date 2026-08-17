@@ -4,6 +4,7 @@ const path = require('path');
 
 const PORT = 3005;
 const DIR = __dirname;
+const DATA_FILE = path.join(DIR, 'data', 'messages.json');
 
 const mimeTypes = {
   '.mp4':  'video/mp4',
@@ -21,15 +22,136 @@ const mimeTypes = {
   '.webp': 'image/webp',
 };
 
+function readMessages() {
+  try {
+    if (fs.existsSync(DATA_FILE)) {
+      const content = fs.readFileSync(DATA_FILE, 'utf8');
+      return JSON.parse(content);
+    }
+  } catch (e) {
+    console.error('Error reading messages:', e);
+  }
+  return [];
+}
+
+function writeMessages(messages) {
+  try {
+    const dir = path.dirname(DATA_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(DATA_FILE, JSON.stringify(messages, null, 2), 'utf8');
+  } catch (e) {
+    console.error('Error writing messages:', e);
+  }
+}
+
+function getRequestBody(req) {
+  return new Promise((resolve) => {
+    let body = '';
+    req.on('data', chunk => { body += chunk.toString(); });
+    req.on('end', () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (e) {
+        resolve({});
+      }
+    });
+  });
+}
+
 const server = http.createServer((req, res) => {
   // Strip query strings
   let urlPath = req.url.split('?')[0].split('#')[0];
 
+  // API Routes
+  if (urlPath === '/api/messages') {
+    if (req.method === 'GET') {
+      const showAll = req.url.includes('all=true');
+      const allMsgs = readMessages();
+      const filtered = showAll ? allMsgs : allMsgs.filter(m => m.approved === true);
+      res.writeHead(200, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      });
+      res.end(JSON.stringify(filtered));
+      return;
+    }
+
+    if (req.method === 'POST') {
+      getRequestBody(req).then(data => {
+        const { full_name, city_country, message } = data;
+        if (!full_name || !message) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Name and message are required' }));
+          return;
+        }
+
+        const newMsg = {
+          id: 'msg_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+          full_name: full_name.trim(),
+          city_country: (city_country || '').trim() || null,
+          message: message.trim(),
+          approved: false, // ALWAYS default to false (Pending admin approval)
+          created_at: new Date().toISOString()
+        };
+
+        const allMsgs = readMessages();
+        allMsgs.unshift(newMsg);
+        writeMessages(allMsgs);
+
+        res.writeHead(200, { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify({ success: true, message: 'Reflection submitted for admin approval', data: newMsg }));
+      });
+      return;
+    }
+
+    if (req.method === 'OPTIONS') {
+      res.writeHead(200, {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      });
+      res.end();
+      return;
+    }
+  }
+
+  if (urlPath === '/api/admin/approve' && req.method === 'POST') {
+    getRequestBody(req).then(data => {
+      const { id } = data;
+      const allMsgs = readMessages();
+      const target = allMsgs.find(m => String(m.id) === String(id));
+      if (target) {
+        target.approved = true;
+        writeMessages(allMsgs);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify({ success: true }));
+    });
+    return;
+  }
+
+  if (urlPath === '/api/admin/delete' && req.method === 'POST') {
+    getRequestBody(req).then(data => {
+      const { id } = data;
+      let allMsgs = readMessages();
+      allMsgs = allMsgs.filter(m => String(m.id) !== String(id));
+      writeMessages(allMsgs);
+      res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify({ success: true }));
+    });
+    return;
+  }
+
   // Default to index.html
   if (urlPath === '/') urlPath = '/index.html';
 
-  // Admin route - serve admin.html
-  if (urlPath === '/admin' || urlPath === '/admin/') urlPath = '/admin.html';
+  // Admin route - serve /admin/index.html
+  if (urlPath === '/admin' || urlPath === '/admin/') urlPath = '/admin/index.html';
 
   // Decode percent-encoded characters (spaces etc.)
   let filePath;
@@ -47,6 +169,16 @@ const server = http.createServer((req, res) => {
     res.end('Forbidden');
     return;
   }
+
+  // Handle directory requests by trying index.html inside directory
+  try {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+      const dirIndex = path.join(filePath, 'index.html');
+      if (fs.existsSync(dirIndex) && fs.statSync(dirIndex).isFile()) {
+        filePath = dirIndex;
+      }
+    }
+  } catch (e) {}
 
   const ext = path.extname(filePath).toLowerCase();
   const contentType = mimeTypes[ext] || 'application/octet-stream';
