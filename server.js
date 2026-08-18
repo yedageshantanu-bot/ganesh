@@ -153,6 +153,15 @@ const server = http.createServer((req, res) => {
   // Admin route - serve /admin/index.html
   if (urlPath === '/admin' || urlPath === '/admin/') urlPath = '/admin/index.html';
 
+  // Clean URL rewrites for chapters
+  if (/^\/(before-the-fire|the-path-of-vayu|chess|vayu-mahesh)\/chapter-\d+/.test(urlPath)) {
+    urlPath = '/chapters' + urlPath;
+  }
+  if (/^\/(before-the-fire|the-path-of-vayu|chess|vayu-mahesh)\/?$/.test(urlPath)) {
+    const bookName = urlPath.replace(/\//g, '');
+    urlPath = `/chapters/${bookName}/chapter-1/index.html`;
+  }
+
   // Decode percent-encoded characters (spaces etc.)
   let filePath;
   try {

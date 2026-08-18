@@ -1,23 +1,34 @@
 # Cloudflare Pages Redirects & Clean URL Routing Rules
 
-/before-the-fire/chapter-1  /before-the-fire.html#chapter-1  302
-/before-the-fire/chapter-2  /before-the-fire.html#chapter-2  302
-/before-the-fire/chapter-3  /before-the-fire.html#chapter-3  302
-/before-the-fire/chapter-4  /before-the-fire.html#chapter-4  302
+# Written Word
+/written-word                 /written-word.html  200
 
-/the-path-of-vayu/chapter-1  /the-path-of-vayu.html#chapter-1  302
-/the-path-of-vayu/chapter-2  /the-path-of-vayu.html#chapter-2  302
-/the-path-of-vayu/chapter-3  /the-path-of-vayu.html#chapter-3  302
-/the-path-of-vayu/chapter-4  /the-path-of-vayu.html#chapter-4  302
+# Before I Became Fire
+/before-the-fire              /chapters/before-the-fire/chapter-1/  302
+/before-the-fire/chapter-1    /chapters/before-the-fire/chapter-1/  200
+/before-the-fire/chapter-2    /chapters/before-the-fire/chapter-2/  200
+/before-the-fire/chapter-3    /chapters/before-the-fire/chapter-3/  200
+/before-the-fire/chapter-4    /chapters/before-the-fire/chapter-4/  200
 
-/chess/chapter-1  /chess.html#chapter-1  302
-/chess/chapter-2  /chess.html#chapter-2  302
-/chess/chapter-3  /chess.html#chapter-3  302
-/chess/chapter-4  /chess.html#chapter-4  302
+# The Path of Vayu
+/the-path-of-vayu             /chapters/the-path-of-vayu/chapter-1/  302
+/the-path-of-vayu/chapter-1   /chapters/the-path-of-vayu/chapter-1/  200
+/the-path-of-vayu/chapter-2   /chapters/the-path-of-vayu/chapter-2/  200
+/the-path-of-vayu/chapter-3   /chapters/the-path-of-vayu/chapter-3/  200
+/the-path-of-vayu/chapter-4   /chapters/the-path-of-vayu/chapter-4/  200
 
-/vayu-mahesh/chapter-1  /vayu-mahesh.html#chapter-1  302
-/vayu-mahesh/chapter-2  /vayu-mahesh.html#chapter-2  302
-/vayu-mahesh/chapter-3  /vayu-mahesh.html#chapter-3  302
-/vayu-mahesh/chapter-4  /vayu-mahesh.html#chapter-4  302
+# Chess & Strategy
+/chess                        /chapters/chess/chapter-1/  302
+/chess/chapter-1              /chapters/chess/chapter-1/  200
+/chess/chapter-2              /chapters/chess/chapter-2/  200
+/chess/chapter-3              /chapters/chess/chapter-3/  200
+/chess/chapter-4              /chapters/chess/chapter-4/  200
 
-/admin  /admin/index.html  200
+# Vayu Mahesh
+/vayu-mahesh                  /chapters/vayu-mahesh/chapter-1/  302
+/vayu-mahesh/chapter-1        /chapters/vayu-mahesh/chapter-1/  200
+/vayu-mahesh/chapter-2        /chapters/vayu-mahesh/chapter-2/  200
+/vayu-mahesh/chapter-3        /chapters/vayu-mahesh/chapter-3/  200
+/vayu-mahesh/chapter-4        /chapters/vayu-mahesh/chapter-4/  200
+
+/admin                        /admin/index.html  200

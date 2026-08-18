@@ -1,0 +1,11 @@
+# Robots.txt for https://ganeshtajane.com/
+
+User-agent: *
+Allow: /
+
+# Exclude internal admin and data endpoints from indexing
+Disallow: /admin/
+Disallow: /api/
+
+# XML Sitemap Location
+Sitemap: https://ganeshtajane.com/sitemap.xml
