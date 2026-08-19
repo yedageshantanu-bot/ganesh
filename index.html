@@ -1087,7 +1087,7 @@
 
   <!-- Welcome Page View -->
   <div class="video-wrap" id="videoWrap">
-    <video id="intro-video" playsinline preload="auto" autoplay muted loop>
+    <video id="intro-video" playsinline preload="auto" autoplay muted>
       <source src="erasio_Snakes_form_circle_tongues_flicking_202607192010.mp4" type="video/mp4">
     </video>
   </div>
@@ -1233,13 +1233,15 @@
       var galleryReady = false;
       var SLIDE_DURATION = 6000;
 
-      // Cinematic Intro Video Controls (Immediate Seamless Event-Driven Sync)
+      // Cinematic Intro Video Controls
       var video = document.getElementById('intro-video');
       var overlay = document.getElementById('center-content');
       var overlayRevealed = false;
+      var fallbackTimeout = null;
 
       function showTextOverlay() {
-        if (overlay) {
+        if (overlay && !overlayRevealed) {
+          overlayRevealed = true;
           overlay.classList.add('show');
         }
       }
@@ -1261,44 +1263,39 @@
         particles.style.opacity = '1';
       }
 
-      function revealVisuals() {
-        if (overlayRevealed) return;
-        overlayRevealed = true;
-
-        if (videoWrap) videoWrap.style.opacity = '1';
-        createParticles();
-        showTextOverlay();
-        document.body.classList.remove('intro-clickable');
-      }
-
       // Initialize particles immediately
       createParticles();
 
       if (video) {
+        video.loop = false;
         video.muted = true;
         
-        video.addEventListener('playing', function () {
-          revealVisuals();
-        });
-
-        video.addEventListener('timeupdate', function () {
-          if (video.currentTime > 0) {
-            revealVisuals();
+        // Reveal text overlay exactly when snakes part to the sides (~3.8s)
+        function checkVideoProgress() {
+          if (!video) return;
+          if (!overlayRevealed && video.currentTime >= 3.8) {
+            showTextOverlay();
           }
+        }
+
+        video.addEventListener('timeupdate', checkVideoProgress);
+
+        // Pause at last frame when video ends
+        video.addEventListener('ended', function () {
+          video.pause();
+          showTextOverlay();
         });
 
-        // Instant fallback to reveal visuals in case autoplay is deferred
-        setTimeout(function () {
-          revealVisuals();
-        }, 300);
+        // Backup fallback: reveal text after 4s if video load is delayed
+        fallbackTimeout = setTimeout(function () {
+          showTextOverlay();
+        }, 4000);
 
         var playPromise = video.play();
         if (playPromise !== undefined) {
-          playPromise.then(function () {
-            revealVisuals();
-          }).catch(function (error) {
+          playPromise.catch(function (error) {
             console.log("Autoplay notice:", error);
-            revealVisuals();
+            showTextOverlay();
           });
         }
       }
