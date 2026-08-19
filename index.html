@@ -112,7 +112,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0;
+      opacity: 1;
       overflow: hidden;
       transition: opacity 1.0s ease-in-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -1087,7 +1087,7 @@
 
   <!-- Welcome Page View -->
   <div class="video-wrap" id="videoWrap">
-    <video id="intro-video" playsinline preload="auto" muted>
+    <video id="intro-video" playsinline preload="auto" autoplay muted loop>
       <source src="erasio_Snakes_form_circle_tongues_flicking_202607192010.mp4" type="video/mp4">
     </video>
   </div>
@@ -1233,38 +1233,15 @@
       var galleryReady = false;
       var SLIDE_DURATION = 6000;
 
-      // Cinematic Intro Video Elements & Controls
+      // Cinematic Intro Video Controls (Immediate Seamless Event-Driven Sync)
       var video = document.getElementById('intro-video');
       var overlay = document.getElementById('center-content');
       var overlayRevealed = false;
-      var fallbackTimeout = null;
-      var videoStarted = false;
 
       function showTextOverlay() {
-        if (fallbackTimeout) clearTimeout(fallbackTimeout);
         if (overlay) {
           overlay.classList.add('show');
         }
-      }
-
-      // Immediate fallback timeout: if video takes too long to load, reveal the text overlay at 4.0s anyway.
-      fallbackTimeout = setTimeout(function () {
-        if (!overlayRevealed) {
-          showTextOverlay();
-          overlayRevealed = true;
-        }
-      }, 4000);
-
-      function checkVideoTime() {
-        if (!video) return;
-
-        // Reveal overlay at 4.0 seconds (cinematic delay when space is formed)
-        if (!overlayRevealed && video.currentTime >= 4.0) {
-          showTextOverlay();
-          overlayRevealed = true;
-        }
-
-        requestAnimationFrame(checkVideoTime);
       }
 
       function createParticles() {
@@ -1273,91 +1250,58 @@
         for (var i = 0; i < 55; i++) {
           var p = document.createElement('div');
           p.classList.add('particle');
-          var size = Math.random() * 4.5 + 1.5; // Sizes between 1.5px and 6px
+          var size = Math.random() * 4.5 + 1.5;
           p.style.width = size + 'px';
           p.style.height = size + 'px';
           p.style.left = Math.random() * 100 + '%';
-          p.style.animationDuration = (Math.random() * 18 + 12) + 's'; // Slower spiritual drift
-          p.style.animationDelay = (Math.random() * -30) + 's'; // Negative delay so particles are pre-scattered on load
+          p.style.animationDuration = (Math.random() * 18 + 12) + 's';
+          p.style.animationDelay = (Math.random() * -30) + 's';
           particles.appendChild(p);
         }
         particles.style.opacity = '1';
       }
 
-      function startIntroVideo() {
-        if (videoStarted) return;
-        videoStarted = true;
+      function revealVisuals() {
+        if (overlayRevealed) return;
+        overlayRevealed = true;
 
-        // Remove pointer cursor from body
-        document.body.classList.remove('intro-clickable');
-
-        // Create and fade in the particles
+        if (videoWrap) videoWrap.style.opacity = '1';
         createParticles();
-
-        if (video) {
-          video.muted = true;
-          video.volume = 0;
-
-          var playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.then(function () {
-              // Video started playing successfully muted (autoplay)
-              requestAnimationFrame(checkVideoTime);
-            }).catch(function (error) {
-              console.log("Autoplay failed, attempting backup show:", error);
-              showTextOverlay();
-            });
-          }
-        }
+        showTextOverlay();
+        document.body.classList.remove('intro-clickable');
       }
 
+      // Initialize particles immediately
+      createParticles();
+
       if (video) {
-        video.loop = false;
         video.muted = true;
-        video.volume = 0;
-        video.preload = "auto";
-
-        // Make sure the first frame is rendered on load and video wrap fades in
-        var handleLoadedData = function () {
-          try {
-            video.currentTime = 0;
-          } catch (e) {
-            console.log("Failed to set currentTime on load:", e);
-          }
-          if (videoWrap) {
-            videoWrap.style.opacity = '1';
-          }
-          // Start the video automatically!
-          startIntroVideo();
-        };
-
-        if (video.readyState >= 2) {
-          handleLoadedData();
-        } else {
-          video.addEventListener('loadeddata', handleLoadedData);
-        }
-
-        video.addEventListener('ended', function () {
-          video.pause();
+        
+        video.addEventListener('playing', function () {
+          revealVisuals();
         });
 
-        video.load();
-
-        // Global click and touch listeners to start video as manual fallback
-        var handleInteraction = function () {
-          if (!videoStarted) {
-            startIntroVideo();
+        video.addEventListener('timeupdate', function () {
+          if (video.currentTime > 0) {
+            revealVisuals();
           }
-          document.removeEventListener('click', handleInteraction);
-          document.removeEventListener('touchend', handleInteraction);
-        };
-        document.addEventListener('click', handleInteraction);
-        document.addEventListener('touchend', handleInteraction);
+        });
 
-        // Keep individual element listeners as backup/redundancy
-        if (videoWrap) {
-          videoWrap.addEventListener('click', handleInteraction);
+        // Instant fallback to reveal visuals in case autoplay is deferred
+        setTimeout(function () {
+          revealVisuals();
+        }, 300);
+
+        var playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function () {
+            revealVisuals();
+          }).catch(function (error) {
+            console.log("Autoplay notice:", error);
+            revealVisuals();
+          });
         }
+      }
         if (welcomeContent) {
           welcomeContent.addEventListener('click', handleInteraction);
         }
