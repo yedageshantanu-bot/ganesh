@@ -1233,17 +1233,38 @@
       var galleryReady = false;
       var SLIDE_DURATION = 6000;
 
-      // Cinematic Intro Video Controls
+      // Cinematic Intro Video Elements & Controls
       var video = document.getElementById('intro-video');
       var overlay = document.getElementById('center-content');
       var overlayRevealed = false;
       var fallbackTimeout = null;
+      var videoStarted = false;
 
       function showTextOverlay() {
-        if (overlay && !overlayRevealed) {
-          overlayRevealed = true;
+        if (fallbackTimeout) clearTimeout(fallbackTimeout);
+        if (overlay) {
           overlay.classList.add('show');
         }
+      }
+
+      // Immediate fallback timeout: if video takes too long to load, reveal the text overlay at 4.0s anyway.
+      fallbackTimeout = setTimeout(function () {
+        if (!overlayRevealed) {
+          showTextOverlay();
+          overlayRevealed = true;
+        }
+      }, 4000);
+
+      function checkVideoTime() {
+        if (!video) return;
+
+        // Reveal overlay at 3.5 seconds (when snakes part to sides revealing open center space)
+        if (!overlayRevealed && video.currentTime >= 3.5) {
+          showTextOverlay();
+          overlayRevealed = true;
+        }
+
+        requestAnimationFrame(checkVideoTime);
       }
 
       function createParticles() {
@@ -1252,55 +1273,106 @@
         for (var i = 0; i < 55; i++) {
           var p = document.createElement('div');
           p.classList.add('particle');
-          var size = Math.random() * 4.5 + 1.5;
+          var size = Math.random() * 4.5 + 1.5; // Sizes between 1.5px and 6px
           p.style.width = size + 'px';
           p.style.height = size + 'px';
           p.style.left = Math.random() * 100 + '%';
-          p.style.animationDuration = (Math.random() * 18 + 12) + 's';
-          p.style.animationDelay = (Math.random() * -30) + 's';
+          p.style.animationDuration = (Math.random() * 18 + 12) + 's'; // Slower spiritual drift
+          p.style.animationDelay = (Math.random() * -30) + 's'; // Negative delay so particles are pre-scattered on load
           particles.appendChild(p);
         }
         particles.style.opacity = '1';
       }
 
-      // Initialize particles immediately
-      createParticles();
+      function startIntroVideo() {
+        if (videoStarted) return;
+        videoStarted = true;
+
+        // Remove pointer cursor from body
+        document.body.classList.remove('intro-clickable');
+
+        // Create and fade in the particles
+        createParticles();
+
+        if (video) {
+          video.muted = true;
+          video.volume = 0;
+
+          var playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.then(function () {
+              // Video started playing successfully muted (autoplay)
+              requestAnimationFrame(checkVideoTime);
+            }).catch(function (error) {
+              console.log("Autoplay failed, attempting backup show:", error);
+              showTextOverlay();
+            });
+          }
+        }
+      }
 
       if (video) {
         video.loop = false;
         video.muted = true;
-        
-        // Reveal text overlay exactly when snakes part to the sides (~3.8s)
-        function checkVideoProgress() {
-          if (!video) return;
-          if (!overlayRevealed && video.currentTime >= 3.8) {
-            showTextOverlay();
+        video.volume = 0;
+        video.preload = "auto";
+
+        // Make sure the first frame is rendered on load and video wrap fades in
+        var handleLoadedData = function () {
+          try {
+            video.currentTime = 0;
+          } catch (e) {
+            console.log("Failed to set currentTime on load:", e);
           }
+          if (videoWrap) {
+            videoWrap.style.opacity = '1';
+          }
+          // Start the video automatically!
+          startIntroVideo();
+        };
+
+        if (video.readyState >= 2) {
+          handleLoadedData();
+        } else {
+          video.addEventListener('loadeddata', handleLoadedData);
         }
 
-        video.addEventListener('timeupdate', checkVideoProgress);
-
-        // Pause at last frame when video ends
         video.addEventListener('ended', function () {
           video.pause();
-          showTextOverlay();
         });
 
-        // Backup fallback: reveal text after 4s if video load is delayed
-        fallbackTimeout = setTimeout(function () {
-          showTextOverlay();
-        }, 4000);
+        video.load();
 
-        var playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(function (error) {
-            console.log("Autoplay notice:", error);
-            showTextOverlay();
+        // Global click and touch listeners to start video as manual fallback
+        var handleInteraction = function () {
+          if (!videoStarted) {
+            startIntroVideo();
+          }
+          document.removeEventListener('click', handleInteraction);
+          document.removeEventListener('touchend', handleInteraction);
+        };
+        document.addEventListener('click', handleInteraction);
+        document.addEventListener('touchend', handleInteraction);
+
+        // Keep individual element listeners as backup/redundancy
+        if (videoWrap) {
+          videoWrap.addEventListener('click', handleInteraction);
+        }
+        if (walkBtn) {
+          walkBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            showGallery(0);
           });
         }
-      }
         if (welcomeContent) {
-          welcomeContent.addEventListener('click', handleInteraction);
+          welcomeContent.addEventListener('click', function (e) {
+            if (e.target.closest('#walkBtn')) return;
+            if (overlayRevealed) {
+              showGallery(0);
+            } else {
+              startIntroVideo();
+            }
+          });
         }
       }
 
