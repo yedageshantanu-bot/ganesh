@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>404 — Path Not Found | Ganesh Tajane</title>
+  <meta name="description" content="The page you are looking for does not exist on Ganesh Tajane's website. Return home or explore books, essays, and reflections.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="author" content="Ganesh Tajane">
+  <link rel="canonical" href="https://ganeshtajane.com/404.html" />
+
+  <!-- Favicon Suite (Google Search Compliant) -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#050506">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "404 — Path Not Found",
+    "description": "Error 404 page for Ganesh Tajane website.",
+    "url": "https://ganeshtajane.com/404.html"
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(92,74,50,0.35); border-radius: 10px; }
+
+    body {
+      min-height: 100vh;
+      background: #050506;
+      font-family: 'Inter', sans-serif;
+      color: #d0c7b2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient noise background */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Radial glow backdrop */
+    .glow-backdrop {
+      position: fixed; inset: 0;
+      background: 
+        radial-gradient(circle at 50% 35%, rgba(138, 115, 85, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(92, 74, 50, 0.1) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Header */
+    .header {
+      position: relative;
+      z-index: 10;
+      padding: 30px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      animation: fadeInDown 0.8s ease forwards;
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #d0c7b2;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: #e5b869;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .nav-link {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #a09278;
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid rgba(208, 199, 178, 0.2);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+      border-color: rgba(229, 184, 105, 0.6);
+      background: rgba(229, 184, 105, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Main Section */
+    .main-container {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .badge-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #8a7355;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+    }
+
+    /* 404 Large Display */
+    .error-code-wrap {
+      position: relative;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .error-code {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(6rem, 16vw, 12rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      background: linear-gradient(180deg, #f5e9d3 0%, #8a7355 60%, #3a2e20 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      user-select: none;
+    }
+
+    .error-code-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(6rem, 16vw, 12rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      color: rgba(229, 184, 105, 0.15);
+      filter: blur(25px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .error-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f0e6d2;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+    }
+
+    .error-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      font-style: italic;
+      color: #b8a688;
+      max-width: 620px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #8a7355, transparent);
+      margin: 0 auto 30px;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.6s forwards;
+    }
+
+    .error-description {
+      font-size: 0.92rem;
+      color: #8a7c68;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 45px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.6s forwards;
+    }
+
+    /* Action Cards Grid */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.7s forwards;
+    }
+
+    .action-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(208, 199, 178, 0.12);
+      border-radius: 8px;
+      padding: 24px 20px;
+      text-decoration: none;
+      color: #d0c7b2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-card:hover {
+      transform: translateY(-6px);
+      background: rgba(229, 184, 105, 0.05);
+      border-color: rgba(229, 184, 105, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(138, 115, 85, 0.15);
+    }
+
+    .action-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .action-card:hover .action-icon {
+      transform: scale(1.15);
+    }
+
+    .action-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #f0e6d2;
+      margin-bottom: 6px;
+    }
+
+    .action-desc {
+      font-size: 0.78rem;
+      color: #8a7c68;
+    }
+
+    /* Footer Quote */
+    .footer {
+      position: relative;
+      z-index: 10;
+      padding: 24px;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #6e604d;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.9s forwards;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header { padding: 24px 20px; }
+      .main-container { padding: 20px 20px 60px; }
+      .actions-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .action-card { padding: 20px 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .actions-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-backdrop"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="explore.html" class="logo">Ganesh Tajane</a>
+    <div class="nav-links">
+      <a href="explore.html" class="nav-link">Home</a>
+      <a href="menu.html" class="nav-link">
+        Menu ☰
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-container">
+    <span class="badge-tag">404 • Path Not Found</span>
+    
+    <div class="error-code-wrap">
+      <div class="error-code">404</div>
+      <div class="error-code-glow">404</div>
+    </div>
+
+    <h1 class="error-title">This Path Does Not Exist</h1>
+
+    <p class="error-quote">
+      "Not all who wander are lost, but this step leads into unwritten silence."
+    </p>
+
+    <div class="divider-line"></div>
+
+    <p class="error-description">
+      The page you were searching for might have been moved, renamed, or remains yet to be written. Choose a destination below to continue your journey.
+    </p>
+
+    <!-- Quick Navigation Cards -->
+    <div class="actions-grid">
+      <a href="explore.html" class="action-card">
+        <span class="action-icon">🏠</span>
+        <div class="action-title">Home</div>
+        <div class="action-desc">Return to the sanctuary</div>
+      </a>
+
+      <a href="written-word.html" class="action-card">
+        <span class="action-icon">📜</span>
+        <div class="action-title">Written Word</div>
+        <div class="action-desc">Books, essays & reflections</div>
+      </a>
+
+      <a href="menu.html" class="action-card">
+        <span class="action-icon">🗺️</span>
+        <div class="action-title">Crossroads</div>
+        <div class="action-desc">Navigate the entire map</div>
+      </a>
+
+      <a href="write.html" class="action-card">
+        <span class="action-icon">✍️</span>
+        <div class="action-title">Write to Me</div>
+        <div class="action-desc">Leave a personal note</div>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Ganesh Tajane — For the curious mind, the searching heart, and the restless spirit.</p>
+  </footer>
+
+  <script>
+    // Card tilt effect on mousemove
+    document.querySelectorAll('.action-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) translateY(-6px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Prevent browser zoom shortcuts
+    (function() {
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) e.preventDefault();
+      }, { passive: false });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '+' || e.key === '0')) {
+          e.preventDefault();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

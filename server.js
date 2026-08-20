@@ -208,8 +208,14 @@ const server = http.createServer((req, res) => {
   fs.stat(filePath, (err, stat) => {
     if (err || !stat.isFile()) {
       console.log('404:', urlPath);
-      res.writeHead(404);
-      res.end('Not found: ' + urlPath);
+      const page404 = path.join(DIR, '404.html');
+      if (fs.existsSync(page404)) {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        fs.createReadStream(page404).pipe(res);
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not found: ' + urlPath);
+      }
       return;
     }
 

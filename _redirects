@@ -2,6 +2,23 @@
 
 # Written Word
 /written-word                 /written-word.html  200
+/written-word/                /written-word.html  200
+
+# Main Pages
+/explore                      /explore.html  200
+/explore/                     /explore.html  200
+/about                        /about.html  200
+/about/                       /about.html  200
+/write                        /write.html  200
+/write/                       /write.html  200
+/messages                     /messages.html  200
+/messages/                    /messages.html  200
+/faq                          /faq.html  200
+/faq/                         /faq.html  200
+/connect                      /connect.html  200
+/connect/                     /connect.html  200
+/menu                         /menu.html  200
+/menu/                        /menu.html  200
 
 # Before I Became Fire
 /before-the-fire              /chapters/before-the-fire/chapter-1/  302
@@ -32,3 +49,7 @@
 /vayu-mahesh/chapter-4        /chapters/vayu-mahesh/chapter-4/  200
 
 /admin                        /admin/index.html  200
+
+# Custom 404 Error Page Fallback
+/*                             /404.html  404
+
