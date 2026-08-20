@@ -1,55 +1,16 @@
-# Cloudflare Pages Redirects & Clean URL Routing Rules
-
-# Written Word
-/written-word                 /written-word.html  200
-/written-word/                /written-word.html  200
-
-# Main Pages
-/explore                      /explore.html  200
-/explore/                     /explore.html  200
-/about                        /about.html  200
-/about/                       /about.html  200
-/write                        /write.html  200
-/write/                       /write.html  200
-/messages                     /messages.html  200
-/messages/                    /messages.html  200
-/faq                          /faq.html  200
-/faq/                         /faq.html  200
-/connect                      /connect.html  200
-/connect/                     /connect.html  200
-/menu                         /menu.html  200
-/menu/                        /menu.html  200
+# Cloudflare Pages Redirects & Routing Rules
 
 # Before I Became Fire
 /before-the-fire              /chapters/before-the-fire/chapter-1/  302
-/before-the-fire/chapter-1    /chapters/before-the-fire/chapter-1/  200
-/before-the-fire/chapter-2    /chapters/before-the-fire/chapter-2/  200
-/before-the-fire/chapter-3    /chapters/before-the-fire/chapter-3/  200
-/before-the-fire/chapter-4    /chapters/before-the-fire/chapter-4/  200
 
 # The Path of Vayu
 /the-path-of-vayu             /chapters/the-path-of-vayu/chapter-1/  302
-/the-path-of-vayu/chapter-1   /chapters/the-path-of-vayu/chapter-1/  200
-/the-path-of-vayu/chapter-2   /chapters/the-path-of-vayu/chapter-2/  200
-/the-path-of-vayu/chapter-3   /chapters/the-path-of-vayu/chapter-3/  200
-/the-path-of-vayu/chapter-4   /chapters/the-path-of-vayu/chapter-4/  200
 
 # Chess & Strategy
 /chess                        /chapters/chess/chapter-1/  302
-/chess/chapter-1              /chapters/chess/chapter-1/  200
-/chess/chapter-2              /chapters/chess/chapter-2/  200
-/chess/chapter-3              /chapters/chess/chapter-3/  200
-/chess/chapter-4              /chapters/chess/chapter-4/  200
 
 # Vayu Mahesh
 /vayu-mahesh                  /chapters/vayu-mahesh/chapter-1/  302
-/vayu-mahesh/chapter-1        /chapters/vayu-mahesh/chapter-1/  200
-/vayu-mahesh/chapter-2        /chapters/vayu-mahesh/chapter-2/  200
-/vayu-mahesh/chapter-3        /chapters/vayu-mahesh/chapter-3/  200
-/vayu-mahesh/chapter-4        /chapters/vayu-mahesh/chapter-4/  200
 
+# Admin Dashboard
 /admin                        /admin/index.html  200
-
-# Custom 404 Error Page Fallback
-/*                             /404.html  404
-
