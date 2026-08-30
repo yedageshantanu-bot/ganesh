@@ -39,16 +39,16 @@
 
   // Minimal asset paths (Snow, Leaf, Bird, Feather only)
   const ASSET_PATHS = {
-    'leaf-01': 'asset/effect/leaf-01.webp.png',
-    'leaf-02': 'asset/effect/leaf-02.webp.png',
-    'leaf-03': 'asset/effect/leaf-03.webp.png',
-    'leaf-04': 'asset/effect/leaf-04.webp.png',
-    'feather-01': 'asset/effect/feather-01.webp.png',
-    'feather-02': 'asset/effect/feather-02.webp.png',
-    'bird': 'asset/effect/bird-01.webp.png',
-    'snowflake-01': 'asset/effect/snowflake-01.webp.png',
-    'snowflake-02': 'asset/effect/snowflake-02.webp.png',
-    'snowflake-ice': 'asset/effect/snowflake-ice.webp.png'
+    'leaf-01': '/asset/effect/leaf-01.webp.png',
+    'leaf-02': '/asset/effect/leaf-02.webp.png',
+    'leaf-03': '/asset/effect/leaf-03.webp.png',
+    'leaf-04': '/asset/effect/leaf-04.webp.png',
+    'feather-01': '/asset/effect/feather-01.webp.png',
+    'feather-02': '/asset/effect/feather-02.webp.png',
+    'bird': '/asset/effect/bird-01.webp.png',
+    'snowflake-01': '/asset/effect/snowflake-01.webp.png',
+    'snowflake-02': '/asset/effect/snowflake-02.webp.png',
+    'snowflake-ice': '/asset/effect/snowflake-ice.webp.png'
   };
 
   // Preloaded image cache
@@ -591,8 +591,39 @@
           }
 
           ctx.restore();
+          return;
+        } else {
+          // Procedural Fallback while image loads or if offline
+          ctx.save();
+          ctx.globalAlpha = this.alpha;
+          ctx.translate(this.x, this.y);
+          if (this.effect === 'ice-crystals') {
+            ctx.strokeStyle = 'rgba(216, 207, 184, 0.7)';
+            ctx.lineWidth = 1.2;
+            for (let i = 0; i < 6; i++) {
+              ctx.rotate(Math.PI / 3);
+              ctx.beginPath();
+              ctx.moveTo(0, 0);
+              ctx.lineTo(0, this.size * 0.5);
+              ctx.stroke();
+            }
+          } else if (this.effect === 'distant-birds') {
+            const flap = Math.sin(this.pulseTimer) * this.size * 0.3;
+            ctx.fillStyle = 'rgba(42, 35, 24, 0.4)';
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.quadraticCurveTo(-this.size * 0.4, -flap, -this.size * 0.8, flap * 0.5);
+            ctx.quadraticCurveTo(this.size * 0.4, -flap, this.size * 0.8, flap * 0.5);
+            ctx.fill();
+          } else {
+            ctx.fillStyle = 'rgba(92, 74, 50, 0.3)';
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size * 0.3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+          return;
         }
-        return; // Prevent fallbacks for image-based particles before they load
       }
 
       ctx.save();

@@ -1,40 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFDF6D"/>
-      <stop offset="40%" stop-color="#D4AF37"/>
-      <stop offset="85%" stop-color="#996515"/>
-      <stop offset="100%" stop-color="#5A3A00"/>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2C792" />
+      <stop offset="50%" stop-color="#C5A059" />
+      <stop offset="100%" stop-color="#8A7355" />
     </linearGradient>
-    <linearGradient id="fireGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#C0392B"/>
-      <stop offset="40%" stop-color="#E67E22"/>
-      <stop offset="80%" stop-color="#F1C40F"/>
-      <stop offset="100%" stop-color="#FFFDF0"/>
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.25"/>
-    </filter>
   </defs>
-
-  <!-- Crisp White Outer Circular Badge (Pops against Google Search dark/light themes) -->
-  <circle cx="256" cy="256" r="240" fill="#FFFFFF" stroke="#D4AF37" stroke-width="12" filter="url(#shadow)"/>
-  <circle cx="256" cy="256" r="222" fill="none" stroke="#F3C444" stroke-width="3" opacity="0.8"/>
-
-  <!-- Inner Sacred Flame & Lotus Motif -->
-  <!-- Outer Petals -->
-  <path d="M 256 95 C 290 160 365 210 365 280 C 365 340 316 380 256 380 C 196 380 147 340 147 280 C 147 210 222 160 256 95 Z" fill="url(#fireGrad)"/>
-  
-  <!-- Inner Gold Core -->
-  <path d="M 256 145 C 280 195 330 230 330 285 C 330 326 297 355 256 355 C 215 355 182 326 182 285 C 182 230 232 195 256 145 Z" fill="url(#goldGrad)"/>
-
-  <!-- Inner White Sacred Light -->
-  <path d="M 256 190 C 270 225 300 248 300 288 C 300 312 280 330 256 330 C 232 330 212 312 212 288 C 212 248 242 225 256 190 Z" fill="#FFFFFF"/>
-
-  <!-- High-Contrast Stylized Monogram GT -->
-  <!-- Letter G -->
-  <path d="M 230 245 C 216 245 204 254 204 275 C 204 296 216 305 232 305 C 245 305 254 297 256 286 L 234 286 L 234 274 L 268 274 L 268 307 C 258 315 245 318 230 318 C 204 318 188 300 188 275 C 188 250 204 232 230 232 C 245 232 258 238 266 247 L 254 257 C 248 250 240 245 230 245 Z" fill="#1A150A"/>
-
-  <!-- Letter T -->
-  <path d="M 276 234 L 324 234 L 324 247 L 307 247 L 307 316 L 293 316 L 293 247 L 276 247 Z" fill="#1A150A"/>
+  <circle cx="50" cy="50" r="50" fill="#1A1512" />
+  <circle cx="50" cy="50" r="46" fill="none" stroke="url(#g)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M50 18 C65 38 78 52 78 68 C78 84 65 92 50 92 C35 92 22 84 22 68 C22 52 35 38 50 18 Z" fill="none" stroke="url(#g)" stroke-width="3"/>
+  <path d="M50 35 C58 50 65 60 65 72 C65 82 58 86 50 86 C42 86 35 82 35 72 C35 60 42 50 50 35 Z" fill="url(#g)" opacity="0.8"/>
+  <circle cx="50" cy="72" r="6" fill="#1A1512"/>
 </svg>
