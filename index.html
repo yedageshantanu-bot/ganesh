@@ -93,7 +93,7 @@
 
     body {
       overflow: hidden;
-      background: var(--bg-primary);
+      background: #050506 url('asset/snakes_intro_poster.jpg') center center / cover no-repeat;
       font-family: 'Poppins', sans-serif;
       cursor: default;
       user-select: none;
@@ -104,13 +104,14 @@
       cursor: pointer !important;
     }
 
-    /* ── Video Background (Zero-Lag GPU accelerated) ── */
+    /* ── Video Background (Zero-Lag GPU accelerated with Instant Poster) ── */
     .video-wrap {
       position: fixed;
       inset: 0;
       z-index: 0;
       opacity: 1;
       overflow: hidden;
+      background: #050506 url('asset/snakes_intro_poster.jpg') center center / cover no-repeat;
       transform: translateZ(0);
       -webkit-transform: translateZ(0);
       backface-visibility: hidden;
@@ -1067,7 +1068,7 @@
 
   <!-- Welcome Page View -->
   <div class="video-wrap" id="videoWrap">
-    <video id="intro-video" playsinline webkit-playsinline preload="auto" autoplay muted>
+    <video id="intro-video" poster="asset/snakes_intro_poster.jpg" playsinline webkit-playsinline preload="auto" autoplay muted>
       <source src="erasio_Snakes_form_circle_tongues_flicking_202607192010.mp4" type="video/mp4">
     </video>
   </div>

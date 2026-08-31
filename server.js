@@ -63,6 +63,22 @@ const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0].split('#')[0];
 
   // API Routes
+  if (urlPath === '/save_poster' && req.method === 'POST') {
+    getRequestBody(req).then(data => {
+      if (data && data.image) {
+        const base64Data = data.image.replace(/^data:image\/\w+;base64,/, "");
+        const buf = Buffer.from(base64Data, 'base64');
+        fs.writeFileSync(path.join(DIR, 'asset', 'snakes_poster.jpg'), buf);
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Poster saved successfully!');
+      } else {
+        res.writeHead(400);
+        res.end('No image data');
+      }
+    });
+    return;
+  }
+
   if (urlPath === '/api/messages') {
     if (req.method === 'GET') {
       const showAll = req.url.includes('all=true');
