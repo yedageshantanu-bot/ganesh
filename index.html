@@ -1239,14 +1239,14 @@
         }
       }
 
-      // Fallback: if video fails or is delayed, reveal text after 3.2s
-      fallbackTimer = setTimeout(revealText, 3200);
+      // Fallback: if video fails or is delayed, reveal text after 4.8s
+      fallbackTimer = setTimeout(revealText, 4800);
 
       function checkVideoPlayback() {
         if (!video) return;
 
-        // When snakes slide open to the sides (~2.7s), smoothly reveal the text
-        if (!textRevealed && video.currentTime >= 2.7) {
+        // Reveal text after full opening animation sequence (~4.2s)
+        if (!textRevealed && video.currentTime >= 4.2) {
           revealText();
         }
 
@@ -1277,7 +1277,7 @@
         video.addEventListener('canplay', startVideo, { once: true });
         video.addEventListener('loadeddata', startVideo, { once: true });
         video.addEventListener('timeupdate', function () {
-          if (!textRevealed && video.currentTime >= 2.7) {
+          if (!textRevealed && video.currentTime >= 4.2) {
             revealText();
           }
         });
@@ -1290,7 +1290,7 @@
           if (video && video.paused && !video.ended) {
             video.play().catch(function () {});
           }
-          if (!textRevealed && video.currentTime >= 1.2) {
+          if (!textRevealed && video.currentTime >= 2.5) {
             revealText();
           }
         };
