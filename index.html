@@ -197,7 +197,7 @@
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Center text content (No background circle) */
+    /* Center text content - visible immediately */
     .center-content {
       width: 100%;
       max-width: 650px;
@@ -208,47 +208,24 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      opacity: 0;
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
+      opacity: 1;
+      pointer-events: auto;
       background: transparent;
       box-shadow: none;
       border: none;
+      animation: fadeIn 0.6s ease forwards;
     }
 
-    .center-content.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* Staggered text animations - fast, elegant and responsive */
+    /* Clean text display */
     .anim-line {
       display: block;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .center-content.show .anim-line {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
-    .delay-1 {
-      transition-delay: 0.05s;
-    }
-
-    .delay-2 {
-      transition-delay: 0.15s;
-    }
-
-    .delay-3 {
-      transition-delay: 0.25s;
-    }
-
-    .delay-4 {
-      transition-delay: 0.35s;
-      transform: translateY(30px);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Majestic Shimmering Gold & Fire Title */
@@ -1236,157 +1213,54 @@
       var galleryReady = false;
       var SLIDE_DURATION = 6000;
 
-      // Cinematic Intro Video Elements & Controls
+      // ── Video Playback (Instant, Zero-Lag, No Loop) ──
       var video = document.getElementById('intro-video');
-      var overlay = document.getElementById('center-content');
-      var overlayRevealed = false;
-      var fallbackTimeout = null;
-      var videoStarted = false;
 
-      function showTextOverlay() {
-        if (fallbackTimeout) clearTimeout(fallbackTimeout);
-        if (overlay) {
-          overlay.classList.add('show');
-        }
-      }
-
-      // Fallback timeout: if video playback is blocked or delayed, reveal text at 3.8s
-      fallbackTimeout = setTimeout(function () {
-        if (!overlayRevealed) {
-          showTextOverlay();
-          overlayRevealed = true;
-        }
-      }, 3800);
-
-      function checkVideoTime() {
-        if (!video) return;
-
-        // Reveal text exactly when the snakes slide open to the sides (~3.2s)
-        if (!overlayRevealed && video.currentTime >= 3.2) {
-          showTextOverlay();
-          overlayRevealed = true;
-        }
-
-        if (!overlayRevealed) {
-          requestAnimationFrame(checkVideoTime);
-        }
-      }
-
-      function createParticles() {
-        if (!particles) return;
-        particles.innerHTML = '';
-        var frag = document.createDocumentFragment();
-        for (var i = 0; i < 35; i++) {
-          var p = document.createElement('div');
-          p.classList.add('particle');
-          var size = Math.random() * 4 + 1.5;
-          p.style.width = size + 'px';
-          p.style.height = size + 'px';
-          p.style.left = Math.random() * 100 + '%';
-          p.style.animationDuration = (Math.random() * 16 + 10) + 's';
-          p.style.animationDelay = (Math.random() * -20) + 's';
-          frag.appendChild(p);
-        }
-        particles.appendChild(frag);
-        particles.style.opacity = '1';
-      }
-
-      function startIntroVideo() {
-        if (videoStarted) return;
-        videoStarted = true;
-
-        document.body.classList.remove('intro-clickable');
-        
-        // Defer particle render slightly for zero-lag initial video frame
-        requestAnimationFrame(function () {
-          createParticles();
-        });
-
+      function startVideo() {
         if (video) {
           video.loop = false;
           video.muted = true;
           video.defaultMuted = true;
           video.playsInline = true;
-
-          var playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.then(function () {
-              // Video started playing smoothly
-              requestAnimationFrame(checkVideoTime);
-            }).catch(function (error) {
-              console.log("Autoplay caught, showing backup:", error);
-              showTextOverlay();
-              overlayRevealed = true;
-            });
+          var p = video.play();
+          if (p !== undefined) {
+            p.catch(function () {});
           }
-        } else {
-          showTextOverlay();
-          overlayRevealed = true;
         }
       }
 
       if (video) {
-        video.loop = false;
-        video.muted = true;
-        video.defaultMuted = true;
-        video.playsInline = true;
-
-        var handleMediaReady = function () {
-          if (videoWrap) {
-            videoWrap.style.opacity = '1';
-          }
-          startIntroVideo();
-        };
-
-        if (video.readyState >= 1) {
-          handleMediaReady();
-        } else {
-          video.addEventListener('canplay', handleMediaReady, { once: true });
-          video.addEventListener('loadeddata', handleMediaReady, { once: true });
-          video.addEventListener('playing', handleMediaReady, { once: true });
-        }
-
+        startVideo();
+        video.addEventListener('canplay', startVideo, { once: true });
+        video.addEventListener('loadeddata', startVideo, { once: true });
+        video.addEventListener('playing', function () {
+          if (videoWrap) videoWrap.style.opacity = '1';
+        }, { once: true });
         video.addEventListener('ended', function () {
           video.pause();
         });
 
-        // Start video immediately without lag
-        startIntroVideo();
-
-        // User interaction fallback
-        var handleInteraction = function () {
-          if (!videoStarted) {
-            startIntroVideo();
-          } else if (video && video.paused && !video.ended) {
+        // Touch/click manual resume fallback
+        var resumeVideo = function () {
+          if (video && video.paused && !video.ended) {
             video.play().catch(function () {});
           }
-          if (!overlayRevealed) {
-            showTextOverlay();
-            overlayRevealed = true;
-          }
         };
-        document.addEventListener('click', handleInteraction, { passive: true });
-        document.addEventListener('touchstart', handleInteraction, { passive: true });
+        document.addEventListener('click', resumeVideo, { passive: true });
+        document.addEventListener('touchstart', resumeVideo, { passive: true });
+      }
 
-        if (videoWrap) {
-          videoWrap.addEventListener('click', handleInteraction, { passive: true });
-        }
-        if (walkBtn) {
-          walkBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            showGallery(0);
-          });
-        }
-        if (welcomeContent) {
-          welcomeContent.addEventListener('click', function (e) {
-            if (e.target.closest('#walkBtn')) return;
-            if (overlayRevealed) {
-              showGallery(0);
-            } else {
-              startIntroVideo();
-            }
-          });
-        }
+      if (walkBtn) {
+        walkBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          showGallery(0);
+        });
+      }
+      if (welcomeContent) {
+        welcomeContent.addEventListener('click', function (e) {
+          if (e.target.closest('#walkBtn')) return;
+          showGallery(0);
+        });
       }
 
       // ── Check URL for direct gallery access or specific slide ──
