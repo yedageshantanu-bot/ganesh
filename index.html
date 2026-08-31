@@ -215,12 +215,12 @@
       pointer-events: auto;
     }
 
-    /* Staggered text animations */
+    /* Staggered text animations - fast, elegant and responsive */
     .anim-line {
       display: block;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .center-content.show .anim-line {
@@ -229,20 +229,20 @@
     }
 
     .delay-1 {
-      transition-delay: 0.15s;
+      transition-delay: 0.05s;
     }
 
     .delay-2 {
-      transition-delay: 0.35s;
+      transition-delay: 0.15s;
     }
 
     .delay-3 {
-      transition-delay: 0.65s;
+      transition-delay: 0.25s;
     }
 
     .delay-4 {
-      transition-delay: 0.95s;
-      transform: translateY(60px);
+      transition-delay: 0.35s;
+      transform: translateY(30px);
     }
 
     /* Majestic Shimmering Gold & Fire Title */
@@ -1084,7 +1084,7 @@
 
   <!-- Welcome Page View -->
   <div class="video-wrap" id="videoWrap">
-    <video id="intro-video" playsinline preload="auto" autoplay muted>
+    <video id="intro-video" playsinline webkit-playsinline preload="auto" autoplay muted loop>
       <source src="erasio_Snakes_form_circle_tongues_flicking_202607192010.mp4" type="video/mp4">
     </video>
   </div>
@@ -1244,40 +1244,44 @@
         }
       }
 
-      // Immediate fallback timeout: if video takes too long to load, reveal the text overlay at 4.0s anyway.
+      // Fast guaranteed fallback: reveal text in max 1.0s so user is never stuck
       fallbackTimeout = setTimeout(function () {
         if (!overlayRevealed) {
           showTextOverlay();
           overlayRevealed = true;
         }
-      }, 4000);
+      }, 1000);
 
       function checkVideoTime() {
         if (!video) return;
 
-        // Reveal overlay at 3.5 seconds (when snakes part to sides revealing open center space)
-        if (!overlayRevealed && video.currentTime >= 3.5) {
+        // Reveal overlay within 0.6s of playback starting without waiting for entire video
+        if (!overlayRevealed && (video.currentTime >= 0.6 || video.currentTime > 0)) {
           showTextOverlay();
           overlayRevealed = true;
         }
 
-        requestAnimationFrame(checkVideoTime);
+        if (!overlayRevealed) {
+          requestAnimationFrame(checkVideoTime);
+        }
       }
 
       function createParticles() {
         if (!particles) return;
         particles.innerHTML = '';
-        for (var i = 0; i < 55; i++) {
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < 35; i++) {
           var p = document.createElement('div');
           p.classList.add('particle');
-          var size = Math.random() * 4.5 + 1.5; // Sizes between 1.5px and 6px
+          var size = Math.random() * 4 + 1.5;
           p.style.width = size + 'px';
           p.style.height = size + 'px';
           p.style.left = Math.random() * 100 + '%';
-          p.style.animationDuration = (Math.random() * 18 + 12) + 's'; // Slower spiritual drift
-          p.style.animationDelay = (Math.random() * -30) + 's'; // Negative delay so particles are pre-scattered on load
-          particles.appendChild(p);
+          p.style.animationDuration = (Math.random() * 16 + 10) + 's';
+          p.style.animationDelay = (Math.random() * -20) + 's';
+          frag.appendChild(p);
         }
+        particles.appendChild(frag);
         particles.style.opacity = '1';
       }
 
@@ -1285,75 +1289,78 @@
         if (videoStarted) return;
         videoStarted = true;
 
-        // Remove pointer cursor from body
         document.body.classList.remove('intro-clickable');
-
-        // Create and fade in the particles
         createParticles();
 
         if (video) {
           video.muted = true;
-          video.volume = 0;
+          video.defaultMuted = true;
+          video.playsInline = true;
+          video.loop = true;
 
           var playPromise = video.play();
           if (playPromise !== undefined) {
             playPromise.then(function () {
-              // Video started playing successfully muted (autoplay)
               requestAnimationFrame(checkVideoTime);
+              setTimeout(function () {
+                if (!overlayRevealed) {
+                  showTextOverlay();
+                  overlayRevealed = true;
+                }
+              }, 600);
             }).catch(function (error) {
-              console.log("Autoplay failed, attempting backup show:", error);
+              console.log("Autoplay caught, showing text immediately:", error);
               showTextOverlay();
+              overlayRevealed = true;
             });
           }
+        } else {
+          showTextOverlay();
+          overlayRevealed = true;
         }
       }
 
       if (video) {
-        video.loop = false;
+        video.loop = true;
         video.muted = true;
-        video.volume = 0;
-        video.preload = "auto";
+        video.defaultMuted = true;
+        video.playsInline = true;
 
-        // Make sure the first frame is rendered on load and video wrap fades in
-        var handleLoadedData = function () {
-          try {
-            video.currentTime = 0;
-          } catch (e) {
-            console.log("Failed to set currentTime on load:", e);
-          }
+        var handleMediaReady = function () {
           if (videoWrap) {
             videoWrap.style.opacity = '1';
           }
-          // Start the video automatically!
           startIntroVideo();
         };
 
-        if (video.readyState >= 2) {
-          handleLoadedData();
+        if (video.readyState >= 1) {
+          handleMediaReady();
         } else {
-          video.addEventListener('loadeddata', handleLoadedData);
+          video.addEventListener('canplay', handleMediaReady, { once: true });
+          video.addEventListener('loadeddata', handleMediaReady, { once: true });
+          video.addEventListener('playing', handleMediaReady, { once: true });
         }
 
-        video.addEventListener('ended', function () {
-          video.pause();
-        });
+        // Try immediate start attempt without blocking
+        startIntroVideo();
 
-        video.load();
-
-        // Global click and touch listeners to start video as manual fallback
+        // User interaction fallback
         var handleInteraction = function () {
           if (!videoStarted) {
             startIntroVideo();
+          } else if (video && video.paused) {
+            video.play().catch(function () {});
           }
-          document.removeEventListener('click', handleInteraction);
-          document.removeEventListener('touchend', handleInteraction);
+          if (!overlayRevealed) {
+            showTextOverlay();
+            overlayRevealed = true;
+          }
         };
-        document.addEventListener('click', handleInteraction);
-        document.addEventListener('touchend', handleInteraction);
+        document.addEventListener('click', handleInteraction, { passive: true });
+        document.addEventListener('touchstart', handleInteraction, { passive: true });
 
-        // Keep individual element listeners as backup/redundancy
         if (videoWrap) {
-          videoWrap.addEventListener('click', handleInteraction);
+          videoWrap.addEventListener('click', handleInteraction, { passive: true });
         }
         if (walkBtn) {
           walkBtn.addEventListener('click', function (e) {
