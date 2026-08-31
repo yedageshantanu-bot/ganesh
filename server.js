@@ -244,14 +244,17 @@ const server = http.createServer((req, res) => {
         'Accept-Ranges':  'bytes',
         'Content-Length': chunkSize,
         'Content-Type':   finalContentType,
+        'Access-Control-Allow-Origin': '*',
       });
       fs.createReadStream(filePath, { start, end }).pipe(res);
     } else {
-      res.writeHead(200, {
+      const headers = {
         'Content-Type':   finalContentType,
         'Content-Length': stat.size,
-        'Cache-Control':  'no-cache',
-      });
+        'Accept-Ranges':  'bytes',
+        'Access-Control-Allow-Origin': '*',
+      };
+      res.writeHead(200, headers);
       fs.createReadStream(filePath).pipe(res);
     }
   });

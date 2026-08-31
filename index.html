@@ -93,7 +93,7 @@
 
     body {
       overflow: hidden;
-      background: #050506 url('asset/snakes_intro_poster.jpg') center center / cover no-repeat;
+      background: #050506;
       font-family: 'Poppins', sans-serif;
       cursor: default;
       user-select: none;
@@ -104,14 +104,14 @@
       cursor: pointer !important;
     }
 
-    /* ── Video Background (Zero-Lag GPU accelerated with Instant Poster) ── */
+    /* ── Video Background (Pure Video, GPU accelerated) ── */
     .video-wrap {
       position: fixed;
       inset: 0;
       z-index: 0;
       opacity: 1;
       overflow: hidden;
-      background: #050506 url('asset/snakes_intro_poster.jpg') center center / cover no-repeat;
+      background: #050506;
       transform: translateZ(0);
       -webkit-transform: translateZ(0);
       backface-visibility: hidden;
@@ -198,7 +198,7 @@
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Center text content - visible immediately */
+    /* Center text content (Starts hidden, smoothly fades in when snakes open up) */
     .center-content {
       width: 100%;
       max-width: 650px;
@@ -209,25 +209,37 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      opacity: 1;
-      pointer-events: auto;
+      opacity: 0;
+      pointer-events: none;
       background: transparent;
       box-shadow: none;
       border: none;
-      animation: fadeIn 0.6s ease forwards;
+      transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Clean text display */
+    .center-content.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Staggered smooth entrance */
     .anim-line {
       display: block;
-      opacity: 1;
-      transform: none;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .center-content.show .anim-line {
+      opacity: 1;
+      transform: translateY(0);
     }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.25s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.65s; transform: translateY(30px); }
+    .center-content.show .delay-4 { transform: translateY(0); }
 
     /* Majestic Shimmering Gold & Fire Title */
     .intro-title {
@@ -1068,9 +1080,7 @@
 
   <!-- Welcome Page View -->
   <div class="video-wrap" id="videoWrap">
-    <video id="intro-video" poster="asset/snakes_intro_poster.jpg" playsinline webkit-playsinline preload="auto" autoplay muted>
-      <source src="erasio_Snakes_form_circle_tongues_flicking_202607192010.mp4" type="video/mp4">
-    </video>
+    <video id="intro-video" src="erasio_Snakes_form_circle_tongues_flicking_202607192010.mp4" playsinline webkit-playsinline preload="auto" autoplay muted></video>
   </div>
   <div class="video-overlay" id="videoOverlay"></div>
   <div class="particles" id="particles"></div>
@@ -1214,8 +1224,36 @@
       var galleryReady = false;
       var SLIDE_DURATION = 6000;
 
-      // ── Video Playback (Instant, Zero-Lag, No Loop) ──
+      // ── Video Playback & Timed Text Reveal ──
       var video = document.getElementById('intro-video');
+      var centerContent = document.getElementById('center-content');
+      var textRevealed = false;
+      var fallbackTimer = null;
+
+      function revealText() {
+        if (textRevealed) return;
+        textRevealed = true;
+        if (fallbackTimer) clearTimeout(fallbackTimer);
+        if (centerContent) {
+          centerContent.classList.add('show');
+        }
+      }
+
+      // Fallback: if video fails or is delayed, reveal text after 3.2s
+      fallbackTimer = setTimeout(revealText, 3200);
+
+      function checkVideoPlayback() {
+        if (!video) return;
+
+        // When snakes slide open to the sides (~2.7s), smoothly reveal the text
+        if (!textRevealed && video.currentTime >= 2.7) {
+          revealText();
+        }
+
+        if (!textRevealed) {
+          requestAnimationFrame(checkVideoPlayback);
+        }
+      }
 
       function startVideo() {
         if (video) {
@@ -1225,7 +1263,11 @@
           video.playsInline = true;
           var p = video.play();
           if (p !== undefined) {
-            p.catch(function () {});
+            p.then(function () {
+              requestAnimationFrame(checkVideoPlayback);
+            }).catch(function () {
+              revealText();
+            });
           }
         }
       }
@@ -1234,9 +1276,11 @@
         startVideo();
         video.addEventListener('canplay', startVideo, { once: true });
         video.addEventListener('loadeddata', startVideo, { once: true });
-        video.addEventListener('playing', function () {
-          if (videoWrap) videoWrap.style.opacity = '1';
-        }, { once: true });
+        video.addEventListener('timeupdate', function () {
+          if (!textRevealed && video.currentTime >= 2.7) {
+            revealText();
+          }
+        });
         video.addEventListener('ended', function () {
           video.pause();
         });
@@ -1245,6 +1289,9 @@
         var resumeVideo = function () {
           if (video && video.paused && !video.ended) {
             video.play().catch(function () {});
+          }
+          if (!textRevealed && video.currentTime >= 1.2) {
+            revealText();
           }
         };
         document.addEventListener('click', resumeVideo, { passive: true });
